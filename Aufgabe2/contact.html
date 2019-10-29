@@ -2,42 +2,44 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<title>Portfolio</title>
-	<style>
-		body {
-			font-family: Arial, Helvetica, sans-serif;
-			font-size: 16px;
-			background: #eeeee;
-			line-height: 160%;
-			}
-		
-		section, nav, footer {
-			width: 805px;
-			margin: 30px;
-		}
-        footer {
-			font-size: 12px;
-		}
-	</style>
+    <meta charset="utf-8" />
+    <title>Portfolio Hannah Dürr</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <nav>
-        <p> <a href="portfolio.html">Startseite</a> ⎜
-            <a href="aboutme.html">Über mich</a> ⎜ 
-            <a href="mywork.html">Portfolio</a> ⎜ 
-            <a href="contact.html">Kontakt</a> 
-        </p>
+        <ul> 
+            <li> <a href="portfolio.html">Startseite</a> </li>
+            <li> <a href="aboutme.html">Über mich</a> </li>
+            <li> <a href="mywork.html">Portfolio</a> </li>
+            <li> <a class="active" href="contact.html">Kontakt</a> </li>
+        </ul>
     </nav>
     <header>
-		<img src="images/headercontact.jpg" width="100%">
-	</header>
+            <div>
+                <img src="photos/header.png" width="100%">
+                <a href="https://www.facebook.com/hannah.duerr2"><img src="images/icon_facebook.png" width="22px"class="logo_header"></a>
+                <a href="https://www.youtube.com/channel/UCtoSb7TIW1W01Zrl1p52_7A?view_as=subscriber"><img src="images/youtubeicon.png" width="22px" class="logo_header"></a>
+                <a href="https://www.instagram.com/hannahstravelnotes/"><img src="images/instagramicon_weiss.png" width="22px" class="logo_header"></a>
+            </div>
+    </header>
+    <div class="container">
     <section>
         <h1>Sag mal Hallo!</h1>
         <p>Du hast Fragen, Anregungen, Kritik oder willst einfach nur quatschen? 
             Dann schreib mir doch! 🙂
         </p>
+
+        <form>
+            <input type="text" name="Vorname" placeholder="Vorname"><br>
+            <input type="text" name="Nachname" placeholder="Nachname"><br>
+            <input type="text" name="E-Mail" placeholder="E-Mail"><br>
+            <textarea placeholder="Deine Nachricht" name="message" rows="10"></textarea>
+            <div class="datenschutz">Mit Absenden der Nachricht bestätige ich den <a>Datenschutz</a>. </div> <br>
+            <input type="submit" value="Abschicken">
+        </form>
+
         <hr>
         <h3>Schreib mir eine Mail</h3>
         <p>Du kannst mich per Email erreichen unter:<br>
@@ -59,5 +61,6 @@
     <footer>
         <p>Copyright © 2019 Hannah Dürr</p>
     </footer> 
+</div>
 </body>
 </html>
