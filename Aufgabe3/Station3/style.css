@@ -1,0 +1,80 @@
+html body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Avenir, Helvetica, sans-serif;
+    font-size: 16px;
+    color: whitesmoke;
+    line-height: 160%;
+    background-image: url(images/bg.png);
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text {
+    padding: 70px;
+    position: absolute;
+    bottom: 10px;
+    
+}
+
+.unterschrift {
+    position: absolute;
+    bottom: 50px;
+    left: 330px;
+}
+
+.stern1 {
+    z-index: 2;
+    position: absolute;
+    bottom: 310px;
+    left: 80px;
+    transform: scale(1);
+}
+
+.stern1:hover {
+    background-image: url(images/stern_hover.png);
+}
+
+.stern2 {
+    z-index: 2;
+    position: absolute;
+    bottom: 290px;
+    left: 210px;
+    transform: scale(1);
+}
+
+.stern2:hover {
+    background-image: url(images/stern_hover.png);
+}
+
+.stern3 {
+    z-index: 2;
+    position: absolute;
+    bottom: 300px;
+    left: 340px;
+    transform: scale(1);
+}
+
+.stern3:hover {
+    background-image: url(images/stern_hover.png);
+}
+
+.stern4 {
+    z-index: 2;
+    position: absolute;
+    bottom: 230px;
+    left: 460px;
+    transform: scale(1);
+}
+
+.stern4:hover {
+    background-image: url(images/stern_hover.png);
+}
