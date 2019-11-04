@@ -1,0 +1,34 @@
+html body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Just Married;
+    font-size: 1.4em;
+    color: whitesmoke;
+    line-height: 160%;
+    background-image: url(images/bg.png);
+}
+
+@font-face {
+    font-family: Just Married;
+    src: url(fonts/just_married-webfont.woff);
+    font-weight: normal;
+    font-stretch: extra-expanded;
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text {
+    padding: 60px;
+    position: absolute;
+    bottom: -10px;
+    text-align: center;
+    
+}

@@ -37,8 +37,27 @@ img {
 .text {
     padding: 70px;
     position: absolute;
-    bottom: 10px;
+    bottom: 40px;
     
+}
+
+.links {
+    background-color: blanchedalmond;
+    color: darkolivegreen;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+    width: 420px;
+}
+
+a {
+    text-decoration: none;
+    color: darkolivegreen;
+}
+
+a:hover {
+    background-color: white;
 }
 
 .unterschrift {

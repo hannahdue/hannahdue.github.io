@@ -1,0 +1,40 @@
+html body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Avenir, Helvetica, sans-serif;
+    font-size: 16px;
+    color: whitesmoke;
+    line-height: 160%;
+    background-image: url(images/bg.png);
+}
+
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.grid-container {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 100px;
+}
+
+.text {
+    padding: 70px;
+    position: absolute;
+    bottom: 10px;
+    
+}
+
+.unterschrift {
+    position: absolute;
+    bottom: 50px;
+    left: 340px;
+}
