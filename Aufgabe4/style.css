@@ -1,0 +1,197 @@
+html {
+    margin: 0;
+    padding: 0;
+    background-image: url(images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-stretch: extra-expanded;
+    color: beige;
+    font-size: 1em;
+    text-shadow: 0.1em 0.1em 0.2em darkblue;
+}
+
+.container {
+    width: 80%;
+    padding: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+
+@media screen and (min-width:600px) {
+
+    .start {
+        display: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: beige;
+    }
+
+    .button {
+        margin: 50px;
+        background-color: crimson;
+        padding: 15px;
+        border-radius: 20px;
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        text-shadow: none;
+        transform: scale(1)
+    }
+
+    .button:hover {
+        cursor: pointer;
+        box-shadow: 0.1em 0.1em 0.2em darkblue;
+        transform: scale(1.1);
+        transition: all 0.25s ease-in-out 0s;
+    }
+
+    .frage-feld {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .frage {
+        position: absolute;
+        font-size: 1.5em;
+        width: 50%;
+        top: 7%;
+        left: 26%;
+        text-align: center;
+    }
+
+    .antwort {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        background: url(images/answer.png);
+        background-size:  100%;
+        background-repeat: no-repeat;
+        margin-bottom: 0;
+    }
+
+    .antworttext {
+        position: absolute;
+        font-size: 1.5em;
+        width: 70%;
+        top: 23%;
+        left: 15%;
+        text-align: center;
+    }
+    
+    .antwort:hover{
+        background-image: url(images/answer_over.png);
+    }
+
+    footer {
+        position: relative;
+        bottom: 0%;
+        margin: 30px;
+        text-align: center;
+    }
+    
+
+}
+
+
+@media screen and (max-width:600px) {
+
+    .responsive {
+        display: none;
+    }
+
+    .start {
+        margin: 50px;
+        background-color: crimson;
+        padding: 15px;
+        border-radius: 20px;
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        text-shadow: none;
+        transform: scale(1)
+    }
+
+    .start:hover {
+        cursor: pointer;
+        box-shadow: 0.1em 0.1em 0.2em darkblue;
+        transform: scale(1.1);
+        transition: all 0.25s ease-in-out 0s;
+    }
+
+    a {
+        text-decoration: none;
+        color: beige;
+    }
+
+    .button {
+        margin: 50px;
+        background-color: crimson;
+        padding: 15px;
+        border-radius: 20px;
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        text-shadow: none;
+        transform: scale(1)
+    }
+
+    .frage {
+        position: absolute;
+        font-size: 1em;
+        width: 60%;
+        top: 6%;
+        left: 20%;
+        text-align: center;
+    }
+
+    .antwort {
+        position: relative;
+        width: 100%;
+        height: 35px;
+        background: url(images/answer.png);
+        background-size:  100%;
+        background-repeat: no-repeat;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    .antworttext {
+        position: absolute;
+        font-size: 1em;
+        width: 70%;
+        top: 25%;
+        left: 15%;
+        text-align: center;
+    }
+    
+    .antwort:hover{
+        background-image: url(images/answer_over.png);
+    }
+    
+    footer {
+        position: relative;
+        bottom: 0%;
+        margin: 30px;
+        text-align: center;
+    }
+
+}
+
+
+
+
+
