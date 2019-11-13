@@ -149,6 +149,13 @@ body {
         transform: scale(1)
     }
 
+    .button:hover {
+        cursor: pointer;
+        box-shadow: 0.1em 0.1em 0.2em darkblue;
+        transform: scale(1.1);
+        transition: all 0.25s ease-in-out 0s;
+    }
+
     .frage {
         position: absolute;
         font-size: 1em;
