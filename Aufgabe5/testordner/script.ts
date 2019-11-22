@@ -1,3 +1,14 @@
+
+
+function machwas(){
+    inhalt.innerText = "Hallo Welt";
+}
+
+var inhalt:HTMLElement = document.getElementById("inhalt");
+
+
+
+
 var emissionAsia:number = 16274.1;
 var emissionEurope:number = 4209.3;
 var emissionNorthamerica:number = 6035.6;
