@@ -1,12 +1,11 @@
-
-var totalEmission:number = emissionAsia + emissionEurope + emissionNorthamerica + emissionSouthamerica + emissionAfrica + emissionAustralia;
-
 var emissionAsia:number = 16274.1;
 var emissionEurope:number = 4209.3;
 var emissionNorthamerica:number = 6035.6;
 var emissionSouthamerica:number = 1261.5;
 var emissionAfrica:number = 1235.5;
 var emissionAustralia:number = 2100.5;
+
+var totalEmission:number = emissionAsia + emissionEurope + emissionNorthamerica + emissionSouthamerica + emissionAfrica + emissionAustralia;
 
 var emissionAsiaStart:number = 12954.7;
 var emissionEuropeStart:number = 4965.7;

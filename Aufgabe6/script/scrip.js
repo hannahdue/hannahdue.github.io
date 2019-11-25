@@ -1,10 +1,10 @@
-var totalEmission = emissionAsia + emissionEurope + emissionNorthamerica + emissionSouthamerica + emissionAfrica + emissionAustralia;
 var emissionAsia = 16274.1;
 var emissionEurope = 4209.3;
 var emissionNorthamerica = 6035.6;
 var emissionSouthamerica = 1261.5;
 var emissionAfrica = 1235.5;
 var emissionAustralia = 2100.5;
+var totalEmission = emissionAsia + emissionEurope + emissionNorthamerica + emissionSouthamerica + emissionAfrica + emissionAustralia;
 var emissionAsiaStart = 12954.7;
 var emissionEuropeStart = 4965.7;
 var emissionNorthamericaStart = 6600.4;
