@@ -43,6 +43,7 @@ section {
     height: 20%;
     background: white;
     border-radius: 3px;
+    transition: 1s;
 }
 
 footer p {
