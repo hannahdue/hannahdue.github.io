@@ -14,16 +14,18 @@ function playSample(mp3) {
     var sound = new Audio("assets/" + mp3);
     sound.play();
 }
-//Arrays für Aufgabe 2
+//Array für Aufgabe 2
+var jingleBells = ["assets/A.mp3", "assets/A.mp3", "assets/A.mp3", " ", "assets/A.mp3", "assets/A.mp3", "assets/A.mp3", " ", "assets/A.mp3", "assets/C.mp3", "assets/F.mp3", "assets/G.mp3", "assets/A.mp3", "assets/laugh-1.mp3"];
 function playSong() {
     var song = setInterval(startJingleBells, 400);
     var index = 0;
-    var jingleBells = ["assets/A.mp3", "assets/A.mp3", "assets/A.mp3", " ", "assets/A.mp3", "assets/A.mp3", "assets/A.mp3", " ", "assets/A.mp3", "assets/C.mp3", "assets/F.mp3", "assets/G.mp3", "assets/A.mp3", "assets/laugh-1.mp3"];
     function startJingleBells() {
         var playAudio = new Audio(jingleBells[index]);
         playAudio.play();
         index += 1;
+        if (index > 13) {
+            index = 0;
+        }
     }
 }
-;
 //# sourceMappingURL=script.js.map
