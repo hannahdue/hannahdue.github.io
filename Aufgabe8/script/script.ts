@@ -61,5 +61,6 @@ function deleteBeat (): void {
 
 
 function recordBeat (): void {
+    jingleBells = [];
     record = true;
 }

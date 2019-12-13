@@ -47,6 +47,7 @@ function deleteBeat() {
     jingleBells = [];
 }
 function recordBeat() {
+    jingleBells = [];
     record = true;
 }
 //# sourceMappingURL=script.js.map
