@@ -24,7 +24,7 @@ function playSamples(mp3) {
 }
 function playJingleBells() {
     var index = 0;
-    var playButton = document.getElementById("play");
+    var playButton = document.querySelector("#play");
     if (playButton.classList.contains("fa-play")) {
         playButton.classList.remove("fa-play");
         playButton.classList.add("fa-stop");

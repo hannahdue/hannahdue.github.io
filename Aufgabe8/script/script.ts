@@ -33,7 +33,7 @@ function playJingleBells(): void {
 
     var index: number = 0;
 
-    var playButton: HTMLElement = document.getElementById("play");
+    var playButton: HTMLElement = document.querySelector("#play");
 
     if (playButton.classList.contains("fa-play")) {
         playButton.classList.remove("fa-play");
