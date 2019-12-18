@@ -51,6 +51,7 @@ function playJingleBells(): void {
         playSamples(jingleBells [index]);
         index += 1;
         if (index > jingleBells.length) { index = 0; }
+        record = false;
     }
 }
 

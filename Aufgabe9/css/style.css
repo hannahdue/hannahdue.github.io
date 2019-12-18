@@ -1,0 +1,37 @@
+body, html {
+    margin: 0;
+}
+
+body {
+    width: 600px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    background-color: lightgrey;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: 0px;
+}
+
+.amount {
+    text-align: center;
+    margin-bottom: 30px;
+    color: rgb(92, 92, 92);
+}
+
+p, input {
+    padding: 20px;
+    background-color: white;
+    margin: 2px;
+}
+
+input {
+    width: 553px;
+    font-size: 20px;
+}

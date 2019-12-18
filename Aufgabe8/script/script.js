@@ -41,6 +41,7 @@ function playJingleBells() {
         if (index > jingleBells.length) {
             index = 0;
         }
+        record = false;
     }
 }
 function deleteBeat() {
