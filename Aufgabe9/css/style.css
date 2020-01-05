@@ -29,9 +29,53 @@ p, input {
     padding: 20px;
     background-color: white;
     margin: 2px;
+    border-radius: 3px;
 }
 
 input {
     width: 553px;
     font-size: 20px;
+    border: none;
+}
+
+button {
+    padding: 10px 15px 10px 15px;
+    font-size: 20px;
+    border-radius: 8px;
+    border: none;
+    color: rgb(92, 92, 92);
+    background-color: aliceblue;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: ghostwhite;
+}
+
+i {
+    font-size: 35px;
+    color: grey;
+    margin-right: 15px;
+    vertical-align: middle;
+}
+
+#check {
+    font-size: 20px;
+    vertical-align: middle;
+    position: relative;
+    left: -43px;
+    opacity: 0;
+}
+
+#trash {
+    opacity: 0.1;
+    float: right;
+}
+
+#trash:hover {
+    cursor: pointer;
+    opacity: 1;
+    transition: 0.2s;
 }
