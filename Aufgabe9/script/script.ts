@@ -32,24 +32,11 @@ window.addEventListener("load", function(): void {
 });
 
 
-var checkButton: HTMLElement = document.querySelector("#check");
-function taskCheck(): void {
-
-    if (checkButton.getAttribute("style") == "opacity: 1") {
-        checkButton.setAttribute("style", "opacity: 0");
-    } else {
-        checkButton.setAttribute("style", "opacity: 1");
-    }
-}
-
-    
-
 function toDoList(): void {
 
     document.querySelector("#todos").innerHTML = "";
     for (var index: number = 0; index < toDos.length; index++) {
         document.querySelector("#todos").innerHTML += "<p>" + "<i class='far fa-circle'></i>" + "<i class='far fa-check' id='check'></i>" + toDos[index] + "<i class = 'far fa-trash-alt' id = 'trash'></i>" + "</p>";
-        taskCheck();
     }
     document.querySelector("#tasknumber").innerHTML = "" + toDos.length;
 
