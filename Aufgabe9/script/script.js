@@ -5,7 +5,7 @@ window.addEventListener("load", function () {
     document.querySelector("#add").addEventListener("click", function () {
         toDos.push(input.value);
         input.value = "";
-        console.log("huhu");
+        console.log("input");
         toDoList();
     });
     var checkButton = document.querySelector("#check");

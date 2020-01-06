@@ -10,7 +10,7 @@ window.addEventListener("load", function(): void {
         
             toDos.push(input.value);
             input.value = "";
-            console.log("huhu");
+            console.log("input");
             toDoList();
     });
 
