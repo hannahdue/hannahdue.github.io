@@ -38,9 +38,11 @@ function toDoList(): void {
     for (var index: number = 0; index < toDos.length; index++) {
         document.querySelector("#todos").innerHTML += "<p>" + "<i class='far fa-circle'></i>" + "<i class='far fa-check' id='check'></i>" + toDos[index] + "<i class = 'far fa-trash-alt' id = 'trash'></i>" + "</p>";
     }
+
     document.querySelector("#tasknumber").innerHTML = "" + toDos.length;
 
 }
+
 
 function deleteTask(): void {
     console.log("löschen");

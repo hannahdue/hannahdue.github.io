@@ -32,6 +32,7 @@ p, input {
     border-radius: 3px;
 }
 
+
 input {
     width: 553px;
     font-size: 20px;
@@ -66,7 +67,7 @@ i {
     vertical-align: middle;
     position: relative;
     left: -43px;
-    opacity: 0;
+    opacity: 0.1;
 }
 
 #trash {
