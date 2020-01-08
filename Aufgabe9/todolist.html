@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <script src="script/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>My ToDo List</title>
 </head>
 <body>
@@ -17,15 +18,23 @@
             <span id="tasknumber"></span> in total
         </div>
 
-
             <form>
-                <input type="text" name="newtask" placeholder="Add Another Task" id="input"><br>
+                <input type="text" name="newtask" placeholder="Type in your task and press enter or add" id="input"><br>
             </form>
             <button id="add">Add</button>
 
     
         <div id="todos"></i></div>
+        
+        <div class="sidenote">Sidenote: Since I didn't quite complete No. 2, the delete-button won't work, I'm sorry. 
+            But since you can check off your tasks, you can still stay on top of things!
+        </div>
 
     </div>
+    <script>
+        $("form").submit(function (e) {
+            e.preventDefault();
+        });
+    </script>
 </body>
 </html>

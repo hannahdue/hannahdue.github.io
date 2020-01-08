@@ -1,0 +1,13 @@
+ var checkButton: HTMLElement = document.querySelector("#check");
+    function taskCheck(): void {
+
+        if (checkButton.getAttribute("style") == "opacity: 1") {
+            checkButton.setAttribute("style", "opacity: 0");
+        } else {
+            checkButton.setAttribute("style", "opacity: 1");
+        }
+
+    }    
+
+    document.querySelector("#check").addEventListener("click", function(): void {taskCheck(); });
+

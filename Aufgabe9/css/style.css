@@ -25,16 +25,40 @@ h1 {
     color: rgb(92, 92, 92);
 }
 
+.sidenote {
+    font-size: 12px;
+    color: rgb(141, 141, 141);
+    line-height: 16px;
+    padding: 5px;
+    position: relative;
+    top: -50PX;
+}
+
 p, input {
     padding: 20px;
     background-color: white;
     margin: 2px;
+    margin-bottom: 3px;
     border-radius: 3px;
 }
 
+p {
+    box-shadow: 2px 2px 4px darkgray;
+}
+
+#add {
+    position: relative;
+    left: 520px;
+    top: -65px;
+}
+
+#todos {
+    position: relative;
+    top: -60px;
+}
 
 input {
-    width: 553px;
+    width: 556px;
     font-size: 20px;
     border: none;
 }
@@ -52,7 +76,7 @@ button {
 
 button:hover {
     cursor: pointer;
-    background-color: ghostwhite;
+    background-color: rgb(190, 221, 241);
 }
 
 i {
@@ -62,12 +86,9 @@ i {
     vertical-align: middle;
 }
 
-#check {
-    font-size: 20px;
-    vertical-align: middle;
+.todotask {
     position: relative;
-    left: -43px;
-    opacity: 0.1;
+    left: -30px;
 }
 
 #trash {
@@ -80,3 +101,60 @@ i {
     opacity: 1;
     transition: 0.2s;
 }
+
+.fa-circle {
+    z-index: 2;
+}
+
+
+
+.container {
+    display: inline;
+    position: relative;
+    left: -45px;
+    z-index: 1;
+    vertical-align: middle;
+    padding-left: 35px;
+    cursor: pointer;
+  }
+  
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border-radius: 12px;
+    border-color: rgb(92, 92, 92);
+    background-color:white;
+  }
+  
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+.container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+.container .checkmark:after {
+    left: 7px;
+    top: 1px;
+    width: 7px;
+    height: 15px;
+    border: solid rgb(92, 92, 92);
+    border-width: 0 4px 4px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
