@@ -1,8 +1,11 @@
 
 var toDos: string [] = ["Go grocery shopping", "Learn how to code"];
 
-window.addEventListener("load", function(): void {
+var todoFrame: HTMLElement;
 
+window.addEventListener("load", function(): void {
+    
+    todoFrame = document.querySelector("#todos");
     toDoList();
    
     var input: HTMLInputElement = document.querySelector("#input");
@@ -23,44 +26,29 @@ window.addEventListener("load", function(): void {
         }
     });
 
-
-    var trash: HTMLElement = document.querySelector("#trash");
-    function deleteTask(): void {
-        console.log("löschen");
-        toDos.splice(1);
-    }
-
-    document.querySelector("#trash").addEventListener("click", function(): void {deleteTask(); });
-
 });
+
+
 
 function toDoList(): void {
 
-    document.querySelector("#todos").innerHTML = "";
+    todoFrame.innerHTML = "";
     for (var index: number = 0; index < toDos.length; index++) {
-        document.querySelector("#todos").innerHTML += "<p>" +  "<i class = 'far fa-circle'></i>" + "<label class='container'><input type='checkbox'><span class='checkmark'></span></label>" + "<span class='todotask'>" + toDos[index] + "</span>" + "<i class = 'far fa-trash-alt' id = 'trash'></i>" + "</p>";
+        var todoContainer: HTMLElement = document.createElement("div");
+        todoContainer.classList.add("todo");
+        todoContainer.innerHTML +=  "<p>" +  "<i class = 'far fa-circle'></i>" + "<label class='container'><input type='checkbox'><span class='checkmark'></span></label>" + "<span class='todotask'>" + toDos[index] + "</span>" + "<i class = 'far fa-trash-alt' ></i>" + "</p>";
+
+        todoContainer.querySelector(".fa-trash-alt").addEventListener("click", function(): void {
+                console.log("löschen");
+                toDos.splice(index, 1);
+                toDoList();
+    
+        });
+
+        todoFrame.appendChild(todoContainer);
     }
 
     document.querySelector("#tasknumber").innerHTML = "" + toDos.length;
 }
 
 
-
-
-
-/*window.addEventListener("load", init);
-
-let container: HTMLElement;
-
-function init(): void {
-    container = document.createElement("div");
-    container.addEventListener("click", handleClick);
-    let button: HTMLButtonElement = document.createElement("button");
-    button.textContent = "Push me!";
-    document.body.appendChild(container);
-}
-
-function handleClick(_event: Event) {
-    let element: HTMLButtonElement = <HTMLButtonElement>event.target;
-    console.log(element);
-}*/

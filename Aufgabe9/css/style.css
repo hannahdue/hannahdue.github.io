@@ -91,12 +91,12 @@ i {
     left: -30px;
 }
 
-#trash {
+.fa-trash-alt {
     opacity: 0.1;
     float: right;
 }
 
-#trash:hover {
+.fa-trash-alt:hover {
     cursor: pointer;
     opacity: 1;
     transition: 0.2s;
