@@ -33,7 +33,7 @@ window.addEventListener("load", function(): void {
 function toDoList(): void {
 
     todoFrame.innerHTML = "";
-    for (var index: number = 0; index < toDos.length; index++) {
+    for (let index: number = 0; index < toDos.length; index++) {
         var todoContainer: HTMLElement = document.createElement("div");
         todoContainer.classList.add("todo");
         todoContainer.innerHTML +=  "<p>" +  "<i class = 'far fa-circle'></i>" + "<label class='container'><input type='checkbox'><span class='checkmark'></span></label>" + "<span class='todotask'>" + toDos[index] + "</span>" + "<i class = 'far fa-trash-alt' ></i>" + "</p>";
