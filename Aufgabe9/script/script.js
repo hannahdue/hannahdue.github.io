@@ -21,20 +21,20 @@ window.addEventListener("load", function () {
 });
 function toDoList() {
     todoFrame.innerHTML = "";
-    var _loop_1 = function (index) {
+    var _loop_1 = function (index_1) {
         todoContainer = document.createElement("div");
         todoContainer.classList.add("todo");
-        todoContainer.innerHTML += "<p>" + "<i class = 'far fa-circle'></i>" + "<label class='container'><input type='checkbox'><span class='checkmark'></span></label>" + "<span class='todotask'>" + toDos[index] + "</span>" + "<i class = 'far fa-trash-alt' ></i>" + "</p>";
+        todoContainer.innerHTML += "<p>" + "<i class = 'far fa-circle'></i>" + "<label class='container'><input type='checkbox'><span class='checkmark'></span></label>" + "<span class='todotask'>" + toDos[index_1] + "</span>" + "<i class = 'far fa-trash-alt' ></i>" + "</p>";
         todoContainer.querySelector(".fa-trash-alt").addEventListener("click", function () {
             console.log("löschen");
-            toDos.splice(index, 1);
+            toDos.splice(index_1, 1);
             toDoList();
         });
         todoFrame.appendChild(todoContainer);
     };
     var todoContainer;
-    for (var index = 0; index < toDos.length; index++) {
-        _loop_1(index);
+    for (var index_1 = 0; index_1 < toDos.length; index_1++) {
+        _loop_1(index_1);
     }
     document.querySelector("#tasknumber").innerHTML = "" + toDos.length;
 }
