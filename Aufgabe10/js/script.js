@@ -39,10 +39,14 @@ window.addEventListener("load", function () {
     drawListToDOM();
     var artyom = new Artyom();
     artyom.addCommands({
-        indexes: ["erstelle Aufgabe", "neue Aufgabe"],
+        indexes: ["Erstelle Aufgabe *"],
         smart: true,
         action: function (i, wildcard) {
-            alert("Erstelle Aufgabe: " + wildcard);
+            listObject.unshift({
+                todosText: (wildcard),
+                todosChecked: false
+            });
+            drawListToDOM();
         }
     });
     function startContinuousArtyom() {

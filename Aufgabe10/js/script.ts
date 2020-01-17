@@ -53,13 +53,16 @@ window.addEventListener("load", function(): void {
     drawListToDOM();
 
 
-    const artyom: any = new Artyom();
-    
+    var artyom = new Artyom();
     artyom.addCommands({
-        indexes: ["erstelle Aufgabe", "neue Aufgabe"],
+        indexes: ["Erstelle Aufgabe *"],
         smart: true,
-        action: function(i: any, wildcard: string): void {
-            alert("Erstelle Aufgabe: " +  wildcard);
+        action: function (i, wildcard) {
+            listObject.unshift({
+                todosText: (wildcard),
+                todosChecked: false
+            });
+            drawListToDOM();
         }
     });
     
