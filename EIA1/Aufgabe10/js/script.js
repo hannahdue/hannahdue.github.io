@@ -39,7 +39,7 @@ window.addEventListener("load", function () {
     drawListToDOM();
     var artyom = new Artyom();
     artyom.addCommands({
-        indexes: ["Erstelle Aufgabe *"],
+        indexes: ["Erstelle Aufgabe *", "erstelle Aufgabe *"],
         smart: true,
         action: function (i, wildcard) {
             listObject.unshift({
