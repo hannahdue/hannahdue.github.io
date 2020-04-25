@@ -1,3 +1,4 @@
+"use strict";
 var emissionAsia = 16274.1;
 var emissionEurope = 4209.3;
 var emissionNorthamerica = 6035.6;

@@ -1,5 +1,6 @@
+"use strict";
 window.addEventListener("load", function () {
-    var artyom = new Artyom();
+    const artyom = new Artyom();
     artyom.addCommands({
         indexes: ["hallo", "hey", "hi"],
         action: function () {

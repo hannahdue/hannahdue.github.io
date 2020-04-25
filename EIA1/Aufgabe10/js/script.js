@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Die ToDos werden in dem Array todosText gespeichert
  * Jedes ToDo hat aber, neben dem ToDo-Text, einen zweiten
@@ -11,7 +12,7 @@
  * Werte, bspw. Stelle 0 im Array todosText und Stelle 0 im Array
  * todosChecked gehören zusammen zu einem ToDo.
  */
-var index = 0;
+let index = 0;
 var listObject = [
     {
         todosText: "Lorem",
@@ -67,30 +68,27 @@ window.addEventListener("load", function () {
 });
 function drawListToDOM() {
     todosDOMElement.innerHTML = "";
-    var _loop_1 = function (index_1) {
-        var todo = document.createElement("div");
+    for (let index = 0; index < listObject.length; index++) {
+        let todo = document.createElement("div");
         todo.classList.add("todo");
-        todo.innerHTML = "<span class='check " + listObject[index_1].todosChecked + "'><i class='fas fa-check'></i></span>"
-            + listObject[index_1].todosText +
+        todo.innerHTML = "<span class='check " + listObject[index].todosChecked + "'><i class='fas fa-check'></i></span>"
+            + listObject[index].todosText +
             "<span class='trash fas fa-trash-alt'></span>";
         todo.querySelector(".check").addEventListener("click", function () {
-            toggleCheckState(index_1);
+            toggleCheckState(index);
         });
         todo.querySelector(".trash").addEventListener("click", function () {
-            deleteTodo(index_1);
+            deleteTodo(index);
         });
         todosDOMElement.appendChild(todo);
-    };
-    for (var index_1 = 0; index_1 < listObject.length; index_1++) {
-        _loop_1(index_1);
     }
     updateCounter();
 }
 function updateCounter() {
     var toDoDone = 0;
     var toDoOpen = 0;
-    for (var index_2 = 0; index_2 < listObject.length; index_2++) {
-        if (listObject[index_2].todosChecked == true) {
+    for (let index = 0; index < listObject.length; index++) {
+        if (listObject[index].todosChecked == true) {
             toDoDone++;
         }
         else {

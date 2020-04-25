@@ -1,3 +1,4 @@
+"use strict";
 //EIA-Abgabe: Kartenspiel von Hannah Dürr
 //Das Kartenspiel ist eine vereinfachte Version von Uno. Abwechselnd wird, wenn möglich, eine Karte gelegt, die der 
 //letzten Karte auf dem Stapel in Wertigkeit oder Farbe übereinstimmen muss. Wenn das nicht möglich ist, muss eine 
@@ -8,17 +9,17 @@
 console.log("skript verknüpft");
 //Dann werden einmal die wichtigsten Variablen deklariert, die richtigen Felder werden später zugewiesen, sobald der DOM geladen ist.
 //Hier handelt es sich um HTML-Elemente, die mit Klassen dem Kartenstapel, der Spielerhand und der Gegnerhand zugewiesen werden.
-var cardDOMElement;
-var playedcardsDOMElement;
-var spielerDOMElement;
-var gegnerDOMElement;
-var startButton;
+let cardDOMElement;
+let playedcardsDOMElement;
+let spielerDOMElement;
+let gegnerDOMElement;
+let startButton;
 //Vier Array-Variablen werden deklariert. Gefüllt werden diese später durch die Funktion AusgangsZustand, da diese auch beim 
 //klicken auf den Start-Button abgerufen wird. 
-var kartenBlatt;
-var spielerHand;
-var gegnerHand;
-var ablegeStapel;
+let kartenBlatt;
+let spielerHand;
+let gegnerHand;
+let ablegeStapel;
 //Die Funktion AusgansZustand legt fest, wie die Verteilung der Karten in den Arrays zum Spielbeginn aussieht. Dafür gibt es eine 
 //extra Funktion, damit dieser Zustand beim Klicken auf den Start-Button aufgerufen werden und der AusgangsZustand wieder hergestellt
 //werden kann. Zu Beginn liegen alle Karten in dem Array kartenBlatt, dem Ziehstapel.
@@ -80,7 +81,7 @@ function mischeKarten() {
 //Diese Funktion nimmt sich die oberste Karte vom Ziehstapel, also das letzte Objekt im Array kartenBlatt, löscht (pop) es dort und 
 //verschiebt (push) es auf den Ablegestapel. Wird auch bei Spielstart aufgerufen.
 function deckeObersteKarteAuf() {
-    var obersteKarte = kartenBlatt.pop(); //pop löscht nicht nur, sondern gibt auch den gelöschten Wert zurück, womit man weiterarbeiten kann.
+    let obersteKarte = kartenBlatt.pop(); //pop löscht nicht nur, sondern gibt auch den gelöschten Wert zurück, womit man weiterarbeiten kann.
     ablegeStapel.push(obersteKarte);
 }
 //Die Funktion AktualisiereKartenstapel ist nur dafür da, den Ziehstapel im HTML Dokument abzubilden. Da dieser Stapel niemals aufgedeckt 
@@ -190,11 +191,11 @@ function GegnerSpielt() {
     //damit die SPielzüge von Spieler und Gegner nicht zeitgleich stattfinden (weild er Computer so schnell ist), wird die Funktion
     //hier etwas verzögert ausgeführt. Das Prinzip des Karten-Ausspielens ist das geliche wie beim Spieler, mit dem Unterschied, dass
     //auf keine Karte geklicht wird, sondern die Hand des Gegners durchlaufen wird und die erstmögliche Karte abgelegt wird.
-    setTimeout(function () {
-        for (var index_1 = 0; index_1 < gegnerHand.length; index_1++) {
-            if (pruefeUebereinstimmung(gegnerHand[index_1]) == true) {
-                ablegeStapel.push(gegnerHand[index_1]);
-                gegnerHand.splice(index_1, 1);
+    setTimeout(() => {
+        for (let index = 0; index < gegnerHand.length; index++) {
+            if (pruefeUebereinstimmung(gegnerHand[index]) == true) {
+                ablegeStapel.push(gegnerHand[index]);
+                gegnerHand.splice(index, 1);
                 //Eine Karte wird entfernt. Welche, ist egal, da hie rnur die Kartenanzahl repräsentiert wird.
                 gegnerDOMElement.removeChild(gegnerDOMElement.firstChild);
                 AktualisiereAblagestapel();
@@ -245,7 +246,7 @@ window.addEventListener("load", function () {
     startButton.addEventListener("click", function () {
         AusgangsZustand();
         mischeKarten();
-        for (var index_2 = 0; index_2 < 3; index_2++) {
+        for (let index = 0; index < 3; index++) {
             SpielerZiehtKarteVonStapel();
             GegnerZiehtKarteVonStapel();
         }

@@ -1,3 +1,4 @@
+"use strict";
 var jingleBells = ["A.mp3", "A.mp3", "A.mp3", " ", "A.mp3", "A.mp3", "A.mp3", " ", "A.mp3", "C.mp3", "F.mp3", "G.mp3", "A.mp3", "laugh-1.mp3", " ", " "];
 var intervalloop;
 var record = false;

@@ -1,3 +1,4 @@
+"use strict";
 window.addEventListener("load", function () {
     document.querySelector(".button1").addEventListener("mousedown", function () { playSample("kick.mp3"); });
     document.querySelector(".button2").addEventListener("mousedown", function () { playSample("snare.mp3"); });

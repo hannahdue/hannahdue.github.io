@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Folgende Code-Fragmente untersützen Sie bei der Bearbeitung der Aufgabe
  *
