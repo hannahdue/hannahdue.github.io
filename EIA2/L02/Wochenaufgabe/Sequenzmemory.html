@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <title>Sequenz-Memory</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="Sequenzmemory.js"></script>
+</head>
+
+<body>
+
+    <h1>Sequence Memory</h1>
+    
+    <div id="directions">
+
+        <h4>Directions:</h4>
+
+        <p>1) Enter a word to play with or choose a random word.</p>
+        <div class="inputGroup">
+                <span id="input"><input type="text" id="inputSequence" placeholder="Enter your word"><i class="fas fa-check-circle"></i></span> or
+                <div id="randombutton">Choose random word</div>
+            </div>
+        <p>2) Enter time (in sec.) to watch characters uncovered & to play.</p>
+        <input type="number" id="inputWatchTime" placeholder="watch-time">
+        <input type="number" id="inputPlayTime" placeholder="play-time">
+
+        <p>Now let's play! Try to uncover the characters in the correct order, before the time ends.</p>
+        <div id="playbutton">Play</div>
+
+    </div>
+    
+    <div id="playspace">
+        <p>Your Word: <span id="word">Placeholder</span></p>
+        <div id="memoryCards">
+            
+        </div>
+    </div>
+
+</body>
+
+</html>

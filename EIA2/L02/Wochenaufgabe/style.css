@@ -1,0 +1,85 @@
+html, body {
+    margin: 0;
+}
+
+body {
+    background-color: rgb(255, 245, 112);
+    text-align: center;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    outline: none;
+}
+
+.fas {
+ position: relative;
+ top: 4px;
+ font-size: 1.6em;
+ color: darkred;
+ cursor: pointer;
+}
+
+#playbutton, #randombutton {
+    background-color: darkred;
+    color: white;
+    width: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    outline: none;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px #999;
+}
+
+#playbutton:hover, #randombutton:hover {
+    cursor: pointer;
+}
+
+#playbutton:active, #randombutton:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(3px);
+    background-color: rgb(122, 0, 0);
+}
+
+#playspace {
+    width: 75%;
+    border: solid black;
+    border-radius: 10px;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: beige;
+    margin-top: 20px;
+}
+
+#word {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    font-size: 1.4em;
+    letter-spacing: 0.2em;
+}
+
+span.cards {
+    margin: 5px;
+    border: solid 3px black;
+    font-size: 4em;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+span.carddown {
+    background-color: black;
+}
