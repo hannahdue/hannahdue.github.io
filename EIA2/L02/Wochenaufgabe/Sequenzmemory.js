@@ -1,5 +1,5 @@
 "use strict";
-let sequences = ["Gänseblümchen", "Hochhauskomplex", "Bananarama", "Hungerhaken", "Papperlapapp", "Tohuwabohu", "Verschlimmbesserung", "Kaulquappe", "Ratzefummel"];
+let sequences = ["Gänseblümchen", "Hochhauskomplex", "Bananarama", "Hungerhaken", "Papperlapapp", "Tohuwabohu", "Kaulquappe", "Ratzefummel"];
 let watchtime;
 let playtime;
 let sequence;
@@ -18,6 +18,7 @@ function randomButton() {
     console.log("Ich wurde geklickt. Jetzt such dir ein Wort aus:");
     console.log(sequences);
     shuffleSequences();
+    memoryCards.innerHTML = "";
 }
 function shuffleSequences() {
     var tmp, rand;
@@ -52,7 +53,7 @@ function playButton() {
     }
     console.log(singleLetters);
     for (let i = 0; i < singleLetters.length; i++) {
-        memoryCards.innerHTML += "<span class='cards carddown'>" + singleLetters[i] + "</span>";
+        memoryCards.innerHTML += "<span class='cards'>" + singleLetters[i] + "</span>";
     }
 }
 window.addEventListener("load", function () {

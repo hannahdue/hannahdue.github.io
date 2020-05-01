@@ -1,5 +1,5 @@
 
-let sequences: string[] = ["Gänseblümchen", "Hochhauskomplex", "Bananarama", "Hungerhaken", "Papperlapapp", "Tohuwabohu", "Verschlimmbesserung", "Kaulquappe", "Ratzefummel"]
+let sequences: string[] = ["Gänseblümchen", "Hochhauskomplex", "Bananarama", "Hungerhaken", "Papperlapapp", "Tohuwabohu", "Kaulquappe", "Ratzefummel"]
 let watchtime: string;
 let playtime: string;
 let sequence: string;
@@ -22,6 +22,7 @@ function randomButton(): void {
     console.log("Ich wurde geklickt. Jetzt such dir ein Wort aus:");
     console.log(sequences);
     shuffleSequences();
+    memoryCards.innerHTML = "";
 }
 
 function shuffleSequences(): void {
@@ -62,9 +63,10 @@ function playButton(): void {
         }
     console.log(singleLetters);
 
-    for (let i = 0; i < singleLetters.length; i++) {
-        memoryCards.innerHTML += "<span class='cards carddown'>" + singleLetters[i] + "</span>";
+    for (let i: number = 0; i < singleLetters.length; i++) {
+        memoryCards.innerHTML += "<span class='cards'>" + singleLetters[i] + "</span>";
     }
+    
 
 }
 
