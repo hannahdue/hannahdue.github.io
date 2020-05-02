@@ -11,8 +11,11 @@ let inputWatchtime;
 let inputPlaytime;
 let currentSequence;
 let memoryCards;
+let showWatchtime;
+let showPlaytime;
 function chooseWord() {
     sequence = inputSequence.value;
+    memoryCards.innerHTML = "";
 }
 function randomButton() {
     console.log("Ich wurde geklickt. Jetzt such dir ein Wort aus:");
@@ -53,8 +56,20 @@ function playButton() {
     }
     console.log(singleLetters);
     for (let i = 0; i < singleLetters.length; i++) {
-        memoryCards.innerHTML += "<span class='cards'>" + singleLetters[i] + "</span>";
+        memoryCards.innerHTML += "<span class='cards carddown'>" + singleLetters[i] + "</span>";
     }
+    memoryCards.addEventListener("click", clickCard);
+    showWatchtime.innerHTML = watchtime + " sec";
+    showPlaytime.innerHTML = playtime + " sec";
+    /*setTimeout(function(): void {
+        var cards: HTMLElement = document.getElementsByClassName("cards");
+        cards.setAttribute("class", "cardup");
+        }, watchtime);*/
+}
+function clickCard() {
+    console.log(event.target);
+    var clickedCard = event.target;
+    clickedCard.setAttribute("class", "cardup");
 }
 window.addEventListener("load", function () {
     console.log("script verknüpft");
@@ -66,6 +81,8 @@ window.addEventListener("load", function () {
     inputPlaytime = document.querySelector("#inputPlayTime");
     currentSequence = document.querySelector("#word");
     memoryCards = document.querySelector("#memoryCards");
+    showWatchtime = document.querySelector("#watchTime");
+    showPlaytime = document.querySelector("#playTime");
     inputSequenceButton.addEventListener("click", chooseWord);
     random.addEventListener("click", randomButton);
     playbutton.addEventListener("click", playButton);

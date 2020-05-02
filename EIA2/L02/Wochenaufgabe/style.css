@@ -26,6 +26,9 @@ input {
  color: darkred;
  cursor: pointer;
 }
+.fas:active{
+    color: darkgreen;
+}
 
 #playbutton, #randombutton {
     background-color: darkred;
@@ -65,6 +68,16 @@ input {
     margin-top: 20px;
 }
 
+#watchTime, #playTime {
+    padding: 3px 5px 3px 5px;
+    background-color: darkred;
+    color: white; 
+    border-radius: 5px;
+    position: relative;
+    top: 10px;
+    margin: 2px;
+}
+
 #word {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
@@ -82,4 +95,13 @@ span.cards {
 }
 span.carddown {
     background-color: black;
+}
+span.cardup {
+    background-color: white;
+    margin: 5px;
+    border: solid 3px black;
+    font-size: 4em;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
 }

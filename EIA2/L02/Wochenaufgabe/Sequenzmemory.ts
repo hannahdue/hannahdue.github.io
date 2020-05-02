@@ -12,10 +12,13 @@ let inputWatchtime: HTMLInputElement;
 let inputPlaytime: HTMLInputElement;
 let currentSequence: HTMLElement;
 let memoryCards: HTMLElement;
+let showWatchtime: HTMLElement;
+let showPlaytime: HTMLElement;
 
 
 function chooseWord(): void {
     sequence = inputSequence.value;
+    memoryCards.innerHTML = "";
 }
 
 function randomButton(): void {
@@ -64,13 +67,27 @@ function playButton(): void {
     console.log(singleLetters);
 
     for (let i: number = 0; i < singleLetters.length; i++) {
-        memoryCards.innerHTML += "<span class='cards'>" + singleLetters[i] + "</span>";
+        memoryCards.innerHTML += "<span class='cards carddown'>" + singleLetters[i] + "</span>";
     }
     
+    memoryCards.addEventListener("click", clickCard);
+
+    showWatchtime.innerHTML = watchtime + " sec";
+    showPlaytime.innerHTML = playtime + " sec";
+
+    /*setTimeout(function(): void {
+        var cards: HTMLElement = document.getElementsByClassName("cards");
+        cards.setAttribute("class", "cardup");
+        }, watchtime);*/
 
 }
 
-
+function clickCard(): void {
+    console.log(event.target);
+    var clickedCard = event.target;
+    clickedCard.setAttribute("class", "cardup");
+    
+}
 
 
 window.addEventListener("load", function(): void {
@@ -85,6 +102,8 @@ window.addEventListener("load", function(): void {
     inputPlaytime = <HTMLInputElement>document.querySelector("#inputPlayTime");
     currentSequence = <HTMLElement>document.querySelector("#word");
     memoryCards = <HTMLElement>document.querySelector("#memoryCards");
+    showWatchtime = <HTMLElement>document.querySelector("#watchTime");
+    showPlaytime = <HTMLElement>document.querySelector("#playTime");
 
     inputSequenceButton.addEventListener("click", chooseWord);
     random.addEventListener("click", randomButton);
