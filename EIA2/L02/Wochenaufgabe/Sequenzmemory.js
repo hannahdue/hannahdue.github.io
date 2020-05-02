@@ -16,14 +16,11 @@ let showPlaytime;
 function chooseWord() {
     sequence = inputSequence.value;
     memoryCards.innerHTML = "";
+    inputSequenceButton.setAttribute("style", "color: darkgreen");
 }
-function randomButton() {
+function randomWord() {
     console.log("Ich wurde geklickt. Jetzt such dir ein Wort aus:");
     console.log(sequences);
-    shuffleSequences();
-    memoryCards.innerHTML = "";
-}
-function shuffleSequences() {
     var tmp, rand;
     for (var i = 0; i < sequences.length; i++) {
         rand = Math.floor(Math.random() * sequences.length);
@@ -33,6 +30,7 @@ function shuffleSequences() {
     }
     console.log(sequences);
     sequence = sequences[1];
+    memoryCards.innerHTML = "";
 }
 /*function showPlaybutton(): void {
     if (inputPlaytime.value == "") {
@@ -41,7 +39,7 @@ function shuffleSequences() {
         playbutton.setAttribute("style", "display: ");
     }
 }*/
-function playButton() {
+function startGame() {
     console.log("Let's play!");
     currentSequence.innerHTML = sequence;
     watchtime = inputWatchtime.value;
@@ -62,9 +60,14 @@ function playButton() {
     showWatchtime.innerHTML = watchtime + " sec";
     showPlaytime.innerHTML = playtime + " sec";
     /*setTimeout(function(): void {
-        var cards: HTMLElement = document.getElementsByClassName("cards");
-        cards.setAttribute("class", "cardup");
-        }, watchtime);*/
+        var cards = memoryCards.childNodes;
+        cards.style.backgroundColor = "black";
+        
+    }, watchtime);*/
+    window.setTimeout(alertFunc, 6000);
+    function alertFunc() {
+        alert("Na, auch schon gemerkt, dass das Spiel nicht funktioniert? :) Du kannst wieder gehen. Aufregender wirds nicht. Immerhin das TimeOut hat geklappt, wenn auch nicht so, wie gewollt...");
+    }
 }
 function clickCard() {
     console.log(event.target);
@@ -84,8 +87,8 @@ window.addEventListener("load", function () {
     showWatchtime = document.querySelector("#watchTime");
     showPlaytime = document.querySelector("#playTime");
     inputSequenceButton.addEventListener("click", chooseWord);
-    random.addEventListener("click", randomButton);
-    playbutton.addEventListener("click", playButton);
+    random.addEventListener("click", randomWord);
+    playbutton.addEventListener("click", startGame);
     //showPlaybutton();
 });
 //# sourceMappingURL=Sequenzmemory.js.map

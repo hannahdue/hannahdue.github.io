@@ -1,4 +1,3 @@
-
 let sequences: string[] = ["Gänseblümchen", "Hochhauskomplex", "Bananarama", "Hungerhaken", "Papperlapapp", "Tohuwabohu", "Kaulquappe", "Ratzefummel"]
 let watchtime: string;
 let playtime: string;
@@ -19,16 +18,13 @@ let showPlaytime: HTMLElement;
 function chooseWord(): void {
     sequence = inputSequence.value;
     memoryCards.innerHTML = "";
+    inputSequenceButton.setAttribute("style", "color: darkgreen");
 }
 
-function randomButton(): void {
+function randomWord(): void {
     console.log("Ich wurde geklickt. Jetzt such dir ein Wort aus:");
     console.log(sequences);
-    shuffleSequences();
-    memoryCards.innerHTML = "";
-}
 
-function shuffleSequences(): void {
     var tmp, rand;
     for (var i: number = 0; i < sequences.length; i++) {
     rand = Math.floor(Math.random() * sequences.length);
@@ -37,7 +33,9 @@ function shuffleSequences(): void {
     sequences[rand] = tmp;
     }
     console.log(sequences);
+
     sequence = sequences[1];
+    memoryCards.innerHTML = "";
 }
 
 /*function showPlaybutton(): void {
@@ -48,7 +46,7 @@ function shuffleSequences(): void {
     }
 }*/
 
-function playButton(): void {
+function startGame(): void {
     console.log("Let's play!");
 
     currentSequence.innerHTML = sequence;
@@ -76,15 +74,21 @@ function playButton(): void {
     showPlaytime.innerHTML = playtime + " sec";
 
     /*setTimeout(function(): void {
-        var cards: HTMLElement = document.getElementsByClassName("cards");
-        cards.setAttribute("class", "cardup");
-        }, watchtime);*/
+        var cards = memoryCards.childNodes;
+        cards.style.backgroundColor = "black";
+        
+    }, watchtime);*/
+
+    window.setTimeout(alertFunc, 6000);
+    function alertFunc(): void {
+        alert("Na, auch schon gemerkt, dass das Spiel nicht funktioniert? :) Du kannst wieder gehen. Aufregender wirds nicht. Immerhin das TimeOut hat geklappt, wenn auch nicht so, wie gewollt...");
+    }
 
 }
 
 function clickCard(): void {
     console.log(event.target);
-    var clickedCard = event.target;
+    var clickedCard: HTMLElement = event.target;
     clickedCard.setAttribute("class", "cardup");
     
 }
@@ -106,8 +110,8 @@ window.addEventListener("load", function(): void {
     showPlaytime = <HTMLElement>document.querySelector("#playTime");
 
     inputSequenceButton.addEventListener("click", chooseWord);
-    random.addEventListener("click", randomButton);
-    playbutton.addEventListener("click", playButton);
+    random.addEventListener("click", randomWord);
+    playbutton.addEventListener("click", startGame);
 
     //showPlaybutton();
     
