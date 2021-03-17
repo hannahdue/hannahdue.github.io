@@ -1,0 +1,44 @@
+body {
+    background-color: rgb(0, 19, 73);
+    text-align: center;
+    color: whitesmoke;
+    padding: 50px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.spielfeld {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 800px;;
+}
+
+.soundbutton {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 20px;
+}
+.soundbutton:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 15px white;
+}
+
+#buttonA {
+    background-color: rgb(41, 126, 212);
+}
+#buttonB {
+    background-color: darkseagreen;
+}
+#buttonC {
+    background-color: gold;
+}
+#buttonD {
+    background-color: lightcoral;
+}
+#buttonE {
+    background-color: lightseagreen;
+}

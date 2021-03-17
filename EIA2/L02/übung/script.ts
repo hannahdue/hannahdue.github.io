@@ -1,5 +1,7 @@
+console.log("Skript verknüpft");
+
 namespace L02_Load {
-    window.addEventListener("DOMContentLoaded", handleLoad);
+    document.addEventListener("DOMContentLoaded", handleLoad);
 
     function handleLoad(_event: Event): void {
         console.log(_event);
