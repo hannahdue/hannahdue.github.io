@@ -68,7 +68,7 @@ function startGame(): void {
         memoryCards.innerHTML += "<span class='cards carddown'>" + singleLetters[i] + "</span>";
     }
     
-    memoryCards.addEventListener("click", clickCard);
+    /*memoryCards.addEventListener("click", clickCard);*/
 
     showWatchtime.innerHTML = watchtime + " sec";
     showPlaytime.innerHTML = playtime + " sec";
@@ -86,12 +86,12 @@ function startGame(): void {
 
 }
 
-function clickCard(): void {
+/*function clickCard(): void {
     console.log(event.target);
     var clickedCard: HTMLElement = event.target;
     clickedCard.setAttribute("class", "cardup");
     
-}
+}*/
 
 
 window.addEventListener("load", function(): void {

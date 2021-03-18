@@ -56,7 +56,7 @@ function startGame() {
     for (let i = 0; i < singleLetters.length; i++) {
         memoryCards.innerHTML += "<span class='cards carddown'>" + singleLetters[i] + "</span>";
     }
-    memoryCards.addEventListener("click", clickCard);
+    /*memoryCards.addEventListener("click", clickCard);*/
     showWatchtime.innerHTML = watchtime + " sec";
     showPlaytime.innerHTML = playtime + " sec";
     /*setTimeout(function(): void {
@@ -69,11 +69,12 @@ function startGame() {
         alert("Na, auch schon gemerkt, dass das Spiel nicht funktioniert? :) Du kannst wieder gehen. Aufregender wirds nicht. Immerhin das TimeOut hat geklappt, wenn auch nicht so, wie gewollt...");
     }
 }
-function clickCard() {
+/*function clickCard(): void {
     console.log(event.target);
-    var clickedCard = event.target;
+    var clickedCard: HTMLElement = event.target;
     clickedCard.setAttribute("class", "cardup");
-}
+    
+}*/
 window.addEventListener("load", function () {
     console.log("script verknüpft");
     random = document.querySelector("#randombutton");
