@@ -2,28 +2,26 @@
 var RandomPoem;
 (function (RandomPoem) {
     //console.log("Skript verknüpft.");
-    let subjects = ["Wort1", "Wort2", "Wort3", "Wort4", "Wort5"];
-    let verbs = ["verb1", "verb2", "verb3", "verb4", "verb5"];
-    let objects = ["object1", "object2", "object3", "object4", "object5"];
-    //console.log(subjects);
-    //console.log(verbs);
-    //console.log(objects);
+    let subjects = ["Lulu", "Leon", "Lara", "Lino", "Lola"];
+    let verbs = ["mag", "streichelt", "reitet", "krault", "beobachtet"];
+    let objects = ["Mäuse", "Läuse", "Affen", "Giraffen", "Schmetterlinge"];
+    //console.log(subjects, verbs, objects);
     for (let index = subjects.length; index > 0; index--) {
-        getVerse(subjects, verbs, objects);
+        let sentence = getVerse(subjects, verbs, objects);
+        console.log(sentence);
         //console.log(index);
     }
     function getVerse(_subject, _verbs, _object) {
         //console.log("Alohamoha");
-        let verse1 = "";
-        let verse2 = "";
-        let verse3 = "";
-        let verse4 = "";
-        let verse5 = "";
-        console.log(verse1);
-        console.log(verse2);
-        console.log(verse3);
-        console.log(verse4);
-        console.log(verse5);
+        let verseContainer = "";
+        let randomSubject = Math.floor(_subject.length * Math.random());
+        let randomVerb = Math.floor(_verbs.length * Math.random());
+        let randomObject = Math.floor(_object.length * Math.random());
+        verseContainer = _subject[randomSubject] + " " + _verbs[randomVerb] + " " + _object[randomObject];
+        _subject.splice(randomSubject, 1);
+        _verbs.splice(randomVerb, 1);
+        _object.splice(randomObject, 1);
+        return verseContainer;
     }
 })(RandomPoem || (RandomPoem = {}));
 //# sourceMappingURL=RandomPoemScript.js.map

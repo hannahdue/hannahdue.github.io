@@ -2,34 +2,36 @@ namespace RandomPoem {
 
     //console.log("Skript verknüpft.");
 
-    let subjects: string[] = ["Wort1", "Wort2", "Wort3", "Wort4", "Wort5"];
-    let verbs: string[] = ["verb1", "verb2", "verb3", "verb4", "verb5"];
-    let objects: string[] = ["object1", "object2", "object3", "object4", "object5"];
+    let subjects: string[] = ["Lulu", "Leon", "Lara", "Lino", "Lola"];
+    let verbs: string[] = ["mag", "streichelt", "reitet", "krault", "beobachtet"];
+    let objects: string[] = ["Mäuse", "Läuse", "Affen", "Giraffen", "Schmetterlinge"];
 
-    //console.log(subjects);
-    //console.log(verbs);
-    //console.log(objects);
+    //console.log(subjects, verbs, objects);
 
     for (let index: number = subjects.length; index > 0; index--) {
-        
-        getVerse(subjects, verbs, objects);
+         
+        let sentence: string = getVerse(subjects, verbs, objects);
+        console.log(sentence);
         //console.log(index);
-        
+
     }
 
-    function getVerse (_subject: string[], _verbs: string[], _object: string[]): void {
+    function getVerse(_subject: string[], _verbs: string[], _object: string[]): string {
         //console.log("Alohamoha");
-        let verse1: string = "";
-        let verse2: string = "";
-        let verse3: string = "";
-        let verse4: string = "";
-        let verse5: string = "";
-        
-        console.log(verse1);
-        console.log(verse2);
-        console.log(verse3);
-        console.log(verse4);
-        console.log(verse5);
+        let verseContainer: string = "";
+
+        let randomSubject: number = Math.floor(_subject.length * Math.random());
+        let randomVerb: number = Math.floor(_verbs.length * Math.random());
+        let randomObject: number = Math.floor(_object.length * Math.random());
+
+        verseContainer = _subject[randomSubject] + " " + _verbs[randomVerb] + " " + _object[randomObject];
+
+        _subject.splice(randomSubject, 1);
+        _verbs.splice(randomVerb, 1);
+        _object.splice(randomObject, 1);
+
+        return verseContainer;
+
     }
 
 }
