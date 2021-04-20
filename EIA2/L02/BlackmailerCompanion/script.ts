@@ -5,14 +5,19 @@ namespace L02_BlackmailerCompanion {
 
     function handleLoad(_event: Event): void {
         let mail: HTMLElement = <HTMLElement>document.querySelector("div#mail");
-        mail.addEventListener("click", placeLetter);
+        mail.addEventListener("click", handleClickOnMail);
         document.addEventListener("keydown", chooseCharacter);
     }
 
-    function placeLetter(_event: MouseEvent): void {
+    function handleClickOnMail(_event: MouseEvent): void {
         //console.log("_event");
         let x: number = _event.offsetX;
         let y: number = _event.offsetY;
+
+        if (_event.currentTarget != _event.target) {
+            deleteLetter(_event); 
+            return;
+        }
 
         let mail: HTMLElement = <HTMLElement>_event.target;
         let letter: HTMLSpanElement = document.createElement("span");
@@ -22,7 +27,7 @@ namespace L02_BlackmailerCompanion {
         letter.style.left = x + "px";
         letter.style.top = y + "px";
 
-        letter.addEventListener("click", deleteLetter);
+        //letter.addEventListener("click", deleteLetter);
     }
 
     function chooseCharacter (_event: KeyboardEvent): void {
@@ -34,6 +39,7 @@ namespace L02_BlackmailerCompanion {
         let target: Node = <Node>_event.target;
         let parent: Node = <Node>target.parentNode;
         parent.removeChild(target);
+        //Option 1: _event.stopPropagation();
     }
 
 }

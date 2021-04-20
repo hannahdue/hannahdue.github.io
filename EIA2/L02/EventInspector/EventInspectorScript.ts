@@ -14,9 +14,9 @@ namespace EventInspector {
         console.log("handleLoad executed");
 
         document.addEventListener("mousemove", setInfoBox);
-        //div0.addEventListener("mousemove", setInfoBox);
-        //div1.addEventListener("mousemove", setInfoBox);
-        //body.addEventListener("mousemove", setInfoBox);
+        div0.addEventListener("mousemove", setInfoBox);
+        div1.addEventListener("mousemove", setInfoBox);
+        body.addEventListener("mousemove", setInfoBox);
 
         document.addEventListener("click", logInfo);
         div0.addEventListener("click", logInfo);
@@ -28,9 +28,9 @@ namespace EventInspector {
         }*/
 
         document.addEventListener("keyup", logInfo);
-        //div0.addEventListener("keyup", logInfo);
-        //div1.addEventListener("keyup", logInfo);
-        //body.addEventListener("keyup", logInfo);
+        div0.addEventListener("keyup", logInfo);
+        div1.addEventListener("keyup", logInfo);
+        body.addEventListener("keyup", logInfo);
         
     }
 
@@ -43,7 +43,6 @@ namespace EventInspector {
         if (!mouseTargetId) {
             mouseTargetId = "document";
         }
-
 
         span.style.left = left + "px";
         span.style.top = top + "px";
@@ -68,5 +67,31 @@ namespace EventInspector {
         console.log(wholeEvent);
         console.groupEnd();
     }
+
+    //CUSTOM EVENT
+    
+    /*let event: CustomEvent = new CustomEvent("hannahsEvent", {
+        bubbles: true,
+        detail: {
+            text: "Event Triggered"
+        }
+    });
+
+    document.addEventListener("hannahsEvent", triggerEvent(event));
+
+    function triggerEvent (_event: Event) {
+        
+        let event: CustomEvent = new CustomEvent("hannahsEvent", {
+            //bubbles: true,
+            detail: {
+                text: "Event Triggered"
+            }
+        });
+    
+        div0.dispatchEvent(event); 
+
+        div0.textContent = _event.detail.text;
+
+    }*/
 
 }
