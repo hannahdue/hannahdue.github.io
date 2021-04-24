@@ -104,8 +104,6 @@ var Memory;
             secondCard = clickedCard.innerText;
             console.log("second card: " + secondCard);
         }
-        console.log("first card: " + firstCard);
-        console.log("second card: " + secondCard);
     }
     function compareCards() {
         console.log("comparing cards...");

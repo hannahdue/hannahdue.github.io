@@ -135,9 +135,6 @@ namespace Memory {
             console.log("second card: " + secondCard);
         } 
 
-        console.log("first card: " + firstCard);
-        console.log("second card: " + secondCard);
-
     }
 
     function compareCards(): void {
