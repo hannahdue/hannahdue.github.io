@@ -7,22 +7,43 @@ namespace Memory {
     let values: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"];
     let cardDeckValues: string[] = [];
     let turnedCards: number = 0;
-    //let finishedPairs: number = 0;
+    let finishedPairs: number = 0;
     let timer: number = 0;
+    let gameDuration: number;
+    let pairsDisplay: HTMLElement;
+    let startButton: HTMLElement;
+    let stopButton: HTMLElement;
+    let playingField: HTMLDivElement;
+    let link: HTMLElement;
+    let clickedCard: HTMLElement;
+    let pairsInput: string;
+    let firstCard: string;
+    let secondCard: string;
 
     function handleLoad(): void {
 
         console.log("handleLoad executed");
 
-        let pairsDisplay: HTMLElement = <HTMLElement>document.querySelector(".pairs");
-        let pairsInput: string = <string>prompt("Anzahl der gewünschten Karenpaare:", "wähle eine Zahl von 5-25");
+        choosePairAmount();
+
+        startButton = <HTMLElement>document.querySelector("div.startbutton");
+        startButton.addEventListener("click", handleStart);
+
+        link = <HTMLElement>document.querySelector("a");
+        link.addEventListener("click", function(): void {
+            choosePairAmount();
+        });
+
+    }
+
+    function choosePairAmount(): void {
+        pairsDisplay = <HTMLElement>document.querySelector(".pairs");
+        pairsInput = <string>prompt("Anzahl der gewünschten Karenpaare:", "Wähle eine Zahl von 5-25");
 
         pairs = Number(pairsInput);
         pairsDisplay.innerHTML = "" + pairs;
 
-        let startButton: HTMLElement = <HTMLElement>document.querySelector("div.button");
-        startButton.addEventListener("click", handleStart);
-
+        //Abfrage ob pairs eine number ist und ob es zwischen 5 und 25 liegt, wenn nicht error alert
     }
 
     function handleStart(): void {
@@ -33,10 +54,13 @@ namespace Memory {
             cardDeckValues.push(values[index]);
             cardDeckValues.push(values[index]);
         }
-        console.log(cardDeckValues);
+       //console.log(cardDeckValues);
         createCards();
 
-        setInterval(startTimer(), 1000);
+        gameDuration = setInterval(startTimer, 1000);
+
+        stopButton = <HTMLElement>document.querySelector("div.stopbutton");
+        stopButton.addEventListener("click", stopGame);
 
     }
 
@@ -44,7 +68,7 @@ namespace Memory {
 
         console.log("cards created");
 
-        let playingField: HTMLDivElement = <HTMLDivElement>document.querySelector("div.playingfield");
+        playingField = <HTMLDivElement>document.querySelector("div.playingfield");
 
         shuffleCards();
         for (let index: number = 0; index < cardDeckValues.length; index++) {
@@ -56,14 +80,13 @@ namespace Memory {
             
             let cardWithId: HTMLElement = <HTMLElement>document.getElementById(idText);
             cardWithId.addEventListener("click", turnCards);
-            console.log(idText);
+            //console.log(idText);
         }
 
     }
 
-    function startTimer(): any {
+    function startTimer(): void {
         timer += 1;
-        console.log(timer);
     }
 
     function shuffleCards(): void {
@@ -79,8 +102,8 @@ namespace Memory {
 
     function turnCards(_event: MouseEvent): void {
 
-        console.log(_event.target);
-        let clickedCard: HTMLElement = <HTMLElement>_event.target;
+        //console.log(_event.target);
+        clickedCard = <HTMLElement>_event.target;
 
         if (clickedCard.classList.contains("turned")) {
             clickedCard.classList.toggle("turned", false);
@@ -92,9 +115,14 @@ namespace Memory {
 
         turnedCards++;
 
-        if (turnedCards == 2) {
+        if (turnedCards == 1) {
+            firstCard = clickedCard.innerText;
+            console.log("first card: " + firstCard);
+        } else if (turnedCards == 2) {
             setTimeout(compareCards, 2000);
-        } else if (turnedCards >= 2) {
+            secondCard = clickedCard.innerText;
+            console.log("second card: " + secondCard);
+        } else if (turnedCards > 2) {
             turnedCards = 1;
         }
 
@@ -103,7 +131,34 @@ namespace Memory {
     function compareCards(): void {
         console.log("comparing cards...");
 
-        
+        if (firstCard == secondCard) {
+            clickedCard.classList.toggle("visible", false);
+            clickedCard.classList.toggle("invisible", true);
+            finishedPairs++;
+            console.log("cards matched.");
+        } else if (firstCard != secondCard) {
+            clickedCard.classList.toggle("visible", false);
+            clickedCard.classList.toggle("turned", true);
+            console.log("no match!");
+        }
+
+        if (finishedPairs == pairs) {
+            stopGame();
+        }
+
+    }
+
+    function stopGame(): void {
+        clearInterval(gameDuration);
+        resetGame();
+        alert("Das Spiel ist beendet. Deine benötigte Zeit war: " + timer + " Sekunden");
+    }
+
+    function resetGame(): void {
+        playingField = <HTMLDivElement>document.querySelector("div.playingfield");
+        playingField.innerHTML = "";
+        console.log("reset - game duration: " + timer + " s");
+        cardDeckValues = [];
     }
 
 }
