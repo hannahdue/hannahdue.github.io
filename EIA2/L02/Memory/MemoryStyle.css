@@ -4,6 +4,12 @@ body {
     text-align: center;
 }
 
+p {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 div.startbutton {
     padding: 10px;
     width: 80px;
@@ -35,16 +41,22 @@ div.stopbutton:hover {
 div.playingfield {
     border: solid;
     width: 95%;
-    height: 500px;
+    height: 800px;
     margin-top: 30px;
     padding: 20px;
+    text-align: center;
+}
+
+span {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
 }
 
 span.visible {
     font-size: 100px;
     border: solid black;
     border-radius: 15px;
-    padding-top: 5px; padding-right: 30px; padding-left: 30px; padding-bottom: 5px;
     margin: 10px;
     background-color: coral;
     color: white;
@@ -56,7 +68,6 @@ span.turned {
     font-size: 100px;
     border: solid black;
     border-radius: 15px;
-    padding-top: 5px; padding-right: 30px; padding-left: 30px; padding-bottom: 5px;
     margin: 10px;
     background-color: lightblue;
     color: lightblue;
@@ -68,7 +79,6 @@ span.invisible {
     font-size: 100px;
     border: dotted black;
     border-radius: 15px;
-    padding-top: 5px; padding-right: 30px; padding-left: 30px; padding-bottom: 5px;
     margin: 10px;
     background-color:white;
     color: white;

@@ -8,7 +8,7 @@ namespace Memory {
     let cardDeckValues: string[] = [];
     let turnedCards: number = 0;
     let finishedPairs: number = 0;
-    let timer: number = 0;
+    let timer: number;
     let gameDuration: number;
     let pairsDisplay: HTMLElement;
     let startButton: HTMLElement;
@@ -30,15 +30,16 @@ namespace Memory {
 
         startButton = <HTMLElement>document.querySelector("div.startbutton");
         startButton.addEventListener("click", handleStart);
+        startButton.addEventListener("pointerup", handleStart);
 
         link = <HTMLElement>document.querySelector("a");
-        link.addEventListener("click", function(): void {
-            choosePairAmount();
-        });
+        link.addEventListener("click", choosePairAmount);
+        link.addEventListener("pointerup", choosePairAmount);
 
     }
 
     function choosePairAmount(): void {
+
         pairsDisplay = <HTMLElement>document.querySelector(".pairs");
         pairsInput = <string>prompt("Anzahl der gewünschten Karenpaare:", "Wähle eine Zahl von 5-25");
 
@@ -51,7 +52,6 @@ namespace Memory {
 
         pairsDisplay.innerHTML = "" + pairs;
 
-        //Abfrage ob pairs eine number ist und ob es zwischen 5 und 25 liegt, wenn nicht error alert
     }
 
     function handleStart(): void {
@@ -65,10 +65,12 @@ namespace Memory {
        //console.log(cardDeckValues);
         createCards();
 
+        timer = 0;
         gameDuration = setInterval(startTimer, 1000);
 
         stopButton = <HTMLElement>document.querySelector("div.stopbutton");
         stopButton.addEventListener("click", stopGame);
+        stopButton.addEventListener("pointerup", stopGame);
 
     }
 
@@ -87,6 +89,7 @@ namespace Memory {
             singleCard.innerHTML = "" + cardDeckValues[index];
             playingField.appendChild(singleCard);
             singleCard.addEventListener("click", turnCards);
+            singleCard.addEventListener("pointerup", turnCards);
            
         }
 
@@ -130,9 +133,7 @@ namespace Memory {
             setTimeout(compareCards, 2000);
             secondCard = clickedCard.innerText;
             console.log("second card: " + secondCard);
-        } else if (turnedCards > 2) {
-            //turnedCards = 1;
-        }
+        } 
 
         console.log("first card: " + firstCard);
         console.log("second card: " + secondCard);
@@ -163,14 +164,13 @@ namespace Memory {
             stopGame();
         }
 
-        console.log(clickedCard);
-
     }
 
     function stopGame(): void {
         clearInterval(gameDuration);
         resetGame();
         alert("Das Spiel ist beendet. Deine benötigte Zeit war: " + timer + " Sekunden");
+        timer = 0;
     }
 
     function resetGame(): void {

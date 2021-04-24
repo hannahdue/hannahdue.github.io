@@ -8,7 +8,7 @@ var Memory;
     let cardDeckValues = [];
     let turnedCards = 0;
     let finishedPairs = 0;
-    let timer = 0;
+    let timer;
     let gameDuration;
     let pairsDisplay;
     let startButton;
@@ -26,10 +26,10 @@ var Memory;
         choosePairAmount();
         startButton = document.querySelector("div.startbutton");
         startButton.addEventListener("click", handleStart);
+        startButton.addEventListener("pointerup", handleStart);
         link = document.querySelector("a");
-        link.addEventListener("click", function () {
-            choosePairAmount();
-        });
+        link.addEventListener("click", choosePairAmount);
+        link.addEventListener("pointerup", choosePairAmount);
     }
     function choosePairAmount() {
         pairsDisplay = document.querySelector(".pairs");
@@ -40,7 +40,6 @@ var Memory;
             pairs = 5;
         }
         pairsDisplay.innerHTML = "" + pairs;
-        //Abfrage ob pairs eine number ist und ob es zwischen 5 und 25 liegt, wenn nicht error alert
     }
     function handleStart() {
         console.log("game started");
@@ -51,9 +50,11 @@ var Memory;
         }
         //console.log(cardDeckValues);
         createCards();
+        timer = 0;
         gameDuration = setInterval(startTimer, 1000);
         stopButton = document.querySelector("div.stopbutton");
         stopButton.addEventListener("click", stopGame);
+        stopButton.addEventListener("pointerup", stopGame);
     }
     function createCards() {
         console.log("cards created");
@@ -65,6 +66,7 @@ var Memory;
             singleCard.innerHTML = "" + cardDeckValues[index];
             playingField.appendChild(singleCard);
             singleCard.addEventListener("click", turnCards);
+            singleCard.addEventListener("pointerup", turnCards);
         }
     }
     function startTimer() {
@@ -102,9 +104,6 @@ var Memory;
             secondCard = clickedCard.innerText;
             console.log("second card: " + secondCard);
         }
-        else if (turnedCards > 2) {
-            //turnedCards = 1;
-        }
         console.log("first card: " + firstCard);
         console.log("second card: " + secondCard);
     }
@@ -130,12 +129,12 @@ var Memory;
         if (finishedPairs == pairs) {
             stopGame();
         }
-        console.log(clickedCard);
     }
     function stopGame() {
         clearInterval(gameDuration);
         resetGame();
         alert("Das Spiel ist beendet. Deine benötigte Zeit war: " + timer + " Sekunden");
+        timer = 0;
     }
     function resetGame() {
         playingField = document.querySelector("div.playingfield");
