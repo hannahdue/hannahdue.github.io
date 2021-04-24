@@ -16,6 +16,8 @@ var Memory;
     let playingField;
     let link;
     let clickedCard;
+    let clickedCard1;
+    let singleCard;
     let pairsInput;
     let firstCard;
     let secondCard;
@@ -33,6 +35,10 @@ var Memory;
         pairsDisplay = document.querySelector(".pairs");
         pairsInput = prompt("Anzahl der gewünschten Karenpaare:", "Wähle eine Zahl von 5-25");
         pairs = Number(pairsInput);
+        if (pairs < 5 || pairs > 25) {
+            alert("Bitte gib eine Zahl zwischen 5-25 an.");
+            pairs = 5;
+        }
         pairsDisplay.innerHTML = "" + pairs;
         //Abfrage ob pairs eine number ist und ob es zwischen 5 und 25 liegt, wenn nicht error alert
     }
@@ -51,16 +57,14 @@ var Memory;
     }
     function createCards() {
         console.log("cards created");
-        playingField = document.querySelector("div.playingfield");
         shuffleCards();
+        playingField = document.querySelector("div.playingfield");
         for (let index = 0; index < cardDeckValues.length; index++) {
-            //let randomId: number = Math.random() * 1000;
-            //let randomIdText: string = "" + randomId.toFixed(0);
-            let idText = "" + index;
-            playingField.innerHTML += "<span class='turned' id='" + idText + "'>" + cardDeckValues[index] + "</span>";
-            let cardWithId = document.getElementById(idText);
-            cardWithId.addEventListener("click", turnCards);
-            //console.log(idText);
+            singleCard = document.createElement("span");
+            singleCard.classList.add("turned");
+            singleCard.innerHTML = "" + cardDeckValues[index];
+            playingField.appendChild(singleCard);
+            singleCard.addEventListener("click", turnCards);
         }
     }
     function startTimer() {
@@ -89,7 +93,8 @@ var Memory;
         }
         turnedCards++;
         if (turnedCards == 1) {
-            firstCard = clickedCard.innerText;
+            clickedCard1 = _event.target;
+            firstCard = clickedCard1.innerText;
             console.log("first card: " + firstCard);
         }
         else if (turnedCards == 2) {
@@ -98,25 +103,34 @@ var Memory;
             console.log("second card: " + secondCard);
         }
         else if (turnedCards > 2) {
-            turnedCards = 1;
+            //turnedCards = 1;
         }
+        console.log("first card: " + firstCard);
+        console.log("second card: " + secondCard);
     }
     function compareCards() {
         console.log("comparing cards...");
         if (firstCard == secondCard) {
+            clickedCard1.classList.toggle("visible", false);
+            clickedCard1.classList.toggle("invisible", true);
             clickedCard.classList.toggle("visible", false);
             clickedCard.classList.toggle("invisible", true);
+            turnedCards = 0;
             finishedPairs++;
             console.log("cards matched.");
         }
         else if (firstCard != secondCard) {
+            clickedCard1.classList.toggle("visible", false);
+            clickedCard1.classList.toggle("turned", true);
             clickedCard.classList.toggle("visible", false);
             clickedCard.classList.toggle("turned", true);
+            turnedCards = 0;
             console.log("no match!");
         }
         if (finishedPairs == pairs) {
             stopGame();
         }
+        console.log(clickedCard);
     }
     function stopGame() {
         clearInterval(gameDuration);
