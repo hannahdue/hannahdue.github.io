@@ -90,10 +90,6 @@ div#playingfield {
     overflow: auto;
 }
 
-span {
-    
-}
-
 span.visible {
     border: solid black;
     border-radius: 15px;
@@ -119,6 +115,12 @@ span.invisible {
     margin: 10px;
     float: left;
     visibility: hidden;
+}
+
+span.content {
+    border-radius: 15px;
+    margin: 10px;
+    cursor: pointer;
 }
 
 a {

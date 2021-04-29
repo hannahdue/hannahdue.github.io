@@ -117,24 +117,34 @@ namespace MemorySettings {
 
             singleCard = document.createElement("span");
             singleCard.classList.add("turned");
-            //singleCard.innerHTML = "<span class='content contentHidden'>" + cardDeckValues[i] + "</span>";
-            singleCard.innerHTML = "" + cardDeckValues[i];
+            //cardContent = document.createElement("span");
+            //cardContent.innerHTML = "" + cardDeckValues[i];
+
 
             if (cardSize == "1") {
                 singleCard.classList.remove("medium", "big");
                 singleCard.classList.add("small");
+                //cardContent.classList.remove("medium", "big");
+                //cardContent.classList.add("small");
             } else if (cardSize == "2") {
                 singleCard.classList.remove("small", "big");
                 singleCard.classList.add("medium");
+                //cardContent.classList.remove("small", "big");
+                //cardContent.classList.add("medium");
             } else if (cardSize == "3") {
                 singleCard.classList.remove("small", "medium");
                 singleCard.classList.add("big");
             }
 
             playingField.appendChild(singleCard);
+            //cardContent.classList.add("turned");
+            //cardContent.style.visibility = "hidden";
+            //singleCard.appendChild(cardContent);
+            singleCard.innerHTML = "" + cardDeckValues[i];
 
             singleCard.addEventListener("click", turnCards);
             singleCard.addEventListener("pointerup", turnCards);
+            //cardContent.addEventListener("click", turnCards);
 
         }
 
