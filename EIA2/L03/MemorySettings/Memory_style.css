@@ -1,0 +1,126 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    background-color: #ffffcc;
+    padding: 15px;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+p {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div#settings {
+    border: solid 1px;
+    border-radius: 5px;
+    background-color: white;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    text-align: left;
+}
+
+fieldset {
+    margin: 10px;
+}
+
+div#examplecard {
+    border: solid black;
+    border-radius: 15px;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:#3399ff;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.small {
+    width: 80px;
+    height: 80px;
+    font-size: 60px;
+}
+
+.medium {
+    width: 100px;
+    height: 100px;
+    font-size: 80px;
+}
+
+.big {
+    width: 120px;
+    height: 120px;
+    font-size: 100px;
+}
+
+div#startbutton {
+    padding: 10px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 32px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+div#startbutton:hover {
+    background-color: rgb(75, 75, 75);
+}
+
+div#playingfield {
+    border-radius: 10px;
+    box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
+    width: 95%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    text-align: center;
+    display: block;
+    overflow: auto;
+}
+
+span {
+    
+}
+
+span.visible {
+    border: solid black;
+    border-radius: 15px;
+    margin: 10px;
+    color: white;
+    cursor: pointer;
+    float: left;
+}
+
+span.turned {
+    border: solid black;
+    border-radius: 15px;
+    margin: 10px;
+    background-color: #ff7f50;
+    color: #ff7f50;
+    cursor: pointer;
+    float: left;
+}
+
+span.invisible {
+    border: dotted black;
+    border-radius: 15px;
+    margin: 10px;
+    float: left;
+    visibility: hidden;
+}
+
+a {
+    text-decoration: none;
+}
