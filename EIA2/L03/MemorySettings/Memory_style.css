@@ -28,6 +28,7 @@ fieldset {
 }
 
 div#examplecard {
+    display: block;
     border: solid black;
     border-radius: 15px;
     margin: 20px;
@@ -48,6 +49,7 @@ div#examplecard {
 }
 
 .medium {
+    display: inline-block;
     width: 100px;
     height: 100px;
     font-size: 80px;
@@ -90,36 +92,33 @@ div#playingfield {
     overflow: auto;
 }
 
+span.card {
+    display: inline-block;
+    margin: 5px;
+    float: left;
+}
+
 span.visible {
-    border: solid black;
-    border-radius: 15px;
-    margin: 10px;
-    color: white;
+    margin: 5px;
     cursor: pointer;
     float: left;
 }
 
 span.turned {
-    border: solid black;
-    border-radius: 15px;
-    margin: 10px;
-    background-color: #ff7f50;
-    color: #ff7f50;
+    margin: 5px;
     cursor: pointer;
     float: left;
 }
 
 span.invisible {
-    border: dotted black;
-    border-radius: 15px;
-    margin: 10px;
+    margin: 5px;
     float: left;
     visibility: hidden;
 }
 
 span.content {
     border-radius: 15px;
-    margin: 10px;
+    margin: 5px;
     cursor: pointer;
 }
 

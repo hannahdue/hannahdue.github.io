@@ -23,7 +23,9 @@ var MemorySettings;
     let clickedCard;
     let clickedCard1;
     let singleCard;
-    //let cardContent: HTMLSpanElement;
+    let cardContent;
+    let card;
+    let card1;
     window.addEventListener("load", handleLoad);
     function handleLoad() {
         playingField = document.querySelector("div#playingfield");
@@ -87,32 +89,35 @@ var MemorySettings;
         for (let i = 0; i < cardDeckValues.length; i++) {
             singleCard = document.createElement("span");
             singleCard.classList.add("turned");
-            //cardContent = document.createElement("span");
-            //cardContent.innerHTML = "" + cardDeckValues[i];
+            singleCard.style.border = "solid black";
+            singleCard.style.borderRadius = "15px";
+            singleCard.style.backgroundColor = "#ff7f50";
+            cardContent = document.createElement("span");
+            cardContent.innerHTML = cardDeckValues[i];
             if (cardSize == "1") {
                 singleCard.classList.remove("medium", "big");
                 singleCard.classList.add("small");
-                //cardContent.classList.remove("medium", "big");
-                //cardContent.classList.add("small");
+                cardContent.classList.remove("medium", "big");
+                cardContent.classList.add("small");
             }
             else if (cardSize == "2") {
                 singleCard.classList.remove("small", "big");
                 singleCard.classList.add("medium");
-                //cardContent.classList.remove("small", "big");
-                //cardContent.classList.add("medium");
+                cardContent.classList.remove("small", "big");
+                cardContent.classList.add("medium");
             }
             else if (cardSize == "3") {
                 singleCard.classList.remove("small", "medium");
                 singleCard.classList.add("big");
+                cardContent.classList.remove("small", "medium");
+                cardContent.classList.add("big");
             }
             playingField.appendChild(singleCard);
-            //cardContent.classList.add("turned");
-            //cardContent.style.visibility = "hidden";
-            //singleCard.appendChild(cardContent);
-            singleCard.innerHTML = "" + cardDeckValues[i];
-            singleCard.addEventListener("click", turnCards);
-            singleCard.addEventListener("pointerup", turnCards);
-            //cardContent.addEventListener("click", turnCards);
+            cardContent.style.opacity = "0";
+            cardContent.style.display = "inline-block";
+            singleCard.appendChild(cardContent);
+            cardContent.addEventListener("click", turnCards);
+            cardContent.addEventListener("pointerup", turnCards);
         }
     }
     function shuffleCards() {
@@ -127,26 +132,25 @@ var MemorySettings;
     }
     function turnCards(_event) {
         clickedCard = _event.target;
-        if (clickedCard.classList.contains("turned")) {
-            clickedCard.classList.toggle("turned", false);
-            clickedCard.classList.toggle("visible", true);
+        card = clickedCard.parentElement;
+        if (card.classList.contains("turned")) {
+            card.classList.toggle("turned", false);
+            card.classList.toggle("visible", true);
+            clickedCard.style.opacity = "1";
             clickedCard.style.color = fontColour;
-            clickedCard.style.backgroundColor = cardColour;
+            card.style.backgroundColor = cardColour;
             clickedCard.style.fontFamily = font;
-            //var cardContent: NodeListOf<ChildNode> = clickedCard.childNodes;
-            //cardContent[0].style.display = none;
-            //let cardContentElement = cardContent[0];
         }
-        else {
-            clickedCard.classList.toggle("visible", false);
-            clickedCard.classList.toggle("turned", true);
-            clickedCard.style.color = "#ff7f50";
-            clickedCard.style.backgroundColor = "#ff7f50";
-            //get child of clickedCard and add class "contentHidden"
+        else if (card.classList.contains("visible")) {
+            card.classList.toggle("visible", false);
+            card.classList.toggle("turned", true);
+            clickedCard.style.opacity = "0";
+            card.style.backgroundColor = "#ff7f50";
         }
         turnedCards++;
         if (turnedCards == 1) {
             clickedCard1 = _event.target;
+            card1 = clickedCard1.parentElement;
             firstCard = clickedCard1.innerText;
             console.log("first card: " + firstCard);
         }
@@ -159,23 +163,23 @@ var MemorySettings;
     function compareCards() {
         console.log("comparing cards...");
         if (firstCard == secondCard) {
-            clickedCard1.classList.toggle("visible", false);
-            clickedCard1.classList.toggle("invisible", true);
-            clickedCard.classList.toggle("visible", false);
-            clickedCard.classList.toggle("invisible", true);
+            card1.classList.toggle("visible", false);
+            card1.classList.toggle("invisible", true);
+            card.classList.toggle("visible", false);
+            card.classList.toggle("invisible", true);
             turnedCards = 0;
             finishedPairs++;
             console.log("cards matched.");
         }
         else if (firstCard != secondCard) {
-            clickedCard1.style.color = "";
-            clickedCard1.style.backgroundColor = "";
-            clickedCard1.classList.toggle("visible", false);
-            clickedCard1.classList.toggle("turned", true);
-            clickedCard.style.color = "";
-            clickedCard.style.backgroundColor = "";
-            clickedCard.classList.toggle("visible", false);
-            clickedCard.classList.toggle("turned", true);
+            clickedCard1.style.opacity = "0";
+            card1.classList.toggle("visible", false);
+            card1.classList.toggle("turned", true);
+            card1.style.backgroundColor = "#ff7f50";
+            clickedCard.style.opacity = "0";
+            card.classList.toggle("visible", false);
+            card.classList.toggle("turned", true);
+            card.style.backgroundColor = "#ff7f50";
             turnedCards = 0;
             console.log("no match!");
         }
