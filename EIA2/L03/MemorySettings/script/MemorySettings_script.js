@@ -26,12 +26,15 @@ var MemorySettings;
     let cardContent;
     let card;
     let card1;
+    let comparisonDisplay;
+    let cardsInField;
     window.addEventListener("load", handleLoad);
     function handleLoad() {
         playingField = document.querySelector("div#playingfield");
         sizePicker = document.querySelector("input#cardsize");
         exampleCard = document.querySelector("div#examplecard");
         startButton = document.querySelector("div#startbutton");
+        comparisonDisplay = document.querySelector("div#comparisondisplay");
         let fieldsets = document.querySelectorAll("fieldset");
         sizePicker.addEventListener("input", displayCardsize);
         startButton.addEventListener("click", startGame);
@@ -80,6 +83,7 @@ var MemorySettings;
         createCards();
         timer = 0;
         gameDuration = setInterval(startTimer, 1000);
+        comparisonDisplay.innerHTML = "Choose two cards.";
     }
     function startTimer() {
         timer += 1;
@@ -94,6 +98,7 @@ var MemorySettings;
             singleCard.style.backgroundColor = "#ff7f50";
             cardContent = document.createElement("span");
             cardContent.innerHTML = cardDeckValues[i];
+            cardContent.classList.add("cardcontent");
             if (cardSize == "1") {
                 singleCard.classList.remove("medium", "big");
                 singleCard.classList.add("small");
@@ -132,6 +137,7 @@ var MemorySettings;
     }
     function turnCards(_event) {
         clickedCard = _event.target;
+        clickedCard.removeEventListener("click", turnCards);
         card = clickedCard.parentElement;
         if (card.classList.contains("turned")) {
             card.classList.toggle("turned", false);
@@ -155,7 +161,12 @@ var MemorySettings;
             console.log("first card: " + firstCard);
         }
         else if (turnedCards == 2) {
+            cardsInField = document.querySelectorAll(".cardcontent");
+            for (let index = 0; index < cardsInField.length; index++) {
+                cardsInField[index].removeEventListener("click", turnCards);
+            }
             setTimeout(compareCards, 2000);
+            comparisonDisplay.innerHTML = "Comparing cards...";
             secondCard = clickedCard.innerText;
             console.log("second card: " + secondCard);
         }
@@ -169,6 +180,7 @@ var MemorySettings;
             card.classList.toggle("invisible", true);
             turnedCards = 0;
             finishedPairs++;
+            comparisonDisplay.innerHTML = "Match!";
             console.log("cards matched.");
         }
         else if (firstCard != secondCard) {
@@ -181,11 +193,22 @@ var MemorySettings;
             card.classList.toggle("turned", true);
             card.style.backgroundColor = "#ff7f50";
             turnedCards = 0;
+            clickedCard1.addEventListener("click", turnCards);
+            clickedCard.addEventListener("click", turnCards);
+            comparisonDisplay.innerHTML = "No match!";
             console.log("no match!");
         }
         if (finishedPairs == pairs) {
             stopGame();
+            comparisonDisplay.innerHTML = "";
         }
+        cardsInField = document.querySelectorAll(".cardcontent");
+        for (let index = 0; index < cardsInField.length; index++) {
+            cardsInField[index].addEventListener("click", turnCards);
+        }
+        setTimeout(function () {
+            comparisonDisplay.innerHTML = "Choose two cards.";
+        }, 1200);
     }
     function stopGame() {
         clearInterval(gameDuration);

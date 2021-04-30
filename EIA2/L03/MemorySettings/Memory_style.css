@@ -12,6 +12,10 @@ p {
     margin-right: auto;
 }
 
+div#comparisondisplay {
+    padding: 10px;
+}
+
 div#settings {
     border: solid 1px;
     border-radius: 5px;
