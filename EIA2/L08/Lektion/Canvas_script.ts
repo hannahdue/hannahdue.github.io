@@ -76,7 +76,7 @@ namespace CanvasPlayground {
         crc2.stroke();
 
         //PATTERN
-        let pattern: CanvasRenderingContext = document.createElement("canvas").getContext("2d");
+        /*let pattern: CanvasRenderingContext = document.createElement("canvas").getContext("2d");
         pattern.canvas.width = 40;
         pattern.canvas.height = 20;
 
@@ -93,7 +93,7 @@ namespace CanvasPlayground {
         pattern.stroke();
 
         crc2.fillStyle = crc2.createPattern(pattern.canvas, "repeat");
-        crc2.fillRect(0, 0, canvas.width, canvas.height);
+        crc2.fillRect(0, 0, canvas.width, canvas.height);*/
     }
 
 
