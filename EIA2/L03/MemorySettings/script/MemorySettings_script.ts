@@ -159,7 +159,7 @@ namespace MemorySettings {
             singleCard.appendChild(cardContent);
 
             cardContent.addEventListener("click", turnCards);
-            cardContent.addEventListener("pointerup", turnCards);
+            //cardContent.addEventListener("pointerup", turnCards);
 
         }
 

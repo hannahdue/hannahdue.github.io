@@ -122,7 +122,7 @@ var MemorySettings;
             cardContent.style.display = "inline-block";
             singleCard.appendChild(cardContent);
             cardContent.addEventListener("click", turnCards);
-            cardContent.addEventListener("pointerup", turnCards);
+            //cardContent.addEventListener("pointerup", turnCards);
         }
     }
     function shuffleCards() {
