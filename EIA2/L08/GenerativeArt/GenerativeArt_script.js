@@ -85,7 +85,7 @@ var GenerativeArt;
         crc2.fill();
         crc2.restore();
     }
-    function drawTree() {
+    function drawTree(_randomColorCode, _randomColorCode2) {
         console.log("Tree");
         //Trunk
         crc2.beginPath();
@@ -112,27 +112,37 @@ var GenerativeArt;
         crc2.lineTo(65, -55);
         crc2.lineTo(95, -20);
         crc2.closePath();
-        crc2.fillStyle = "darkgreen";
+        crc2.fillStyle = "HSL(160, 75%, 45%)";
+        console.log(_randomColorCode, _randomColorCode2);
         crc2.fill();
         crc2.stroke();
     }
     function drawTrees() {
         crc2.save();
         crc2.translate(0, crc2.canvas.height * 0.62);
-        let nTrees = 10;
+        let nTrees = 20;
         let rand;
         let rand2;
+        let rand3;
+        let rand4;
+        let x = 0;
+        let y = 0;
         for (let n = 1; n <= nTrees; n++) {
             rand = Math.random();
             rand2 = Math.random();
+            rand3 = Math.random() * 100;
+            rand4 = Math.random() * 100;
+            if (rand3)
+                x = rand * crc2.canvas.width;
+            y += rand2 * 30;
             crc2.save();
-            crc2.translate(rand * crc2.canvas.width, rand2 * (crc2.canvas.height * 0.38));
+            crc2.translate(x, y);
             /*if (rand > 0.5) {
                 crc2.scale(rand * 10 / 2, rand * 10 / 2);
             } else {
                 crc2.scale(rand * 10, rand * 10);
             }*/
-            drawTree();
+            drawTree(rand3, rand4);
             crc2.restore();
         }
         crc2.restore();
