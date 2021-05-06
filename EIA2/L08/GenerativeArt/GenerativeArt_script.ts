@@ -18,7 +18,7 @@ namespace GenerativeArt {
         drawStarrySky(100);
         drawMoon();
         drawGround();
-        drawTrees(20);
+        drawTrees(30);
     }
 
     function drawBackground(): void {
@@ -178,16 +178,15 @@ namespace GenerativeArt {
 
             crc2.save();
             crc2.translate(x, y);
-            console.log(y);
 
             if (y > 50) {
-                crc2.scale(1 + rand, 1 + rand);
+                crc2.scale(1 + rand2, 1 + rand2);
             } else if (y > 100) {
-                crc2.scale(1.5 + rand, 1.5 + rand);
+                crc2.scale(1.5 + rand2, 1.5 + rand2);
             } else if (y > 150) {
-                crc2.scale(2 + rand, 2 + rand);
+                crc2.scale(2 + rand2, 2 + rand2);
             } else if (y > 200) {
-                crc2.scale(3 + rand, 3 + rand);
+                crc2.scale(3 + rand2, 3 + rand2);
             }
             
             drawTree(rand3, rand4);
