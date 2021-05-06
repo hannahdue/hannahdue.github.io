@@ -16,7 +16,6 @@ namespace GenerativeArt {
 
         drawBackground();
         drawStarrySky(100);
-        //drawStars({ x: crc2.canvas.width / 2, y: crc2.canvas.height / 2 }, { x: crc2.canvas.width, y: crc2.canvas.height * 0.7 });
         drawMoon();
         drawGround();
         drawTrees(20);
@@ -28,15 +27,13 @@ namespace GenerativeArt {
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "#253D42");
         gradient.addColorStop(0.5, "#5E868F");
-        //gradient.addColorStop(0.7, "#8F755E");
-        //gradient.addColorStop(1, "#573C24");
-
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
     }
 
     function drawGround(): void {
+        console.log("Earth");
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, crc2.canvas.height, 0, crc2.canvas.height / 2);
         gradient.addColorStop(0.2, "#573C24");
@@ -64,7 +61,6 @@ namespace GenerativeArt {
     function drawStars(_position: Vector, _size: Vector, _radius: number): void {
         console.log("Stars");
 
-        //let nStars: number = 100;
         let radiusStar: number = _radius;
         let star: Path2D = new Path2D();
         let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusStar);
@@ -97,6 +93,7 @@ namespace GenerativeArt {
     }
 
     function drawMoon(): void {
+        console.log("Moon");
 
         let rand: number = Math.random();
         let rand2: number = Math.random();
@@ -115,7 +112,7 @@ namespace GenerativeArt {
     }
 
     function drawTree(_randomColorCode: number, _randomColorCode2: number): void {
-        console.log("Tree");
+        console.log("Trees");
 
         //Trunk
         crc2.beginPath();
@@ -143,7 +140,6 @@ namespace GenerativeArt {
         crc2.lineTo(95, -20);
         crc2.closePath();
         crc2.fillStyle = "HSL(" + _randomColorCode2 + ", 60%, " + _randomColorCode + "%)";
-        console.log(_randomColorCode, _randomColorCode2);
         crc2.fill();
         crc2.stroke();
 
@@ -182,12 +178,17 @@ namespace GenerativeArt {
 
             crc2.save();
             crc2.translate(x, y);
+            console.log(y);
 
-            /*if (rand > 0.5) {
-                crc2.scale(rand * 10 / 2, rand * 10 / 2);
-            } else {
-                crc2.scale(rand * 10, rand * 10);
-            }*/
+            if (y > 50) {
+                crc2.scale(1 + rand, 1 + rand);
+            } else if (y > 100) {
+                crc2.scale(1.5 + rand, 1.5 + rand);
+            } else if (y > 150) {
+                crc2.scale(2 + rand, 2 + rand);
+            } else if (y > 200) {
+                crc2.scale(3 + rand, 3 + rand);
+            }
             
             drawTree(rand3, rand4);
             crc2.restore();

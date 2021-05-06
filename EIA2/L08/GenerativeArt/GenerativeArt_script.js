@@ -10,7 +10,6 @@ var GenerativeArt;
         crc2 = canvas.getContext("2d");
         drawBackground();
         drawStarrySky(100);
-        //drawStars({ x: crc2.canvas.width / 2, y: crc2.canvas.height / 2 }, { x: crc2.canvas.width, y: crc2.canvas.height * 0.7 });
         drawMoon();
         drawGround();
         drawTrees(20);
@@ -20,12 +19,11 @@ var GenerativeArt;
         let gradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "#253D42");
         gradient.addColorStop(0.5, "#5E868F");
-        //gradient.addColorStop(0.7, "#8F755E");
-        //gradient.addColorStop(1, "#573C24");
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
     function drawGround() {
+        console.log("Earth");
         let gradient = crc2.createLinearGradient(0, crc2.canvas.height, 0, crc2.canvas.height / 2);
         gradient.addColorStop(0.2, "#573C24");
         gradient.addColorStop(1, "#8F755E");
@@ -47,7 +45,6 @@ var GenerativeArt;
     }
     function drawStars(_position, _size, _radius) {
         console.log("Stars");
-        //let nStars: number = 100;
         let radiusStar = _radius;
         let star = new Path2D();
         let gradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusStar);
@@ -72,6 +69,7 @@ var GenerativeArt;
         return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
     }
     function drawMoon() {
+        console.log("Moon");
         let rand = Math.random();
         let rand2 = Math.random();
         crc2.save(),
@@ -86,7 +84,7 @@ var GenerativeArt;
         crc2.restore();
     }
     function drawTree(_randomColorCode, _randomColorCode2) {
-        console.log("Tree");
+        console.log("Trees");
         //Trunk
         crc2.beginPath();
         crc2.moveTo(40, 10);
@@ -113,7 +111,6 @@ var GenerativeArt;
         crc2.lineTo(95, -20);
         crc2.closePath();
         crc2.fillStyle = "HSL(" + _randomColorCode2 + ", 60%, " + _randomColorCode + "%)";
-        console.log(_randomColorCode, _randomColorCode2);
         crc2.fill();
         crc2.stroke();
     }
@@ -145,11 +142,19 @@ var GenerativeArt;
             y += rand2 * 30;
             crc2.save();
             crc2.translate(x, y);
-            /*if (rand > 0.5) {
-                crc2.scale(rand * 10 / 2, rand * 10 / 2);
-            } else {
-                crc2.scale(rand * 10, rand * 10);
-            }*/
+            console.log(y);
+            if (y > 50) {
+                crc2.scale(1 + rand, 1 + rand);
+            }
+            else if (y > 100) {
+                crc2.scale(1.5 + rand, 1.5 + rand);
+            }
+            else if (y > 150) {
+                crc2.scale(2 + rand, 2 + rand);
+            }
+            else if (y > 200) {
+                crc2.scale(3 + rand, 3 + rand);
+            }
             drawTree(rand3, rand4);
             crc2.restore();
         }
