@@ -11,9 +11,9 @@ var GenerativeArt;
         drawBackground();
         drawStarrySky(100);
         //drawStars({ x: crc2.canvas.width / 2, y: crc2.canvas.height / 2 }, { x: crc2.canvas.width, y: crc2.canvas.height * 0.7 });
-        drawMoon({ x: 550, y: 0 });
+        drawMoon();
         drawGround();
-        drawTree();
+        drawTrees();
     }
     function drawBackground() {
         console.log("Background");
@@ -71,9 +71,11 @@ var GenerativeArt;
     function calculateNumber(x1, y1, x2, y2) {
         return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
     }
-    function drawMoon(_position) {
+    function drawMoon() {
+        let rand = Math.random();
+        let rand2 = Math.random();
         crc2.save(),
-            crc2.translate(_position.x, _position.y);
+            crc2.translate(rand * crc2.canvas.width, rand2 * crc2.canvas.height / 2 - 50);
         crc2.rotate(25 * Math.PI / 180);
         crc2.scale(0.3, 0.3);
         crc2.arc(200, 200, 150, 0.5 * Math.PI, 1.5 * Math.PI, true);
@@ -85,58 +87,55 @@ var GenerativeArt;
     }
     function drawTree() {
         console.log("Tree");
-        let nTrees = 5;
+        //Trunk
+        crc2.beginPath();
+        crc2.moveTo(40, 10);
+        crc2.lineTo(40, -20);
+        crc2.lineTo(60, -20);
+        crc2.lineTo(60, 10);
+        crc2.closePath();
+        crc2.fillStyle = "#783b12";
+        crc2.fill();
+        crc2.stroke();
+        //Tree
+        crc2.beginPath();
+        crc2.moveTo(40, -20);
+        crc2.lineTo(5, -20);
+        crc2.lineTo(35, -55);
+        crc2.lineTo(18, -55);
+        crc2.lineTo(43, -80);
+        crc2.lineTo(30, -80);
+        crc2.lineTo(50, -105);
+        crc2.lineTo(70, -80);
+        crc2.lineTo(57, -80);
+        crc2.lineTo(82, -55);
+        crc2.lineTo(65, -55);
+        crc2.lineTo(95, -20);
+        crc2.closePath();
+        crc2.fillStyle = "darkgreen";
+        crc2.fill();
+        crc2.stroke();
+    }
+    function drawTrees() {
+        crc2.save();
+        crc2.translate(0, crc2.canvas.height * 0.62);
+        let nTrees = 10;
         let rand;
-        for (let n = 1; n < nTrees; n++) {
-            rand = Math.random() * 20;
-            console.log(rand);
+        let rand2;
+        for (let n = 1; n <= nTrees; n++) {
+            rand = Math.random();
+            rand2 = Math.random();
             crc2.save();
-            crc2.translate((n + 10) * rand, rand * (n * 5));
-            if (rand > 0.5) {
-                crc2.scale(rand / 2, rand / 2);
-            }
-            else {
-                crc2.scale(rand, rand);
-            }
-            crc2.beginPath();
-            crc2.moveTo(200, 50);
-            crc2.lineTo(150, 100);
-            crc2.lineTo(180, 100);
-            crc2.lineTo(120, 160);
-            crc2.lineTo(160, 160);
-            crc2.lineTo(90, 240);
-            crc2.lineTo(310, 240);
-            crc2.lineTo(240, 160);
-            crc2.lineTo(280, 160);
-            crc2.lineTo(220, 100);
-            crc2.lineTo(250, 100);
-            crc2.lineTo(200, 50);
-            crc2.fillStyle = "green";
-            crc2.fill();
-            crc2.lineWidth = 3;
-            crc2.stroke();
-            crc2.closePath();
-            //Draw the canopy
-            crc2.beginPath();
-            crc2.fillStyle = "#783b12";
-            crc2.fillRect(180, 240, 40, 50);
-            crc2.lineWidth = 3;
-            crc2.strokeRect(180, 240, 40, 50); //rectangular second border
-            crc2.closePath();
-            //Draw the trunk
-            crc2.beginPath();
-            crc2.moveTo(200, 50);
-            crc2.lineTo(183, 70);
-            crc2.lineTo(195, 65);
-            crc2.lineTo(200, 80);
-            crc2.lineTo(205, 65);
-            crc2.lineTo(218, 70);
-            crc2.fillStyle = "#fff";
-            crc2.fill();
-            crc2.closePath();
-            //Draw the snow on the top of the tree
+            crc2.translate(rand * crc2.canvas.width, rand2 * (crc2.canvas.height * 0.38));
+            /*if (rand > 0.5) {
+                crc2.scale(rand * 10 / 2, rand * 10 / 2);
+            } else {
+                crc2.scale(rand * 10, rand * 10);
+            }*/
+            drawTree();
             crc2.restore();
         }
+        crc2.restore();
     }
 })(GenerativeArt || (GenerativeArt = {}));
 //# sourceMappingURL=GenerativeArt_script.js.map
