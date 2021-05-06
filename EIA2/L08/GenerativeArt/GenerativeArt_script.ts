@@ -19,7 +19,7 @@ namespace GenerativeArt {
         //drawStars({ x: crc2.canvas.width / 2, y: crc2.canvas.height / 2 }, { x: crc2.canvas.width, y: crc2.canvas.height * 0.7 });
         drawMoon();
         drawGround();
-        drawTrees();
+        drawTrees(20);
     }
 
     function drawBackground(): void {
@@ -142,19 +142,19 @@ namespace GenerativeArt {
         crc2.lineTo(65, -55);
         crc2.lineTo(95, -20);
         crc2.closePath();
-        crc2.fillStyle = "HSL(160, 75%, 45%)";
+        crc2.fillStyle = "HSL(" + _randomColorCode2 + ", 60%, " + _randomColorCode + "%)";
         console.log(_randomColorCode, _randomColorCode2);
         crc2.fill();
         crc2.stroke();
 
     }
 
-    function drawTrees(): void {
+    function drawTrees(_treesAmount: number): void {
 
         crc2.save();
         crc2.translate(0, crc2.canvas.height * 0.62);
 
-        let nTrees: number = 20;
+        let nTrees: number = _treesAmount;
         let rand: number;
         let rand2: number;
         let rand3: number;
@@ -167,9 +167,15 @@ namespace GenerativeArt {
             rand = Math.random();
             rand2 = Math.random();
             rand3 = Math.random() * 100;
-            rand4 = Math.random() * 100;
+            rand4 = 140 + (Math.random() * 10 - 5);
 
-            if (rand3 )
+            if (rand3 < 20) {
+                rand3 = rand3 + 20;
+            } else if (rand3 > 70) {
+                rand3 = rand3 / 2;
+            } else if (rand3 > 50) {
+                rand3 = rand3 - 30;
+            }
 
             x = rand * crc2.canvas.width;
             y += rand2 * 30;
