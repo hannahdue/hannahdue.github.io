@@ -1,4 +1,4 @@
-/*html, body {
+html, body {
     height: 100%;
     width: 100%;
     padding: 0;
@@ -11,4 +11,20 @@
     width: 100%;
     overflow: hidden;
 }
+
+@media (orientation: landscape) {
+    #canvas {
+        height: auto;
+        width: 100%;
+        overflow: hidden;
+    }
+  }
+  
+  @media (orientation: portrait) {
+    #canvas {
+        height: 100%;
+        width: auto;
+        overflow: hidden;
+    }
+  }
  /*Im Landscape Modus so, im Portrait Modus andersrum, overflow: hidden*/

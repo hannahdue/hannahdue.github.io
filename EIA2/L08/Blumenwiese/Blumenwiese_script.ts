@@ -22,15 +22,12 @@ namespace Blumenwiese {
         let posMountains: Vector = { x: 0, y: horizon };
 
         drawBackground();
-        drawSun({ x: 100, y: 50 });
-        drawCloud({ x: 680, y: 50 }, { x: 80, y: 20 }, 8, 40);
-        drawCloud({ x: 500, y: 100 }, { x: 150, y: 30 }, 30, 50);
+        drawSun({ x: crc2.canvas.width * 0.15, y: crc2.canvas.height * 0.1 });
+        drawCloud({ x: crc2.canvas.width * 0.8, y: crc2.canvas.height * 0.1 }, { x: 120, y: 40 }, 8, 40);
+        drawCloud({ x: crc2.canvas.width * 0.65, y: crc2.canvas.height * 0.2 }, { x: 200, y: 80 }, 30, 50);
         drawMountains(posMountains, 20, 70, "grey", "white", "silver");
         drawMountains(posMountains, 10, 30, "saddleBrown", "tan", "sienna");
         drawMeadow();
-        //drawMeadowLayer(0, 20, 10);
-        //drawManyFlowers(30);
-        drawGrassBlade(150, 20, -10);
     }
 
     function createRandomValueInRange(_min: number, _max: number): number {
@@ -42,8 +39,9 @@ namespace Blumenwiese {
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
-        gradient.addColorStop(golden, "white");
-        gradient.addColorStop(1, "HSL(95, 85%, 28%)");
+        gradient.addColorStop(0.35, "white");
+        gradient.addColorStop(0.38, "#B3BF54");
+        gradient.addColorStop(1, "#6F8C30");
 
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -52,8 +50,8 @@ namespace Blumenwiese {
     function drawSun(_position: Vector): void {
         console.log("Sun");
 
-        let r1: number = 20;
-        let r2: number = 150;
+        let r1: number = 40;
+        let r2: number = 300;
         let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, r1, 0, 0, r2);
         gradient.addColorStop(0, "HSLA(60, 100%, 90%, 1)");
         gradient.addColorStop(0.1, "HSLA(60, 100%, 90%, 0.5)");
@@ -143,7 +141,7 @@ namespace Blumenwiese {
         let yMin: number = 0;
         let yMax: number = 20;
         let scale: number = 0.5;
-        let distance: number = 2.5;
+        let distance: number = 2;
 
         do {
 
@@ -174,27 +172,27 @@ namespace Blumenwiese {
             y = createRandomValueInRange(_yMin, _yMax);
             
             randomHeight = Math.random() * 50;
-            randomSway = (Math.random() - 0.5) * 60;
-            randomBend = (Math.random() - 0.5) * 30;
+            randomSway = (Math.random() - 0.5) * 80;
+            randomBend = (Math.random() - 0.5) * 60;
             if (randomSway > 0 && randomBend > 0) {
                 randomBend = randomBend * -1;
             }
 
             crc2.save();
             crc2.translate(step, y);
-            drawGrassBlade(150 + randomHeight, randomSway, randomBend);
+            drawGrassBlade(130 + randomHeight, randomSway, randomBend);
             crc2.restore();
         }
 
         //Blumenschicht
-        for (let stepWidth: number = createRandomValueInRange(0, 60); stepWidth < crc2.canvas.width * 2; stepWidth += createRandomValueInRange(50, 100)) {
+        for (let stepWidth: number = createRandomValueInRange(0, 60); stepWidth < crc2.canvas.width * 2; stepWidth += createRandomValueInRange(20, 100)) {
         
-            y = _yMax + _yMax * 0.2;
+            y = createRandomValueInRange(_yMax * 0.9, _yMax * 1.3);
             let randomColorPicker: number = Math.floor(Math.random() * 10);
            
             crc2.save();
             crc2.translate(stepWidth, y);
-            drawFlower(6, randomColorPicker);
+            drawFlower(5, randomColorPicker);
             crc2.restore(); 
         }
 
@@ -236,7 +234,7 @@ namespace Blumenwiese {
         crc2.translate(0, -100);
 
         for (let flowerPetals: number = 0; flowerPetals < _flowerPetals; flowerPetals++) {
-            crc2.rotate(1.05);
+            crc2.rotate(1.25);
             drawFlowerPetal(_petalColor);
             if (flowerPetals == _flowerPetals - 1) {
                 crc2.beginPath();
@@ -254,27 +252,25 @@ namespace Blumenwiese {
 
     function drawFlowerPetal(_petalColor: number): void {
 
-        let petalColor: string = "violet";
+        let petalColor: string = "HSL(" + _petalColor * 36 + ", 70%, 40%)";
         switch (_petalColor) {
             case 1:
             case 2:
                 petalColor = "indianRed";
                 break;
-            case 3:
             case 4:
                 petalColor = "cornflowerBlue";
                 break;
-            case 5:
             case 6:
                 petalColor = "darkOrange";
                 break;
             case 7:
             case 8:
-                petalColor = "darkOrange";
-            case 9:
+                petalColor = "orange";
             case 10: 
                 petalColor = "mediumOrchid";
             default:
+                petalColor = "HSL(" + _petalColor * 36 + ", 70%, 40%)";
                 break;
         }
         //Farbverlauf
@@ -304,76 +300,32 @@ namespace Blumenwiese {
         crc2.quadraticCurveTo(_bend, -_height / 2, _sway, -_height);
         crc2.quadraticCurveTo(_bend + 10, -_height / 2, 5, 0);
         crc2.closePath();
-        crc2.fillStyle = "forestGreen";
+        
+        let randomGrassColor: number = Math.floor(createRandomValueInRange(1, 5));
+        let grassColor: string = "#6F8C30";
+        switch (randomGrassColor) {
+            case 1:
+                grassColor = "#40592E";
+                break;
+            case 2:
+                grassColor = "#51732F";
+                break;
+            case 3:
+                grassColor = "#82A633";
+                break;
+            case 4:
+                grassColor = "#6F8C30";
+                break;
+            case 5:
+                grassColor = "#B3BF54";   
+                break; 
+            default:
+                break;
+        }
+        crc2.fillStyle = grassColor;
         crc2.fill();
 
         crc2.restore();
     }
-
-    /*function drawManyFlowers(_flowersAmount: number): void {
-
-        crc2.save();
-        crc2.translate(0, horizon + 20);
-
-        let nFlowers: number = _flowersAmount;
-        let rand: number;
-        let rand2: number;
-        let rand3: number;
-        let rand4: number;
-        let x: number = 0;
-        let y: number = 0;
-
-        for (let n: number = 1; n <= nFlowers; n++) {
-
-            rand = Math.random();
-            rand2 = Math.random() / 2;
-            rand3 = Math.random() * 100;
-            rand4 = Math.floor(Math.random() * 10);
-
-            if (rand3 < 20) {
-                rand3 = rand3 + 20;
-            } else if (rand3 > 70) {
-                rand3 = rand3 / 2;
-            } else if (rand3 > 50) {
-                rand3 = rand3 - 30;
-            }
-
-            x = rand * crc2.canvas.width;
-            y += rand2 * 30;
-
-            crc2.save();
-            crc2.translate(x, y);
-
-            if (y > 200) {
-                crc2.scale(2.2 + rand2, 2.2 + rand2);
-            } else if (y > 150) {
-                crc2.scale(1.5 + rand2, 1.5 + rand2);
-            } else if (y > 100) {
-                crc2.scale(1.2 + rand2, 1.2 + rand2);
-            } else if (y > 50) {
-                crc2.scale(0.8, 0.8);
-            } else {
-                crc2.scale(0.5, 0.5);
-            }
-
-            for (let grassBlades: number = 0; grassBlades < 50; grassBlades++) {
-                crc2.save();
-                let rand: number = (Math.random() - 0.5) * 100;
-                let rand2: number = (Math.random() - 0.5) * 100;
-                let rand3: number = (Math.random() - 0.5) * 10;
-                crc2.translate(rand, rand2);
-                crc2.scale(0.2, 0.2);
-                drawGrassBlade(150 + rand3, 20 + rand3, -10 + rand3);
-                crc2.restore();
-            }
-
-            drawFlower(6, rand4);
-    
-            crc2.restore();
-        }
-
-        crc2.restore();
-
-    }*/
 
 }
