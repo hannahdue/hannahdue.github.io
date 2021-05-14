@@ -2,7 +2,6 @@ namespace Blumenwiese {
 
     window.addEventListener("load", handleLoad);
     let crc2: CanvasRenderingContext2D;
-    let randomValue: number;
     let x: number;
     let golden: number = 0.38;
     let horizon: number;
@@ -28,12 +27,14 @@ namespace Blumenwiese {
         drawCloud({ x: 500, y: 100 }, { x: 150, y: 30 }, 30, 50);
         drawMountains(posMountains, 20, 70, "grey", "white", "silver");
         drawMountains(posMountains, 10, 30, "saddleBrown", "tan", "sienna");
-        drawManyFlowers(30);
+        drawMeadow();
+        //drawMeadowLayer(0, 20, 10);
+        //drawManyFlowers(30);
         drawGrassBlade(150, 20, -10);
     }
 
-    function createRandomValueInRange(_min: number, _max: number): void {
-        randomValue = _min + Math.random() * (_max - _min);
+    function createRandomValueInRange(_min: number, _max: number): number {
+        return _min + Math.random() * (_max - _min);
     }
 
     function drawBackground(): void {
@@ -46,44 +47,6 @@ namespace Blumenwiese {
 
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-    }
-
-    function drawMountains(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string, _strokeColor: string): void {
-        console.log("Mountains");
-
-        let stepMin: number = 20;
-        let stepMax: number = 50;
-        x = 0;
-
-        crc2.save();
-        crc2.translate(_position.x, _position.y);
-
-        crc2.beginPath();
-        crc2.moveTo(0, 0);
-        crc2.lineTo(0, -_max);
-
-        do {
-            createRandomValueInRange(stepMin, stepMax);
-            x += randomValue;
-            createRandomValueInRange(-_min, -_max);
-            let y: number = randomValue;
-
-            crc2.lineTo(x, y);
-        } while (x < crc2.canvas.width);
-
-        crc2.lineTo(x, 0);
-        crc2.closePath();
-
-        let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, -_max);
-        gradient.addColorStop(0, _colorLow);
-        gradient.addColorStop(0.8, _colorHigh);
-
-        crc2.fillStyle = gradient;
-        crc2.fill();
-        crc2.strokeStyle = _strokeColor;
-        crc2.stroke();
-
-        crc2.restore();
     }
 
     function drawSun(_position: Vector): void {
@@ -135,9 +98,110 @@ namespace Blumenwiese {
         crc2.restore();
     }
 
-    function drawFlower(_flowerPetals: number, _petalColor: number): void {
-        console.log("Flower");
+    function drawMountains(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string, _strokeColor: string): void {
+        console.log("Mountains");
 
+        let stepMin: number = 20;
+        let stepMax: number = 50;
+        x = 0;
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+
+        crc2.beginPath();
+        crc2.moveTo(0, 0);
+        crc2.lineTo(0, -_max);
+
+        do {
+            x += createRandomValueInRange(stepMin, stepMax);
+            let y: number = createRandomValueInRange(-_min, -_max);
+
+            crc2.lineTo(x, y);
+        } while (x < crc2.canvas.width);
+
+        crc2.lineTo(x, 0);
+        crc2.closePath();
+
+        let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, -_max);
+        gradient.addColorStop(0, _colorLow);
+        gradient.addColorStop(0.8, _colorHigh);
+
+        crc2.fillStyle = gradient;
+        crc2.fill();
+        crc2.strokeStyle = _strokeColor;
+        crc2.stroke();
+
+        crc2.restore();
+    }
+
+    function drawMeadow(): void {
+        console.log("Meadow");
+        crc2.save();
+
+        crc2.translate(0, horizon);
+
+        let yMin: number = 0;
+        let yMax: number = 20;
+        let scale: number = 0.5;
+        let distance: number = 2.5;
+
+        do {
+
+            crc2.save();
+            crc2.scale(scale, scale);
+            drawMeadowLayer(yMin, yMax, distance);
+            yMin = yMax * 0.8;
+            yMax = yMax * 1.25;
+            scale = scale * 1.7;
+            distance = distance * 0.8;
+            //console.log(yMin, yMax);
+            crc2.restore();
+
+        } while (yMin < crc2.canvas.height - horizon);
+
+        crc2.restore();
+    }
+
+    function drawMeadowLayer(_yMin: number, _yMax: number, _distance: number): void {
+       
+        let y: number;
+        let randomHeight: number;
+        let randomSway: number;
+        let randomBend: number;
+
+        //Grasschicht
+        for (let step: number = 0; step < crc2.canvas.width * 2; step += _distance) {
+            y = createRandomValueInRange(_yMin, _yMax);
+            
+            randomHeight = Math.random() * 50;
+            randomSway = (Math.random() - 0.5) * 60;
+            randomBend = (Math.random() - 0.5) * 30;
+            if (randomSway > 0 && randomBend > 0) {
+                randomBend = randomBend * -1;
+            }
+
+            crc2.save();
+            crc2.translate(step, y);
+            drawGrassBlade(150 + randomHeight, randomSway, randomBend);
+            crc2.restore();
+        }
+
+        //Blumenschicht
+        for (let stepWidth: number = createRandomValueInRange(0, 60); stepWidth < crc2.canvas.width * 2; stepWidth += createRandomValueInRange(50, 100)) {
+        
+            y = _yMax + _yMax * 0.2;
+            let randomColorPicker: number = Math.floor(Math.random() * 10);
+           
+            crc2.save();
+            crc2.translate(stepWidth, y);
+            drawFlower(6, randomColorPicker);
+            crc2.restore(); 
+        }
+
+    }
+
+    function drawFlower(_flowerPetals: number, _petalColor: number): void {
+       
         crc2.save();
 
         //Blumenstiel
@@ -231,11 +295,10 @@ namespace Blumenwiese {
     }
 
     function drawGrassBlade(_height: number, _sway: number, _bend: number): void {
-        console.log("Grassblade");
-
         crc2.save();
 
         //crc2.translate(150, crc2.canvas.height);
+        crc2.scale(0.09, 0.17);
         crc2.beginPath();
         crc2.moveTo(-5, 0);
         crc2.quadraticCurveTo(_bend, -_height / 2, _sway, -_height);
@@ -247,7 +310,7 @@ namespace Blumenwiese {
         crc2.restore();
     }
 
-    function drawManyFlowers(_flowersAmount: number): void {
+    /*function drawManyFlowers(_flowersAmount: number): void {
 
         crc2.save();
         crc2.translate(0, horizon + 20);
@@ -311,6 +374,6 @@ namespace Blumenwiese {
 
         crc2.restore();
 
-    }
+    }*/
 
 }
