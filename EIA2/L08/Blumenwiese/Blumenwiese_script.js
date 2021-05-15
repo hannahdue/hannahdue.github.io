@@ -152,13 +152,13 @@ var Blumenwiese;
             crc2.restore();
         }
         if (layer == 2) {
-            drawTree({ x: crc2.canvas.width / 2, y: _yMax }, "#024F1D");
+            drawTree({ x: crc2.canvas.width / 2, y: _yMax }, "#0A420E");
         }
         else if (layer == 3) {
-            drawTree({ x: 0, y: _yMax }, "#024F1D");
+            drawTree({ x: 0, y: _yMax }, "#025928");
         }
         else if (layer == 4) {
-            drawTree({ x: crc2.canvas.width / 5.5, y: _yMax }, "#024F1D");
+            drawTree({ x: crc2.canvas.width / 5.5, y: _yMax }, "#015838");
         }
     }
     function drawFlower(_flowerPetals, _petalColor) {
