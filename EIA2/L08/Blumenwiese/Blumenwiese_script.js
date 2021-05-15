@@ -171,7 +171,7 @@ var Blumenwiese;
         crc2.lineTo(0, -100);
         crc2.closePath();
         crc2.lineWidth = 4;
-        crc2.strokeStyle = "darkgreen";
+        crc2.strokeStyle = "#025928";
         crc2.stroke();
         //Blätter
         crc2.beginPath();
@@ -182,7 +182,7 @@ var Blumenwiese;
         crc2.quadraticCurveTo(10, -40, 11, -50);
         crc2.quadraticCurveTo(8, -50, 0, -45);
         crc2.closePath();
-        crc2.fillStyle = "green";
+        crc2.fillStyle = "#416935";
         crc2.fill();
         crc2.stroke();
         crc2.save();
