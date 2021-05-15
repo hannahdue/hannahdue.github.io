@@ -5,6 +5,7 @@ namespace Blumenwiese {
     let x: number;
     let golden: number = 0.38;
     let horizon: number;
+    let layer: number;
 
     interface Vector {
         x: number;
@@ -23,11 +24,12 @@ namespace Blumenwiese {
 
         drawBackground();
         drawSun({ x: crc2.canvas.width * 0.15, y: crc2.canvas.height * 0.1 });
-        drawCloud({ x: crc2.canvas.width * 0.8, y: crc2.canvas.height * 0.1 }, { x: 120, y: 40 }, 8, 40);
+        drawCloud({ x: crc2.canvas.width * 0.8, y: crc2.canvas.height * 0.1 }, { x: 120, y: 40 }, 15, 40);
         drawCloud({ x: crc2.canvas.width * 0.65, y: crc2.canvas.height * 0.2 }, { x: 200, y: 80 }, 30, 50);
-        drawMountains(posMountains, 20, 70, "grey", "white", "silver");
-        drawMountains(posMountains, 10, 30, "saddleBrown", "tan", "sienna");
+        drawMountains(posMountains, 40, 100, "grey", "white", "silver");
+        drawMountains(posMountains, 20, 60, "saddleBrown", "tan", "sienna");
         drawMeadow();
+        //drawTree({ x: crc2.canvas.width / 4, y: crc2.canvas.height}, "#024F1D")
     }
 
     function createRandomValueInRange(_min: number, _max: number): number {
@@ -99,8 +101,8 @@ namespace Blumenwiese {
     function drawMountains(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string, _strokeColor: string): void {
         console.log("Mountains");
 
-        let stepMin: number = 20;
-        let stepMax: number = 50;
+        let stepMin: number = 30;
+        let stepMax: number = 70;
         x = 0;
 
         crc2.save();
@@ -142,30 +144,34 @@ namespace Blumenwiese {
         let yMax: number = 20;
         let scale: number = 0.5;
         let distance: number = 2;
+        layer = 0;
 
         do {
 
             crc2.save();
             crc2.scale(scale, scale);
-            drawMeadowLayer(yMin, yMax, distance);
+            drawMeadowLayer(yMin, yMax, distance, layer);
+
             yMin = yMax * 0.8;
             yMax = yMax * 1.25;
             scale = scale * 1.7;
             distance = distance * 0.8;
-            //console.log(yMin, yMax);
+            
             crc2.restore();
+            layer++;
 
-        } while (yMin < crc2.canvas.height - horizon);
+        } while (layer < 7);
 
         crc2.restore();
     }
 
-    function drawMeadowLayer(_yMin: number, _yMax: number, _distance: number): void {
+    function drawMeadowLayer(_yMin: number, _yMax: number, _distance: number, _layer: number): void {
        
         let y: number;
         let randomHeight: number;
         let randomSway: number;
         let randomBend: number;
+        layer = _layer;
 
         //Grasschicht
         for (let step: number = 0; step < crc2.canvas.width * 2; step += _distance) {
@@ -194,6 +200,13 @@ namespace Blumenwiese {
             crc2.translate(stepWidth, y);
             drawFlower(5, randomColorPicker);
             crc2.restore(); 
+        }
+        if (layer == 2) {
+            drawTree({ x: crc2.canvas.width / 2, y: _yMax}, "#024F1D");
+        } else if (layer == 3) {
+            drawTree({ x: 0, y: _yMax}, "#024F1D");
+        } else if (layer == 4) {
+            drawTree({ x: crc2.canvas.width / 5.5, y: _yMax}, "#024F1D");
         }
 
     }
@@ -326,6 +339,46 @@ namespace Blumenwiese {
         crc2.fill();
 
         crc2.restore();
+    }
+
+    function drawTree(_position: Vector, _color: string): void {
+        console.log("Tree");
+
+        crc2.save();
+        crc2.translate(_position.x, _position.y);
+        console.log(_position);
+        crc2.scale(0.9, 1);
+        //Trunk
+        crc2.beginPath();
+        crc2.moveTo(40, 10);
+        crc2.lineTo(40, -20);
+        crc2.lineTo(60, -20);
+        crc2.lineTo(60, 10);
+        crc2.closePath();
+        crc2.fillStyle = "#875D3E";
+        crc2.fill();
+        //crc2.stroke();
+        //Tree
+        crc2.beginPath();
+        crc2.moveTo(40, -20);
+        crc2.lineTo(5, -20);
+        crc2.lineTo(35, -55);
+        crc2.lineTo(18, -55);
+        crc2.lineTo(43, -80);
+        crc2.lineTo(30, -80);
+        crc2.lineTo(50, -105);
+        crc2.lineTo(70, -80);
+        crc2.lineTo(57, -80);
+        crc2.lineTo(82, -55);
+        crc2.lineTo(65, -55);
+        crc2.lineTo(95, -20);
+        crc2.closePath();
+        crc2.fillStyle = _color;
+        crc2.fill();
+        //crc2.stroke();
+
+        crc2.restore();
+
     }
 
 }
