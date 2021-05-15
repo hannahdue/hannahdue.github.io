@@ -278,10 +278,9 @@ var Blumenwiese;
         crc2.restore();
     }
     function drawTree(_position, _color) {
-        console.log("Tree");
+        console.log("Tree at " + _position.x + "/" + _position.y);
         crc2.save();
         crc2.translate(_position.x, _position.y);
-        console.log(_position);
         crc2.scale(0.9, 1);
         //Trunk
         crc2.beginPath();
