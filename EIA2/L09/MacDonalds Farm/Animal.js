@@ -1,4 +1,7 @@
 "use strict";
+let hayAmount;
+let grainsAmount;
+let meatAmount;
 class Animal {
     constructor(_name, _food, _foodAmount, _sound) {
         this.name = _name;
@@ -6,10 +9,19 @@ class Animal {
         this.foodAmount = _foodAmount;
         this.sound = _sound;
     }
-    eat(_food, _foodAmount) {
+    eat() {
         console.log(this.name + " eats " + this.foodAmount + "kg of " + this.food);
+        if (this.food == "Hay") {
+            hayAmount -= this.foodAmount;
+        }
+        else if (this.food == "Grains") {
+            grainsAmount -= this.foodAmount;
+        }
+        else if (this.food = "Meat") {
+            meatAmount -= this.foodAmount;
+        }
     }
-    sing(_sound) {
+    sing() {
         console.log(this.name + " sings " + this.sound);
     }
 }
