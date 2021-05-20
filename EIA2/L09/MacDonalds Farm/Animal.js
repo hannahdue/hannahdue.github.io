@@ -1,7 +1,7 @@
 "use strict";
-let hayAmount;
-let grainsAmount;
-let meatAmount;
+let hayAmount = 50;
+let grainsAmount = 30;
+let meatAmount = 2;
 class Animal {
     constructor(_name, _food, _foodAmount, _sound) {
         this.name = _name;
@@ -23,6 +23,10 @@ class Animal {
     }
     sing() {
         console.log(this.name + " sings " + this.sound);
+        let song = document.createElement("div");
+        song.classList.add("song");
+        song.innerHTML = "<h3>" + this.name + "</h3><p>Old MacDonald had a farm<br>Ee i ee i o<br>And on his farm he had some " + this.name + "s<br> Ee i ee i oh<br>With a " + this.sound + "-" + this.sound + " here<br>And a " + this.sound + "-" + this.sound + " there<br>Here a " + this.sound + ", there a " + this.sound + "<br> Everywhere a " + this.sound + "-" + this.sound + "<br>Old MacDonald had a farm<br>Ee i ee i o.</p>";
+        document.body.appendChild(song);
     }
 }
 //# sourceMappingURL=Animal.js.map
