@@ -16,7 +16,7 @@ function handleLoad(): void {
     let pig: Animal = new Animal("Pig", "Grains", 1.5, "Grunt");
     let donkey: Animal = new Animal("Donkey", "Hay", 2.5, "Iaaah");
 
-    cow.sing(this.sound);
+    cow.sing(cow.sound);
 }
 
 }

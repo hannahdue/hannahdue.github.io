@@ -13,7 +13,7 @@ var OldMacdonaldsFarm;
         let horse = new Animal("Horse", "Hay", 3, "Whieew");
         let pig = new Animal("Pig", "Grains", 1.5, "Grunt");
         let donkey = new Animal("Donkey", "Hay", 2.5, "Iaaah");
-        cow.sing(this.sound);
+        cow.sing(cow.sound);
     }
 })(OldMacdonaldsFarm || (OldMacdonaldsFarm = {}));
 //# sourceMappingURL=MacDonaldsFarm_script.js.map
