@@ -22,7 +22,7 @@ class Animal {
             hayAmount -= this.foodAmount;
         } else if (this.food == "Grains") {
             grainsAmount -= this.foodAmount;
-        } else if (this.food = "Meat") {
+        } else if (this.food == "Meat") {
             meatAmount -= this.foodAmount;
         }
 

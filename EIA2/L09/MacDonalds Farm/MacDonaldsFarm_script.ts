@@ -47,23 +47,25 @@ namespace OldMacdonaldsFarm {
         donkey.eat();
 
         day ++;
-        display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + hayAmount + "kg, Grains: " + grainsAmount + "kg, Meat: " + meatAmount + "kg";
+        //display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + hayAmount + "kg, Grains: " + grainsAmount + "kg, Meat: " + meatAmount + "kg";
         if (meatAmount == 0) {
             let meatInput: string = <string>prompt("You need to buy more meat, otherwise your dog might eat the chicken. Enter Kilograms:", "2");
             meatAmount = parseFloat(meatInput);
-            display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + hayAmount + "kg, Grains: " + grainsAmount + "kg, Meat: " + meatAmount + "kg";
+            //display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + hayAmount + "kg, Grains: " + grainsAmount + "kg, Meat: " + meatAmount + "kg";
 
         } else if (hayAmount <= 0) {
             let hayInput: string = <string>prompt("You need to buy more hay, otherwise your horse and donkey might graze your hair off. Enter Kilograms:", "50");
             hayAmount = parseFloat(hayInput);
-            display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + hayAmount + "kg, Grains: " + grainsAmount + "kg, Meat: " + meatAmount + "kg";
+            //display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + hayAmount + "kg, Grains: " + grainsAmount + "kg, Meat: " + meatAmount + "kg";
 
         } else if (grainsAmount <= 0) {
-            let grainsInput: string = <string>prompt("You need to buy more grains, otherwise your goat and pig might eat the your breakfast cereals. Enter Kilograms:", "30");
+            let grainsInput: string = <string>prompt("You need to buy more grains, otherwise your goat and pig might eat your breakfast cereals. Enter Kilograms:", "30");
             grainsAmount = parseFloat(grainsInput);
-            display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + hayAmount + "kg, Grains: " + grainsAmount + "kg, Meat: " + meatAmount + "kg";
+            //display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + hayAmount + "kg, Grains: " + grainsAmount + "kg, Meat: " + meatAmount + "kg";
 
         }
+        display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + hayAmount + "kg, Grains: " + grainsAmount + "kg, Meat: " + meatAmount + "kg";
+
     }
 
 }
