@@ -6,6 +6,8 @@ namespace Blumenwiese2 {
     let golden: number = 0.38;
     let horizon: number;
     let layer: number;
+    let cloud1: Cloud;
+    let cloud2: Cloud;
 
     function handleLoad(): void {
 
@@ -17,10 +19,12 @@ namespace Blumenwiese2 {
         horizon = crc2.canvas.height * golden;
 
         drawBackground();
-        let cloud1: Cloud = new Cloud(new Vector(1150, 80), new Vector(120, 40), 20, 40);
-        let cloud2: Cloud = new Cloud(new Vector(930, 160), new Vector(200, 80), 35, 50);
+        cloud1 = new Cloud(new Vector(1150, 80), new Vector(120, 40), 20, 40);
+        cloud2 = new Cloud(new Vector(930, 160), new Vector(200, 80), 35, 50);
         cloud1.draw();
         cloud2.draw();
+
+        //window.setInterval(update, 2000);
 
         //drawMeadow();
         //drawTree({ x: crc2.canvas.width / 4, y: crc2.canvas.height}, "#024F1D")
@@ -46,6 +50,15 @@ namespace Blumenwiese2 {
         drawMountains(new Vector(0, horizon), 40, 100, "grey", "white", "silver");
         drawMountains(new Vector(0, horizon), 20, 60, "saddleBrown", "tan", "sienna");
         drawMeadow();
+    }
+
+    function update(): void {
+        drawBackground();
+        
+        cloud1.move(1 / 50);
+        cloud1.draw();
+        cloud2.move(1 / 50);
+        cloud2.draw();
     }
 
     function drawSun(_position: Vector): void {

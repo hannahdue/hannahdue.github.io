@@ -3,6 +3,7 @@ var Blumenwiese2;
 (function (Blumenwiese2) {
     class Cloud {
         constructor(_position, _size, _nParticles, _radiusParticles) {
+            this.velocity = new Blumenwiese2.Vector(10, 0);
             console.log("Cloud");
             this.position = _position;
             this.size = _size;
@@ -30,6 +31,15 @@ var Blumenwiese2;
                 Blumenwiese2.crc2.restore();
             }
             Blumenwiese2.crc2.restore();
+        }
+        move(_timeslice) {
+            let offset = new Blumenwiese2.Vector(this.velocity.x, this.velocity.y);
+            offset.scale(_timeslice);
+            this.position.add(offset);
+            if (this.position.x < 0)
+                this.position.x += Blumenwiese2.crc2.canvas.width;
+            if (this.position.x > Blumenwiese2.crc2.canvas.width)
+                this.position.x -= Blumenwiese2.crc2.canvas.width;
         }
     }
     Blumenwiese2.Cloud = Cloud;
