@@ -6,6 +6,7 @@ namespace Blumenwiese2 {
     let golden: number = 0.38;
     let horizon: number;
     let layer: number;
+    let backgroundimage: ImageData;
     let cloud1: Cloud;
     let cloud2: Cloud;
 
@@ -19,15 +20,17 @@ namespace Blumenwiese2 {
         horizon = crc2.canvas.height * golden;
 
         drawBackground();
-        cloud1 = new Cloud(new Vector(1150, 80), new Vector(120, 40), 20, 40);
-        cloud2 = new Cloud(new Vector(930, 160), new Vector(200, 80), 35, 50);
+        cloud1 = new Cloud(new Vector(1250, -10), 0.6, 20, 40);
+        cloud2 = new Cloud(new Vector(930, 0), 1, 35, 50);
         cloud1.draw();
         cloud2.draw();
 
-        //window.setInterval(update, 2000);
+        let bee: Bee = new Bee(new Vector(100, 100), new Vector(20, 0), 2);
+        bee.draw();
 
-        //drawMeadow();
-        //drawTree({ x: crc2.canvas.width / 4, y: crc2.canvas.height}, "#024F1D")
+        //drawBeehive();
+        //window.setInterval(update, 20);
+
     }
 
     export function createRandomValueInRange(_min: number, _max: number): number {
@@ -50,10 +53,14 @@ namespace Blumenwiese2 {
         drawMountains(new Vector(0, horizon), 40, 100, "grey", "white", "silver");
         drawMountains(new Vector(0, horizon), 20, 60, "saddleBrown", "tan", "sienna");
         drawMeadow();
+        //save image to use for animation:
+        backgroundimage = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
+
     }
 
     function update(): void {
-        drawBackground();
+        //drawBackground();
+        crc2.putImageData(backgroundimage, 0, 0);
         
         cloud1.move(1 / 50);
         cloud1.draw();
@@ -179,13 +186,72 @@ namespace Blumenwiese2 {
         if (layer == 2) {
             let tree: Tree = new Tree(new Vector(crc2.canvas.width / 2, _yMax), "#0A420E");
             tree.draw();
-        } else if (layer == 3) {
-            let tree: Tree = new Tree(new Vector(0, _yMax), "#025928");
-            tree.draw();
-        } else if (layer == 4) {
-            let tree: Tree = new Tree(new Vector(crc2.canvas.width / 5.5, _yMax), "#015838");
+            let tree2: Tree = new Tree(new Vector(0, _yMax), "#025928");
+            tree2.draw();
+        } else if (layer == 1) {
+            let tree: Tree = new Tree(new Vector(crc2.canvas.width / 2, _yMax), "#015838");
             tree.draw();
         }
+        //Bienenkasten
+        if (layer == 5) {
+            drawBeehive(_yMax);
+        }
 
+    }
+
+    function drawBeehive(_ymax: number): void {
+
+        crc2.save();
+        crc2.translate(crc2.canvas.width / 12, _ymax - 30);
+        crc2.scale(0.4, 0.4);
+
+        // colors
+        crc2.fillStyle = "#FFB90F";
+        crc2.strokeStyle = "#996633";
+        crc2.lineWidth = 4;
+
+        // top bit
+        crc2.beginPath();
+        crc2.moveTo(0, 0);
+        crc2.arc(-18, 0, 10, 0, 2 * Math.PI);
+        crc2.arc(18, 0, 10, 0, 2 * Math.PI);
+        crc2.rect(-18, - 10, 36, 20);
+        crc2.stroke();
+        crc2.fill();
+        
+        // 2nd
+        crc2.translate(0, 20);
+        crc2.beginPath();
+        crc2.arc(-25, 0, 10, 0, 2 * Math.PI);
+        crc2.arc(25, 0, 10, 0, 2 * Math.PI);
+        crc2.rect(-25, - 10, 50, 20);
+        crc2.stroke();
+        crc2.fill();
+
+        // 3rd
+        crc2.translate(0, 20);
+        crc2.beginPath();
+        crc2.arc(-30, 0, 10, 0, 2 * Math.PI);
+        crc2.arc(30, 0, 10, 0, 2 * Math.PI);
+        crc2.rect(-30, - 10, 60, 20);
+        crc2.stroke();
+        crc2.fill();
+
+        // 4th
+        crc2.translate(0, 20);
+        crc2.beginPath();
+        crc2.arc(-30, 0, 10, 0, 2 * Math.PI);
+        crc2.arc(30, 0, 10, 0, 2 * Math.PI);
+        crc2.rect(-30, - 10, 60, 20);
+        crc2.stroke();
+        crc2.fill();
+
+        // entrance hole
+        crc2.beginPath();
+        crc2.fillStyle = "#663300";
+        crc2.arc(0, 0, 8, 0, 2 * Math.PI);
+        crc2.fill();
+
+        crc2.restore();
     }
 }
