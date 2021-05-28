@@ -28,7 +28,6 @@ namespace Blumenwiese2 {
         let bee: Bee = new Bee(new Vector(100, 100), new Vector(20, 0), 2);
         bee.draw();
 
-        //drawBeehive();
         //window.setInterval(update, 20);
 
     }
@@ -61,7 +60,7 @@ namespace Blumenwiese2 {
     function update(): void {
         //drawBackground();
         crc2.putImageData(backgroundimage, 0, 0);
-        
+
         cloud1.move(1 / 50);
         cloud1.draw();
         cloud2.move(1 / 50);
@@ -145,6 +144,7 @@ namespace Blumenwiese2 {
             yMax = yMax * 1.25;
             scale = scale * 1.7;
             distance = distance * 0.8;
+            console.log(layer, scale);
 
             crc2.restore();
             layer++;
@@ -170,16 +170,26 @@ namespace Blumenwiese2 {
             crc2.restore();
         }
 
+        //Bienenkasten
+        if (layer == 5) {
+            drawBeehive(_yMax);
+        }
+
         //Blumenschicht
         for (let stepWidth: number = createRandomValueInRange(0, 60); stepWidth < crc2.canvas.width * 2; stepWidth += createRandomValueInRange(20, 100)) {
 
             y = createRandomValueInRange(_yMax * 0.9, _yMax * 1.3);
 
-            crc2.save();
-            crc2.translate(stepWidth, y);
-            let flower: Flower = new Flower();
-            flower.draw();
-            crc2.restore();
+            //vermeiden, dass Blumen vor dem Bienenkasten stehen
+            if (layer == 5 && stepWidth > 85 && stepWidth < 155) {
+                continue;
+            } else {
+                crc2.save();
+                crc2.translate(stepWidth, y);
+                let flower: Flower = new Flower();
+                flower.draw();
+                crc2.restore();
+            }
         }
 
         //Bäume
@@ -192,64 +202,63 @@ namespace Blumenwiese2 {
             let tree: Tree = new Tree(new Vector(crc2.canvas.width / 2, _yMax), "#015838");
             tree.draw();
         }
-        //Bienenkasten
-        if (layer == 5) {
-            drawBeehive(_yMax);
-        }
 
     }
 
-    function drawBeehive(_ymax: number): void {
+    function drawBeehive(_yMax: number): void {
 
         crc2.save();
-        crc2.translate(crc2.canvas.width / 12, _ymax - 30);
-        crc2.scale(0.4, 0.4);
+        crc2.translate(120, _yMax - 30);
+        //dem scale von der Layer (bei layer 5 etwa 12) entgegenwirken:
+        crc2.scale(0.2, 0.2);
+        crc2.lineWidth = 8;
+        crc2.strokeStyle = "sienna";
+        crc2.fillStyle = "peru";
 
-        // colors
-        crc2.fillStyle = "#FFB90F";
-        crc2.strokeStyle = "#996633";
-        crc2.lineWidth = 4;
-
-        // top bit
+        //Beine
         crc2.beginPath();
-        crc2.moveTo(0, 0);
-        crc2.arc(-18, 0, 10, 0, 2 * Math.PI);
-        crc2.arc(18, 0, 10, 0, 2 * Math.PI);
-        crc2.rect(-18, - 10, 36, 20);
+        crc2.moveTo(-70, 100);
+        crc2.lineTo(-90, 160);
+        crc2.lineTo(-70, 160);
+        crc2.lineTo(-50, 100);
+        crc2.closePath();
         crc2.stroke();
         crc2.fill();
-        
-        // 2nd
-        crc2.translate(0, 20);
         crc2.beginPath();
-        crc2.arc(-25, 0, 10, 0, 2 * Math.PI);
-        crc2.arc(25, 0, 10, 0, 2 * Math.PI);
-        crc2.rect(-25, - 10, 50, 20);
-        crc2.stroke();
-        crc2.fill();
-
-        // 3rd
-        crc2.translate(0, 20);
-        crc2.beginPath();
-        crc2.arc(-30, 0, 10, 0, 2 * Math.PI);
-        crc2.arc(30, 0, 10, 0, 2 * Math.PI);
-        crc2.rect(-30, - 10, 60, 20);
+        crc2.moveTo(70, 100);
+        crc2.lineTo(90, 160);
+        crc2.lineTo(70, 160);
+        crc2.lineTo(50, 100);
+        crc2.closePath();
         crc2.stroke();
         crc2.fill();
 
-        // 4th
-        crc2.translate(0, 20);
+        //Kasten
         crc2.beginPath();
-        crc2.arc(-30, 0, 10, 0, 2 * Math.PI);
-        crc2.arc(30, 0, 10, 0, 2 * Math.PI);
-        crc2.rect(-30, - 10, 60, 20);
+        crc2.rect(-100, -30, 200, 130);
         crc2.stroke();
         crc2.fill();
-
-        // entrance hole
+        crc2.closePath();
         crc2.beginPath();
-        crc2.fillStyle = "#663300";
-        crc2.arc(0, 0, 8, 0, 2 * Math.PI);
+        crc2.rect(-110, -40, 220, 10);
+        crc2.stroke();
+        crc2.fill();
+        crc2.closePath();
+
+        //Holzmaserung
+        crc2.beginPath();
+        crc2.moveTo(-100, 30);
+        crc2.lineTo(100, 30);
+        crc2.moveTo(-100, 65);
+        crc2.lineTo(100, 65);
+        crc2.lineWidth = 3;
+        crc2.stroke();
+
+        //Bienenloch
+        crc2.beginPath();
+        crc2.arc(0, 0, 20, 0, 2 * Math.PI);
+        crc2.closePath();
+        crc2.fillStyle = "black";
         crc2.fill();
 
         crc2.restore();

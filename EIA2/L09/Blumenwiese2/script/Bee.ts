@@ -27,6 +27,7 @@ namespace Blumenwiese2 {
             crc2.ellipse(-13, 0, 10, 15, 1.2, 0, 2 * Math.PI);
             crc2.fillStyle = "#aad5e7b8";
             crc2.fill();
+            
             // body
             crc2.beginPath();
             crc2.ellipse(0, 0, 13, 18, 0, 0, 2 * Math.PI);

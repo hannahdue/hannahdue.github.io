@@ -22,7 +22,6 @@ var Blumenwiese2;
         cloud2.draw();
         let bee = new Blumenwiese2.Bee(new Blumenwiese2.Vector(100, 100), new Blumenwiese2.Vector(20, 0), 2);
         bee.draw();
-        //drawBeehive();
         //window.setInterval(update, 20);
     }
     function createRandomValueInRange(_min, _max) {
@@ -109,6 +108,7 @@ var Blumenwiese2;
             yMax = yMax * 1.25;
             scale = scale * 1.7;
             distance = distance * 0.8;
+            console.log(layer, scale);
             Blumenwiese2.crc2.restore();
             layer++;
         } while (layer < 7);
@@ -126,14 +126,24 @@ var Blumenwiese2;
             grassblade.draw();
             Blumenwiese2.crc2.restore();
         }
+        //Bienenkasten
+        if (layer == 5) {
+            drawBeehive(_yMax);
+        }
         //Blumenschicht
         for (let stepWidth = createRandomValueInRange(0, 60); stepWidth < Blumenwiese2.crc2.canvas.width * 2; stepWidth += createRandomValueInRange(20, 100)) {
             y = createRandomValueInRange(_yMax * 0.9, _yMax * 1.3);
-            Blumenwiese2.crc2.save();
-            Blumenwiese2.crc2.translate(stepWidth, y);
-            let flower = new Blumenwiese2.Flower();
-            flower.draw();
-            Blumenwiese2.crc2.restore();
+            //vermeiden, dass Blumen vor dem Bienenkasten stehen
+            if (layer == 5 && stepWidth > 85 && stepWidth < 155) {
+                continue;
+            }
+            else {
+                Blumenwiese2.crc2.save();
+                Blumenwiese2.crc2.translate(stepWidth, y);
+                let flower = new Blumenwiese2.Flower();
+                flower.draw();
+                Blumenwiese2.crc2.restore();
+            }
         }
         //Bäume
         if (layer == 2) {
@@ -146,55 +156,56 @@ var Blumenwiese2;
             let tree = new Blumenwiese2.Tree(new Blumenwiese2.Vector(Blumenwiese2.crc2.canvas.width / 2, _yMax), "#015838");
             tree.draw();
         }
-        //Bienenkasten
-        if (layer == 5) {
-            drawBeehive(_yMax);
-        }
     }
-    function drawBeehive(_ymax) {
+    function drawBeehive(_yMax) {
         Blumenwiese2.crc2.save();
-        Blumenwiese2.crc2.translate(Blumenwiese2.crc2.canvas.width / 12, _ymax - 30);
-        Blumenwiese2.crc2.scale(0.4, 0.4);
-        // colors
-        Blumenwiese2.crc2.fillStyle = "#FFB90F";
-        Blumenwiese2.crc2.strokeStyle = "#996633";
-        Blumenwiese2.crc2.lineWidth = 4;
-        // top bit
+        Blumenwiese2.crc2.translate(120, _yMax - 30);
+        //dem scale von der Layer (bei layer 5 etwa 12) entgegenwirken:
+        Blumenwiese2.crc2.scale(0.2, 0.2);
+        Blumenwiese2.crc2.lineWidth = 8;
+        Blumenwiese2.crc2.strokeStyle = "sienna";
+        Blumenwiese2.crc2.fillStyle = "peru";
+        //Beine
         Blumenwiese2.crc2.beginPath();
-        Blumenwiese2.crc2.moveTo(0, 0);
-        Blumenwiese2.crc2.arc(-18, 0, 10, 0, 2 * Math.PI);
-        Blumenwiese2.crc2.arc(18, 0, 10, 0, 2 * Math.PI);
-        Blumenwiese2.crc2.rect(-18, -10, 36, 20);
+        Blumenwiese2.crc2.moveTo(-70, 100);
+        Blumenwiese2.crc2.lineTo(-90, 160);
+        Blumenwiese2.crc2.lineTo(-70, 160);
+        Blumenwiese2.crc2.lineTo(-50, 100);
+        Blumenwiese2.crc2.closePath();
         Blumenwiese2.crc2.stroke();
         Blumenwiese2.crc2.fill();
-        // 2nd
-        Blumenwiese2.crc2.translate(0, 20);
         Blumenwiese2.crc2.beginPath();
-        Blumenwiese2.crc2.arc(-25, 0, 10, 0, 2 * Math.PI);
-        Blumenwiese2.crc2.arc(25, 0, 10, 0, 2 * Math.PI);
-        Blumenwiese2.crc2.rect(-25, -10, 50, 20);
+        Blumenwiese2.crc2.moveTo(70, 100);
+        Blumenwiese2.crc2.lineTo(90, 160);
+        Blumenwiese2.crc2.lineTo(70, 160);
+        Blumenwiese2.crc2.lineTo(50, 100);
+        Blumenwiese2.crc2.closePath();
         Blumenwiese2.crc2.stroke();
         Blumenwiese2.crc2.fill();
-        // 3rd
-        Blumenwiese2.crc2.translate(0, 20);
+        //Kasten
         Blumenwiese2.crc2.beginPath();
-        Blumenwiese2.crc2.arc(-30, 0, 10, 0, 2 * Math.PI);
-        Blumenwiese2.crc2.arc(30, 0, 10, 0, 2 * Math.PI);
-        Blumenwiese2.crc2.rect(-30, -10, 60, 20);
+        Blumenwiese2.crc2.rect(-100, -30, 200, 130);
         Blumenwiese2.crc2.stroke();
         Blumenwiese2.crc2.fill();
-        // 4th
-        Blumenwiese2.crc2.translate(0, 20);
+        Blumenwiese2.crc2.closePath();
         Blumenwiese2.crc2.beginPath();
-        Blumenwiese2.crc2.arc(-30, 0, 10, 0, 2 * Math.PI);
-        Blumenwiese2.crc2.arc(30, 0, 10, 0, 2 * Math.PI);
-        Blumenwiese2.crc2.rect(-30, -10, 60, 20);
+        Blumenwiese2.crc2.rect(-110, -40, 220, 10);
         Blumenwiese2.crc2.stroke();
         Blumenwiese2.crc2.fill();
-        // entrance hole
+        Blumenwiese2.crc2.closePath();
+        //Holzmaserung
         Blumenwiese2.crc2.beginPath();
-        Blumenwiese2.crc2.fillStyle = "#663300";
-        Blumenwiese2.crc2.arc(0, 0, 8, 0, 2 * Math.PI);
+        Blumenwiese2.crc2.moveTo(-100, 30);
+        Blumenwiese2.crc2.lineTo(100, 30);
+        Blumenwiese2.crc2.moveTo(-100, 65);
+        Blumenwiese2.crc2.lineTo(100, 65);
+        Blumenwiese2.crc2.lineWidth = 3;
+        Blumenwiese2.crc2.stroke();
+        //Bienenloch
+        Blumenwiese2.crc2.beginPath();
+        Blumenwiese2.crc2.arc(0, 0, 20, 0, 2 * Math.PI);
+        Blumenwiese2.crc2.closePath();
+        Blumenwiese2.crc2.fillStyle = "black";
         Blumenwiese2.crc2.fill();
         Blumenwiese2.crc2.restore();
     }
