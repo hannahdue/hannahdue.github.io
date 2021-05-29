@@ -1,4 +1,12 @@
 "use strict";
+/*
+Aufgabe: L09.2
+Name: Hannah Dürr
+Datum: Samstag, 29. Mai 2021
+Quellen: Für die Animation Teile von Jirkas Android-Code,
+        die Wolken-Form von https://stackoverflow.com/questions/19541192/how-to-draw-cloud-shape-in-html5-canvas,
+        für das auf und ab schwirren Hilfe von Mona.
+*/
 var Blumenwiese2;
 (function (Blumenwiese2) {
     window.addEventListener("load", handleLoad);
@@ -9,20 +17,25 @@ var Blumenwiese2;
     let backgroundimage;
     let cloud1;
     let cloud2;
+    let bees = [];
     function handleLoad() {
         let canvas = document.querySelector("canvas");
         if (!canvas)
             return;
         Blumenwiese2.crc2 = canvas.getContext("2d");
         horizon = Blumenwiese2.crc2.canvas.height * golden;
+        //draw background and two clouds
         drawBackground();
-        cloud1 = new Blumenwiese2.Cloud(new Blumenwiese2.Vector(1250, -10), 0.6, 20, 40);
-        cloud2 = new Blumenwiese2.Cloud(new Blumenwiese2.Vector(930, 0), 1, 35, 50);
+        cloud1 = new Blumenwiese2.Cloud(new Blumenwiese2.Vector(1250, -10), 0.6);
+        cloud2 = new Blumenwiese2.Cloud(new Blumenwiese2.Vector(930, 0), 1);
         cloud1.draw();
         cloud2.draw();
-        let bee = new Blumenwiese2.Bee(new Blumenwiese2.Vector(100, 100), new Blumenwiese2.Vector(20, 0), 2);
-        bee.draw();
-        //window.setInterval(update, 20);
+        //createBees
+        for (let index = 0; index < 6; index++) {
+            window.setTimeout(createBees, 1000 * index);
+        }
+        //animate image
+        window.setInterval(update, 20);
     }
     function createRandomValueInRange(_min, _max) {
         return _min + Math.random() * (_max - _min);
@@ -30,6 +43,7 @@ var Blumenwiese2;
     Blumenwiese2.createRandomValueInRange = createRandomValueInRange;
     function drawBackground() {
         console.log("Background with mountains and meadow");
+        //draw backgorund colour
         let gradient = Blumenwiese2.crc2.createLinearGradient(0, 0, 0, Blumenwiese2.crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
         gradient.addColorStop(0.35, "white");
@@ -37,6 +51,7 @@ var Blumenwiese2;
         gradient.addColorStop(1, "#6F8C30");
         Blumenwiese2.crc2.fillStyle = gradient;
         Blumenwiese2.crc2.fillRect(0, 0, Blumenwiese2.crc2.canvas.width, Blumenwiese2.crc2.canvas.height);
+        //draw landscape
         drawSun(new Blumenwiese2.Vector(Blumenwiese2.crc2.canvas.width * 0.15, Blumenwiese2.crc2.canvas.height * 0.1));
         drawMountains(new Blumenwiese2.Vector(0, horizon), 40, 100, "grey", "white", "silver");
         drawMountains(new Blumenwiese2.Vector(0, horizon), 20, 60, "saddleBrown", "tan", "sienna");
@@ -44,13 +59,25 @@ var Blumenwiese2;
         //save image to use for animation:
         backgroundimage = Blumenwiese2.crc2.getImageData(0, 0, Blumenwiese2.crc2.canvas.width, Blumenwiese2.crc2.canvas.height);
     }
+    function createBees() {
+        for (let i = 0; i < 2; i++) {
+            let bee = new Blumenwiese2.Bee(new Blumenwiese2.Vector(Blumenwiese2.crc2.canvas.width * 0.59, Blumenwiese2.crc2.canvas.height * 0.57));
+            bees.push(bee);
+        }
+    }
     function update() {
         //drawBackground();
         Blumenwiese2.crc2.putImageData(backgroundimage, 0, 0);
+        //move clouds
         cloud1.move(1 / 50);
         cloud1.draw();
         cloud2.move(1 / 50);
         cloud2.draw();
+        //move bees
+        for (let bee of bees) {
+            bee.move(1 / 50);
+            bee.draw();
+        }
     }
     function drawSun(_position) {
         let r1 = 40;
@@ -96,9 +123,9 @@ var Blumenwiese2;
         Blumenwiese2.crc2.save();
         Blumenwiese2.crc2.translate(0, horizon);
         let yMin = 0;
-        let yMax = 20;
+        let yMax = 17;
         let scale = 0.5;
-        let distance = 2;
+        let distance = 1.8;
         layer = 0;
         do {
             Blumenwiese2.crc2.save();
@@ -108,7 +135,6 @@ var Blumenwiese2;
             yMax = yMax * 1.25;
             scale = scale * 1.7;
             distance = distance * 0.8;
-            console.log(layer, scale);
             Blumenwiese2.crc2.restore();
             layer++;
         } while (layer < 7);
@@ -132,6 +158,7 @@ var Blumenwiese2;
         }
         //Blumenschicht
         for (let stepWidth = createRandomValueInRange(0, 60); stepWidth < Blumenwiese2.crc2.canvas.width * 2; stepWidth += createRandomValueInRange(20, 100)) {
+            //Blumen auf unterschiedlicher Höhe vor dem Gras verteilen
             y = createRandomValueInRange(_yMax * 0.9, _yMax * 1.3);
             //vermeiden, dass Blumen vor dem Bienenkasten stehen
             if (layer == 5 && stepWidth > 85 && stepWidth < 155) {

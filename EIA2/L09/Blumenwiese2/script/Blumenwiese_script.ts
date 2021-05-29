@@ -1,3 +1,12 @@
+/*
+Aufgabe: L09.2
+Name: Hannah Dürr
+Datum: Samstag, 29. Mai 2021
+Quellen: Für die Animation Teile von Jirkas Android-Code,
+        die Wolken-Form von https://stackoverflow.com/questions/19541192/how-to-draw-cloud-shape-in-html5-canvas,
+        für das auf und ab schwirren Hilfe von Mona.
+*/
+
 namespace Blumenwiese2 {
 
     window.addEventListener("load", handleLoad);
@@ -9,6 +18,7 @@ namespace Blumenwiese2 {
     let backgroundimage: ImageData;
     let cloud1: Cloud;
     let cloud2: Cloud;
+    let bees: Bee[] = [];
 
     function handleLoad(): void {
 
@@ -16,20 +26,22 @@ namespace Blumenwiese2 {
         if (!canvas)
             return;
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
-
         horizon = crc2.canvas.height * golden;
 
+        //draw background and two clouds
         drawBackground();
-        cloud1 = new Cloud(new Vector(1250, -10), 0.6, 20, 40);
-        cloud2 = new Cloud(new Vector(930, 0), 1, 35, 50);
+        cloud1 = new Cloud(new Vector(1250, -10), 0.6);
+        cloud2 = new Cloud(new Vector(930, 0), 1);
         cloud1.draw();
         cloud2.draw();
+        
+        //createBees
+        for (let index: number = 0; index < 6; index++) {
+            window.setTimeout(createBees, 1000 * index);
+        }
 
-        let bee: Bee = new Bee(new Vector(100, 100), new Vector(20, 0), 2);
-        bee.draw();
-
-        //window.setInterval(update, 20);
-
+        //animate image
+        window.setInterval(update, 20);
     }
 
     export function createRandomValueInRange(_min: number, _max: number): number {
@@ -38,7 +50,8 @@ namespace Blumenwiese2 {
 
     function drawBackground(): void {
         console.log("Background with mountains and meadow");
-
+        
+        //draw backgorund colour
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
         gradient.addColorStop(0.35, "white");
@@ -47,24 +60,38 @@ namespace Blumenwiese2 {
 
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-
+        
+        //draw landscape
         drawSun(new Vector(crc2.canvas.width * 0.15, crc2.canvas.height * 0.1));
         drawMountains(new Vector(0, horizon), 40, 100, "grey", "white", "silver");
         drawMountains(new Vector(0, horizon), 20, 60, "saddleBrown", "tan", "sienna");
         drawMeadow();
+        
         //save image to use for animation:
         backgroundimage = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
 
     }
 
+    function createBees(): void {
+        for (let i: number = 0; i < 2; i++) {
+            let bee: Bee = new Bee(new Vector(crc2.canvas.width * 0.59, crc2.canvas.height * 0.57));
+            bees.push(bee);
+        }
+    }
+
     function update(): void {
         //drawBackground();
         crc2.putImageData(backgroundimage, 0, 0);
-
+        //move clouds
         cloud1.move(1 / 50);
         cloud1.draw();
         cloud2.move(1 / 50);
         cloud2.draw();
+        //move bees
+        for (let bee of bees) {
+            bee.move(1 / 50);
+            bee.draw();
+        }
     }
 
     function drawSun(_position: Vector): void {
@@ -129,9 +156,9 @@ namespace Blumenwiese2 {
         crc2.translate(0, horizon);
 
         let yMin: number = 0;
-        let yMax: number = 20;
+        let yMax: number = 17;
         let scale: number = 0.5;
-        let distance: number = 2;
+        let distance: number = 1.8;
         layer = 0;
 
         do {
@@ -144,7 +171,6 @@ namespace Blumenwiese2 {
             yMax = yMax * 1.25;
             scale = scale * 1.7;
             distance = distance * 0.8;
-            console.log(layer, scale);
 
             crc2.restore();
             layer++;
@@ -178,6 +204,7 @@ namespace Blumenwiese2 {
         //Blumenschicht
         for (let stepWidth: number = createRandomValueInRange(0, 60); stepWidth < crc2.canvas.width * 2; stepWidth += createRandomValueInRange(20, 100)) {
 
+            //Blumen auf unterschiedlicher Höhe vor dem Gras verteilen
             y = createRandomValueInRange(_yMax * 0.9, _yMax * 1.3);
 
             //vermeiden, dass Blumen vor dem Bienenkasten stehen
