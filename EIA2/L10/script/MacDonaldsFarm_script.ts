@@ -40,11 +40,10 @@ namespace MacDonaldsFarm2 {
         pig.eat();
         donkey.eat();*/
 
-        for (let index: number = 0; index < animals.length; index++) {
-            animals[index].sing();
-            animals[index].eat();
-            animals[index].doSpecialAction();
-
+        for (let animal of animals) {
+            animal.sing();
+            animal.eat();
+            animal.doSpecialAction();
         }
 
         //console.log("So today, on Old MacDonald's Farm, ");
