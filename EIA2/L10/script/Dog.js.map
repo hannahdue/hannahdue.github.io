@@ -1,1 +1,1 @@
-{"version":3,"file":"Dog.js","sourceRoot":"","sources":["Dog.ts"],"names":[],"mappings":";AAAA,IAAU,cAAc,CAMvB;AAND,WAAU,cAAc;IAEpB,MAAa,GAAI,SAAQ,eAAA,MAAM;KAE9B;IAFY,kBAAG,MAEf,CAAA;AAEL,CAAC,EANS,cAAc,KAAd,cAAc,QAMvB"}
+{"version":3,"file":"Dog.js","sourceRoot":"","sources":["Dog.ts"],"names":[],"mappings":";AAAA,IAAU,cAAc,CASvB;AATD,WAAU,cAAc;IAEpB,MAAa,GAAI,SAAQ,eAAA,MAAM;QAE3B,eAAe;YACX,IAAI,OAAO,GAAW,4DAA4D,CAAC;QACvF,CAAC;KACJ;IALY,kBAAG,MAKf,CAAA;AAEL,CAAC,EATS,cAAc,KAAd,cAAc,QASvB"}

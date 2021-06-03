@@ -1,1 +1,1 @@
-{"version":3,"file":"Goat.js","sourceRoot":"","sources":["Goat.ts"],"names":[],"mappings":";AAAA,IAAU,cAAc,CAMvB;AAND,WAAU,cAAc;IAEpB,MAAa,IAAK,SAAQ,eAAA,MAAM;KAE/B;IAFY,mBAAI,OAEhB,CAAA;AAEL,CAAC,EANS,cAAc,KAAd,cAAc,QAMvB"}
+{"version":3,"file":"Goat.js","sourceRoot":"","sources":["Goat.ts"],"names":[],"mappings":";AAAA,IAAU,cAAc,CASvB;AATD,WAAU,cAAc;IAEpB,MAAa,IAAK,SAAQ,eAAA,MAAM;QAE5B,eAAe;YACX,IAAI,QAAQ,GAAW,wDAAwD,CAAC;QACpF,CAAC;KACJ;IALY,mBAAI,OAKhB,CAAA;AAEL,CAAC,EATS,cAAc,KAAd,cAAc,QASvB"}

@@ -1,1 +1,1 @@
-{"version":3,"file":"Horse.js","sourceRoot":"","sources":["Horse.ts"],"names":[],"mappings":";AAAA,IAAU,cAAc,CAMvB;AAND,WAAU,cAAc;IAEpB,MAAa,KAAM,SAAQ,eAAA,MAAM;KAEhC;IAFY,oBAAK,QAEjB,CAAA;AAEL,CAAC,EANS,cAAc,KAAd,cAAc,QAMvB"}
+{"version":3,"file":"Horse.js","sourceRoot":"","sources":["Horse.ts"],"names":[],"mappings":";AAAA,IAAU,cAAc,CASvB;AATD,WAAU,cAAc;IAEpB,MAAa,KAAM,SAAQ,eAAA,MAAM;QAE7B,eAAe;YACX,IAAI,SAAS,GAAW,gDAAgD,CAAC;QAC7E,CAAC;KACJ;IALY,oBAAK,QAKjB,CAAA;AAEL,CAAC,EATS,cAAc,KAAd,cAAc,QASvB"}
