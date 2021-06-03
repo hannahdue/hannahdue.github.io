@@ -33,6 +33,10 @@ namespace MacDonaldsFarm2 {
             song.innerHTML = "<h3>" + this.name + "</h3><p>Old MacDonald had a farm<br>Ee i ee i o<br>And on his farm he had some " + this.name + "s<br> Ee i ee i oh<br>With a " + this.sound + "-" + this.sound + " here<br>And a " + this.sound + "-" + this.sound + " there<br>Here a " + this.sound + ", there a " + this.sound + "<br> Everywhere a " + this.sound + "-" + this.sound + "<br>Old MacDonald had a farm<br>Ee i ee i o.</p>"
             document.body.appendChild(song);
         }
+
+        doSpecialAction(): void {
+            //Leere Funktion für die Subklasse
+        }
     }
 
 }

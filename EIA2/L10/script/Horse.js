@@ -6,7 +6,7 @@ var MacDonaldsFarm2;
             super("Horse", "Hay", 5, "Whieeew");
         }
         doSpecialAction() {
-            let horseText = "the horse went for a ride with Old MacDonald, ";
+            MacDonaldsFarm2.specialAction = "the horse went for a ride with Old MacDonald, ";
         }
     }
     MacDonaldsFarm2.Horse = Horse;

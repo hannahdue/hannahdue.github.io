@@ -6,7 +6,7 @@ var MacDonaldsFarm2;
             super("Dog", "Meat", 0.5, "Woof");
         }
         doSpecialAction() {
-            let dogText = "the dog napped in the shade instead of watching the goat, ";
+            MacDonaldsFarm2.specialAction = "the dog napped in the shade instead of watching the goat, ";
         }
     }
     MacDonaldsFarm2.Dog = Dog;

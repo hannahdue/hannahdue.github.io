@@ -7,7 +7,7 @@ namespace MacDonaldsFarm2 {
         }
 
         doSpecialAction(): void {
-            let goatText: string = "the goat escaped from the stable and went for a walk, ";
+            specialAction = "the goat escaped from the stable and went for a walk, ";
         }
     }
 

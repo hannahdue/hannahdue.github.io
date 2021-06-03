@@ -8,7 +8,7 @@ namespace MacDonaldsFarm2 {
         }
 
         doSpecialAction(): void {
-            let donkeyText: string = "and the donkey got cuddled from Old MacDonald's daughter.";
+            specialAction = "and the donkey got cuddled from Old MacDonald's daughter.";
         }
     }
 

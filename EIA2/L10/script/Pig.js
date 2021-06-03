@@ -6,7 +6,7 @@ var MacDonaldsFarm2;
             super("Pig", "Grains", 4, "Grunt");
         }
         doSpecialAction() {
-            let pigText = "the pig rolled around in the mud, ";
+            MacDonaldsFarm2.specialAction = "the pig rolled around in the mud, ";
         }
     }
     MacDonaldsFarm2.Pig = Pig;

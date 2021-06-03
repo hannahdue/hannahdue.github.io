@@ -6,7 +6,7 @@ var MacDonaldsFarm2;
             super("Goat", "Grains", 4, "Baa");
         }
         doSpecialAction() {
-            let goatText = "the goat escaped from the stable and went for a walk, ";
+            MacDonaldsFarm2.specialAction = "the goat escaped from the stable and went for a walk, ";
         }
     }
     MacDonaldsFarm2.Goat = Goat;

@@ -7,7 +7,7 @@ namespace MacDonaldsFarm2 {
         }
 
         doSpecialAction(): void {
-            let cowText: string = "the cow gave 10 liters of milk, ";
+            specialAction = "the cow gave 10 liters of milk, ";
         }
     }
 

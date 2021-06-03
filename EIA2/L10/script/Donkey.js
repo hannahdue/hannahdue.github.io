@@ -6,7 +6,7 @@ var MacDonaldsFarm2;
             super("Donkey", "Hay", 4, "Iaah");
         }
         doSpecialAction() {
-            let donkeyText = "and the donkey got cuddled from Old MacDonald's daughter.";
+            MacDonaldsFarm2.specialAction = "and the donkey got cuddled from Old MacDonald's daughter.";
         }
     }
     MacDonaldsFarm2.Donkey = Donkey;

@@ -7,7 +7,7 @@ namespace MacDonaldsFarm2 {
         }
         
         doSpecialAction(): void {
-            let pigText: string = "the pig rolled around in the mud, ";
+            specialAction = "the pig rolled around in the mud, ";
         }
     }
 

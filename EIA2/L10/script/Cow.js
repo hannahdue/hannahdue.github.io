@@ -6,7 +6,7 @@ var MacDonaldsFarm2;
             super("Cow", "Hay", 5, "Moo");
         }
         doSpecialAction() {
-            let cowText = "the cow gave 10 liters of milk, ";
+            MacDonaldsFarm2.specialAction = "the cow gave 10 liters of milk, ";
         }
     }
     MacDonaldsFarm2.Cow = Cow;
