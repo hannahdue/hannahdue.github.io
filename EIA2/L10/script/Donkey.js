@@ -1,11 +1,14 @@
 "use strict";
-var MacDonalsFarm2;
-(function (MacDonalsFarm2) {
-    class Donkey extends MacDonalsFarm2.Animal {
+var MacDonaldsFarm2;
+(function (MacDonaldsFarm2) {
+    class Donkey extends MacDonaldsFarm2.Animal {
+        constructor(_name, _food, _foodAmount, _sound) {
+            super("Donkey", "Hay", 4, "Iaah");
+        }
         doSpecialAction() {
             let donkeyText = "and the donkey got cuddled from Old MacDonald's daughter.";
         }
     }
-    MacDonalsFarm2.Donkey = Donkey;
-})(MacDonalsFarm2 || (MacDonalsFarm2 = {}));
+    MacDonaldsFarm2.Donkey = Donkey;
+})(MacDonaldsFarm2 || (MacDonaldsFarm2 = {}));
 //# sourceMappingURL=Donkey.js.map

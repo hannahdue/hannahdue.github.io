@@ -1,11 +1,14 @@
 "use strict";
-var MacDonalsFarm2;
-(function (MacDonalsFarm2) {
-    class Horse extends MacDonalsFarm2.Animal {
+var MacDonaldsFarm2;
+(function (MacDonaldsFarm2) {
+    class Horse extends MacDonaldsFarm2.Animal {
+        constructor(_name, _food, _foodAmount, _sound) {
+            super("Horse", "Hay", 5, "Whieeew");
+        }
         doSpecialAction() {
             let horseText = "the horse went for a ride with Old MacDonald, ";
         }
     }
-    MacDonalsFarm2.Horse = Horse;
-})(MacDonalsFarm2 || (MacDonalsFarm2 = {}));
+    MacDonaldsFarm2.Horse = Horse;
+})(MacDonaldsFarm2 || (MacDonaldsFarm2 = {}));
 //# sourceMappingURL=Horse.js.map
