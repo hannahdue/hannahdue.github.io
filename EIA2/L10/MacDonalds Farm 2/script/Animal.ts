@@ -35,7 +35,7 @@ namespace MacDonaldsFarm2 {
         }
 
         doSpecialAction(): void {
-            //Leere Funktion für die Subklasse
+            //console.log("The ", this.name, " did something special today.");
         }
     }
 

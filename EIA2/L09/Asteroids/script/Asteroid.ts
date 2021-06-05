@@ -1,15 +1,18 @@
 namespace L09_Asteroids {
-    export class Asteroid {
+
+    export class Asteroid extends Moveable {
         position: Vector;
         velocity: Vector;
         type: number;
         size: number;
 
         constructor(_size: number, _position?: Vector) {
+            super(_position);
+
             console.log("Asteroid constructor");
-            
+
             if (_position)
-                this.position = _position;
+                this.position = _position.copy();
             else
                 this.position = new Vector(0, 0);
 
@@ -20,28 +23,13 @@ namespace L09_Asteroids {
             this.size = _size;
         }
 
-        move(_timeslice: number): void {
-            //console.log("Asteroid move");
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-            this.position.add(offset);
-
-            if (this.position.x < 0)
-                this.position.x += crc2.canvas.width;
-            if (this.position.y < 0)
-                this.position.y += crc2.canvas.height;
-            if (this.position.x > crc2.canvas.width)
-                this.position.x -= crc2.canvas.width;
-            if (this.position.y > crc2.canvas.width)
-                this.position.y -= crc2.canvas.height;    
-        }
-
         draw(): void {
             //console.log("Astroid draw");
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
             crc2.scale(this.size, this.size);
             crc2.translate(-50, -50);
+            crc2.lineWidth = linewidth / this.size;
             crc2.stroke(asteroidPaths[this.type]);
             crc2.restore();
         }
@@ -52,4 +40,5 @@ namespace L09_Asteroids {
            return (Math.abs(difference.x) < hitSize && Math.abs(difference.y) < hitSize);
         }
     }
+
 }

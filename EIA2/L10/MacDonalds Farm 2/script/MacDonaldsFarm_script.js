@@ -34,12 +34,13 @@ var MacDonaldsFarm2;
         display.innerHTML = "Day " + day + ", Food that's left:<br>Hay: " + MacDonaldsFarm2.hayAmount + "kg, Grains: " + MacDonaldsFarm2.grainsAmount + "kg, Meat: " + MacDonaldsFarm2.meatAmount + "kg";
     }
     function oneDayPasses() {
-        cow.eat();
-        goat.eat();
-        dog.eat();
-        horse.eat();
-        pig.eat();
-        donkey.eat();
+        todaysActions = "And again, ";
+        for (let animal of animals) {
+            animal.eat();
+            animal.doSpecialAction();
+            todaysActions += MacDonaldsFarm2.specialAction;
+        }
+        specialActionDisplay.innerHTML = todaysActions;
         day++;
         if (MacDonaldsFarm2.meatAmount == 0) {
             let meatInput = prompt("You need to buy more meat, otherwise your dog might eat the chicken. Enter Kilograms:", "2");

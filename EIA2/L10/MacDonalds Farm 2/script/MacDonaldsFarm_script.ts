@@ -43,12 +43,16 @@ namespace MacDonaldsFarm2 {
     }
 
     function oneDayPasses(): void {
-        cow.eat();
-        goat.eat();
-        dog.eat();
-        horse.eat();
-        pig.eat();
-        donkey.eat();
+        
+        todaysActions = "And again, ";
+
+        for (let animal of animals) {
+            animal.eat();
+            animal.doSpecialAction();
+            todaysActions += specialAction;
+        }
+
+        specialActionDisplay.innerHTML = todaysActions;
 
         day++;
         if (meatAmount == 0) {

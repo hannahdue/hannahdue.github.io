@@ -28,7 +28,7 @@ var MacDonaldsFarm2;
             document.body.appendChild(song);
         }
         doSpecialAction() {
-            //Leere Funktion für die Subklasse
+            //console.log("The ", this.name, " did something special today.");
         }
     }
     MacDonaldsFarm2.Animal = Animal;
