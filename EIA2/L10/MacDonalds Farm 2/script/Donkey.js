@@ -2,7 +2,7 @@
 var MacDonaldsFarm2;
 (function (MacDonaldsFarm2) {
     class Donkey extends MacDonaldsFarm2.Animal {
-        constructor(_name, _food, _foodAmount, _sound) {
+        constructor() {
             super("Donkey", "Hay", 4, "Iaah");
         }
         doSpecialAction() {

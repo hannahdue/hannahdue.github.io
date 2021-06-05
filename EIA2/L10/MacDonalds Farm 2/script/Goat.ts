@@ -2,7 +2,7 @@ namespace MacDonaldsFarm2 {
     
     export class Goat extends Animal {
 
-        constructor(_name: string, _food: string, _foodAmount: number, _sound: string) {
+        constructor() {
             super("Goat", "Grains", 4, "Baa");
         }
 

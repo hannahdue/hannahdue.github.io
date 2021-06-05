@@ -10,12 +10,12 @@ namespace MacDonaldsFarm2 {
     let todaysActions: string = "So today, on Old MacDonald's Farm, ";
 
     let animals: Animal[] = [];
-    let cow: Animal = new Cow("Cow", "Hay", 5, "Moo");
-    let goat: Animal = new Goat("Goat", "Grains", 1, "Baa");
-    let dog: Animal = new Dog("Dog", "Meat", 0.5, "Woof");
-    let horse: Animal = new Horse("Horse", "Hay", 3, "Whieew");
-    let pig: Animal = new Pig("Pig", "Grains", 1.5, "Grunt");
-    let donkey: Animal = new Donkey("Donkey", "Hay", 2.5, "Iaaah");
+    let cow: Animal = new Cow();
+    let goat: Animal = new Goat();
+    let dog: Animal = new Dog();
+    let horse: Animal = new Horse();
+    let pig: Animal = new Pig();
+    let donkey: Animal = new Donkey();
     animals.push(cow, goat, dog, horse, pig, donkey);
 
     let day: number = 1;
