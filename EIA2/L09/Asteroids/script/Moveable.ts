@@ -4,6 +4,7 @@ namespace L09_Asteroids {
         position: Vector;
         velocity: Vector;
         expendable: boolean = false;
+        protected hitRadius: number = 0;
         
         constructor(_position?: Vector) {
             //console.log("Moveable constructor");

@@ -5,6 +5,7 @@ var L09_Asteroids;
         constructor(_position) {
             //console.log("Moveable constructor");
             this.expendable = false;
+            this.hitRadius = 0;
             if (_position)
                 this.position = _position.copy();
             else

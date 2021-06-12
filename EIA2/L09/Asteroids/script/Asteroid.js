@@ -5,10 +5,6 @@ var L09_Asteroids;
         constructor(_size, _position) {
             super(_position);
             console.log("Asteroid constructor");
-            if (_position)
-                this.position = _position.copy();
-            else
-                this.position = new L09_Asteroids.Vector(0, 0);
             this.velocity = new L09_Asteroids.Vector(0, 0);
             this.velocity.random(100, 200);
             this.type = Math.floor(Math.random() * 4);

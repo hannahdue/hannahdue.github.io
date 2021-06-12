@@ -11,11 +11,6 @@ namespace L09_Asteroids {
 
             console.log("Asteroid constructor");
 
-            if (_position)
-                this.position = _position.copy();
-            else
-                this.position = new Vector(0, 0);
-
             this.velocity = new Vector(0, 0);
             this.velocity.random(100, 200);
 
