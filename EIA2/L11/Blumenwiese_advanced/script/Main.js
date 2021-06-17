@@ -67,28 +67,48 @@ var Blumenwiese_advanced;
     }
     function createFlowers() {
         let x = 0;
-        for (let i = 0; i < 30; i++) {
-            let scale = 0.5;
-            x += 60 + Math.random() * 50;
-            let y = Math.random() * 480;
-            if (y > 400) {
-                scale = 2.1;
-            }
-            else if (y > 300) {
-                scale = 1.8;
-            }
-            else if (y > 200) {
-                scale = 1.3;
-            }
-            else if (y > 100) {
-                scale = 0.8;
-            }
+        for (let i = 0; i < 12; i++) {
+            let scale = 0.5 + Math.random() * 0.15;
+            x += 100 + Math.random() * 80;
+            let y = createRandomValueInRange(30, 80);
             let flower = new Blumenwiese_advanced.Flower(new Blumenwiese_advanced.Vector(x, y), scale);
             flowers.push(flower);
             if (x > Blumenwiese_advanced.crc2.canvas.width * 1.3)
                 break;
         }
+        x = 0;
+        for (let i = 0; i < 9; i++) {
+            let scale = 1.2 + Math.random() * 0.35;
+            x += 100 + Math.random() * 150;
+            let y = createRandomValueInRange(120, 250);
+            let flower = new Blumenwiese_advanced.Flower(new Blumenwiese_advanced.Vector(x, y), scale);
+            flowers.push(flower);
+            if (x > Blumenwiese_advanced.crc2.canvas.width * 1.3)
+                break;
+        }
+        x = 0;
+        for (let i = 0; i < 7; i++) {
+            let scale = 2.1 + Math.random() * 0.5;
+            if (i == 0) {
+                x = 20; //so there's no gap on the left side of the canavs
+            }
+            let y = createRandomValueInRange(380, 470);
+            let flower = new Blumenwiese_advanced.Flower(new Blumenwiese_advanced.Vector(x, y), scale);
+            flowers.push(flower);
+            x += 150 + Math.random() * 200;
+            if (x > Blumenwiese_advanced.crc2.canvas.width * 1.3)
+                break;
+        }
     }
+    /*if (y > 400) {
+                scale = 2.1;
+            } else if (y > 300) {
+                scale = 1.8;
+            } else if (y > 200) {
+                scale = 1.3;
+            } else if (y > 100) {
+                scale = 0.8;
+            }*/
     function drawFlowers() {
         for (let flower of flowers) {
             Blumenwiese_advanced.crc2.save();

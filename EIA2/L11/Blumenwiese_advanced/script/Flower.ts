@@ -54,7 +54,7 @@ namespace Blumenwiese_advanced {
                 if (flowerPetals == this.flowerPetals - 1) {
                     //dark middle 
                     crc2.beginPath();
-                    crc2.arc(0, 0, 14.8, 0, 2 * Math.PI);
+                    crc2.arc(0, 0, 14.7, 0, 2 * Math.PI);
                     crc2.closePath();
                     crc2.fillStyle = "dimgrey";
                     crc2.fill();

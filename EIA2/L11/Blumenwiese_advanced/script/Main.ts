@@ -81,20 +81,21 @@ namespace Blumenwiese_advanced {
 
     function createFlowers(): void {
         let x: number = 0;
-        for (let i: number = 0; i < 30; i++) {
-            let scale: number = 0.5;
-            x += 60 + Math.random() * 50;
-            let y: number = Math.random() * 480;
+        for (let i: number = 0; i < 12; i++) {
+            let scale: number = 0.5 + Math.random() * 0.15;
+            x += 100 + Math.random() * 80;
+            let y: number = createRandomValueInRange(30, 80);
+            let flower: Flower = new Flower(new Vector(x, y), scale);
+            flowers.push(flower);
+            if (x > crc2.canvas.width * 1.3)
+                break;
+        }
 
-            if (y > 400) {
-                scale = 2.1;
-            } else if (y > 300) {
-                scale = 1.8;
-            } else if (y > 200) {
-                scale = 1.3;
-            } else if (y > 100) {
-                scale = 0.8;
-            }
+        x = 0;
+        for (let i: number = 0; i < 9; i++) {
+            let scale: number = 1.2 + Math.random() * 0.35;
+            x += 100 + Math.random() * 150;
+            let y: number = createRandomValueInRange(120, 250);
 
             let flower: Flower = new Flower(new Vector(x, y), scale);
             flowers.push(flower);
@@ -102,7 +103,33 @@ namespace Blumenwiese_advanced {
             if (x > crc2.canvas.width * 1.3)
                 break;
         }
+
+        x = 0;
+        for (let i: number = 0; i < 7; i++) {
+            let scale: number = 2.1 + Math.random() * 0.5;
+            if (i == 0) {
+                x = 20; //so there's no gap on the left side of the canavs
+            }
+            let y: number = createRandomValueInRange(380, 470);
+
+            let flower: Flower = new Flower(new Vector(x, y), scale);
+            flowers.push(flower);
+
+            x += 150 + Math.random() * 200;
+            if (x > crc2.canvas.width * 1.3)
+                break;
+        }
     }
+
+    /*if (y > 400) {
+                scale = 2.1;
+            } else if (y > 300) {
+                scale = 1.8;
+            } else if (y > 200) {
+                scale = 1.3;
+            } else if (y > 100) {
+                scale = 0.8;
+            }*/
 
     function drawFlowers(): void {
         for (let flower of flowers) {
@@ -127,7 +154,7 @@ namespace Blumenwiese_advanced {
             }
             /*let sway: number = (Math.random() - 0.5) * 80;
             let bend: number = (Math.random() - 0.5) * 60;*/
-            
+
             let grassblade: Grassblade = new Grassblade(new Vector(x, y), height);
             grassblades.push(grassblade);
 

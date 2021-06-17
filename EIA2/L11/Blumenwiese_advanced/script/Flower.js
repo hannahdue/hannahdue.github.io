@@ -47,7 +47,7 @@ var Blumenwiese_advanced;
                 if (flowerPetals == this.flowerPetals - 1) {
                     //dark middle 
                     Blumenwiese_advanced.crc2.beginPath();
-                    Blumenwiese_advanced.crc2.arc(0, 0, 14.8, 0, 2 * Math.PI);
+                    Blumenwiese_advanced.crc2.arc(0, 0, 14.7, 0, 2 * Math.PI);
                     Blumenwiese_advanced.crc2.closePath();
                     Blumenwiese_advanced.crc2.fillStyle = "dimgrey";
                     Blumenwiese_advanced.crc2.fill();
