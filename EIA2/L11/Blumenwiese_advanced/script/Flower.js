@@ -2,17 +2,20 @@
 var Blumenwiese_advanced;
 (function (Blumenwiese_advanced) {
     class Flower {
-        constructor() {
+        constructor(_position, _scale) {
+            this.nectarLevel = 0;
             this.petalColor = Math.floor(Math.random() * 10);
             this.flowerPetals = 5;
-            //console.log("Flower");
-            this.draw();
+            console.log("Flower");
+            this.position = _position;
+            this.scale = _scale;
+            //this.draw();
         }
         draw() {
             Blumenwiese_advanced.crc2.save();
             //Blumenstiel
-            //crc2.translate(50, crc2.canvas.height);
-            Blumenwiese_advanced.crc2.scale(0.3, 0.3);
+            Blumenwiese_advanced.crc2.translate(this.position.x, this.position.y);
+            Blumenwiese_advanced.crc2.scale(this.scale, this.scale);
             Blumenwiese_advanced.crc2.beginPath();
             Blumenwiese_advanced.crc2.moveTo(0, 0);
             Blumenwiese_advanced.crc2.lineTo(0, -100);

@@ -16,6 +16,8 @@ var Blumenwiese_advanced;
     let cloud1;
     let cloud2;
     let moveables = [];
+    let flowers = [];
+    let grassblades = [];
     function handleLoad() {
         let canvas = document.querySelector("canvas");
         if (!canvas)
@@ -29,12 +31,17 @@ var Blumenwiese_advanced;
         moveables.push(cloud1, cloud2);
         cloud1.draw();
         cloud2.draw();
+        createFlowers();
+        createGrassblades();
+        drawFlowers();
+        drawBeehive();
+        drawGrassblades();
         //createBees
-        for (let index = 0; index < 6; index++) {
-            window.setTimeout(createBees, 1000 * index);
+        for (let index = 0; index < 10; index++) {
+            window.setTimeout(createBee, 1000 * index);
         }
         //animate image
-        window.setInterval(update, 20);
+        //window.setInterval(update, 20);
     }
     function createRandomValueInRange(_min, _max) {
         return _min + Math.random() * (_max - _min);
@@ -58,16 +65,79 @@ var Blumenwiese_advanced;
         //save image to use for animation:
         backgroundimage = Blumenwiese_advanced.crc2.getImageData(0, 0, Blumenwiese_advanced.crc2.canvas.width, Blumenwiese_advanced.crc2.canvas.height);
     }
-    function createBees() {
-        for (let i = 0; i < 2; i++) {
-            let bee = new Blumenwiese_advanced.Bee();
-            moveables.push(bee);
+    function createFlowers() {
+        let y = 30;
+        for (let i = 0; i < 20; i++) {
+            let scale = 0.5;
+            //let rand: number = Math.random();
+            let x = Math.random() * Blumenwiese_advanced.crc2.canvas.width;
+            y += Math.random() * 50;
+            if (y > 400) {
+                scale = 2.1;
+            }
+            else if (y > 300) {
+                scale = 1.8;
+            }
+            else if (y > 200) {
+                scale = 1.3;
+            }
+            else if (y > 100) {
+                scale = 0.8;
+            }
+            let flower = new Blumenwiese_advanced.Flower(new Blumenwiese_advanced.Vector(x, y), scale);
+            flowers.push(flower);
+            if (y > 480)
+                break;
         }
+    }
+    function drawFlowers() {
+        for (let flower of flowers) {
+            Blumenwiese_advanced.crc2.save();
+            Blumenwiese_advanced.crc2.translate(0, horizon);
+            flower.draw();
+            Blumenwiese_advanced.crc2.restore();
+        }
+    }
+    function createGrassblades() {
+        let y = 0;
+        let x = 0;
+        for (let i = 0; i < 200; i++) {
+            x += Math.random() * 35;
+            let height;
+            if (x > 900 && x < 1200) {
+                height = 80 + Math.random() * 40;
+            }
+            else {
+                height = 120 + Math.random() * 80;
+            }
+            let sway = (Math.random() - 0.5) * 80;
+            let bend = (Math.random() - 0.5) * 60;
+            let grassblade = new Blumenwiese_advanced.Grassblade(new Blumenwiese_advanced.Vector(x, y), height, sway, bend);
+            grassblades.push(grassblade);
+            if (x > Blumenwiese_advanced.crc2.canvas.width * 1.3)
+                break;
+        }
+    }
+    function drawGrassblades() {
+        Blumenwiese_advanced.crc2.save();
+        Blumenwiese_advanced.crc2.translate(0, Blumenwiese_advanced.crc2.canvas.height);
+        Blumenwiese_advanced.crc2.scale(0.8, 1.5);
+        for (let grassblade of grassblades) {
+            grassblade.draw();
+        }
+        Blumenwiese_advanced.crc2.restore();
+    }
+    function createBee() {
+        let bee = new Blumenwiese_advanced.Bee();
+        moveables.push(bee);
     }
     function update() {
         //drawBackground();
         Blumenwiese_advanced.crc2.putImageData(backgroundimage, 0, 0);
-        //move moveable objects
+        drawFlowers();
+        drawBeehive();
+        drawGrassblades();
+        //animate moveables
         for (let moveable of moveables) {
             moveable.move(1 / 50);
             moveable.draw();
@@ -142,29 +212,10 @@ var Blumenwiese_advanced;
             y = createRandomValueInRange(_yMin, _yMax);
             Blumenwiese_advanced.crc2.save();
             Blumenwiese_advanced.crc2.translate(step, y);
+            Blumenwiese_advanced.crc2.scale(0.09, 0.17);
             let grassblade = new Blumenwiese_advanced.Grassblade();
             grassblade.draw();
             Blumenwiese_advanced.crc2.restore();
-        }
-        //Bienenkasten
-        if (layer == 5) {
-            drawBeehive(_yMax);
-        }
-        //Blumenschicht
-        for (let stepWidth = createRandomValueInRange(0, 60); stepWidth < Blumenwiese_advanced.crc2.canvas.width * 2; stepWidth += createRandomValueInRange(20, 100)) {
-            //Blumen auf unterschiedlicher Höhe vor dem Gras verteilen
-            y = createRandomValueInRange(_yMax * 0.9, _yMax * 1.3);
-            //vermeiden, dass Blumen vor dem Bienenkasten stehen
-            if (layer == 5 && stepWidth > 85 && stepWidth < 155) {
-                continue;
-            }
-            else {
-                Blumenwiese_advanced.crc2.save();
-                Blumenwiese_advanced.crc2.translate(stepWidth, y);
-                let flower = new Blumenwiese_advanced.Flower();
-                flower.draw();
-                Blumenwiese_advanced.crc2.restore();
-            }
         }
         //Bäume
         if (layer == 2) {
@@ -178,11 +229,10 @@ var Blumenwiese_advanced;
             tree.draw();
         }
     }
-    function drawBeehive(_yMax) {
+    function drawBeehive() {
         Blumenwiese_advanced.crc2.save();
-        Blumenwiese_advanced.crc2.translate(120, _yMax - 30);
-        //dem scale von der Layer (bei layer 5 etwa 12) entgegenwirken:
-        Blumenwiese_advanced.crc2.scale(0.2, 0.2);
+        Blumenwiese_advanced.crc2.translate(Blumenwiese_advanced.crc2.canvas.width * 0.59, Blumenwiese_advanced.crc2.canvas.height * 0.74);
+        Blumenwiese_advanced.crc2.scale(1.3, 1.3);
         Blumenwiese_advanced.crc2.lineWidth = 8;
         Blumenwiese_advanced.crc2.strokeStyle = "sienna";
         Blumenwiese_advanced.crc2.fillStyle = "peru";

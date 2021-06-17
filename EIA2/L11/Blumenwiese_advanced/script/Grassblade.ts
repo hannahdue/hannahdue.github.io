@@ -1,11 +1,21 @@
 namespace Blumenwiese_advanced {
 
     export class Grassblade {
+        position: Vector;
         height: number = 130 + Math.random() * 50;
         sway: number = (Math.random() - 0.5) * 80;
         bend: number = (Math.random() - 0.5) * 60;
+        color: number = Math.floor(createRandomValueInRange(1, 5));
 
-        constructor() {
+        constructor( _position?: Vector, _height?: number, _sway?: number, _bend?: number) {
+            if (_position)
+                this.position = _position;
+            if (_height)
+                this.height = _height;
+            if (_sway)
+                this.sway = _sway;
+            if (_bend)
+                this.bend = _bend;
             this.draw();
         }
 
@@ -17,17 +27,17 @@ namespace Blumenwiese_advanced {
 
             crc2.save();
 
-            //crc2.translate(150, crc2.canvas.height);
-            crc2.scale(0.09, 0.17);
+            if (this.position) {
+                crc2.translate(this.position.x, this.position.y);
+            }
             crc2.beginPath();
             crc2.moveTo(-5, 0);
             crc2.quadraticCurveTo(this.bend, -this.height / 2, this.sway, -this.height);
             crc2.quadraticCurveTo(this.bend + 10, -this.height / 2, 5, 0);
             crc2.closePath();
 
-            let randomGrassColor: number = Math.floor(createRandomValueInRange(1, 5));
             let grassColor: string = "#6F8C30";
-            switch (randomGrassColor) {
+            switch (this.color) {
                 case 1:
                     grassColor = "#40592E";
                     break;

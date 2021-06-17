@@ -17,6 +17,8 @@ namespace Blumenwiese_advanced {
     let cloud1: Moveable;
     let cloud2: Moveable;
     let moveables: Moveable[] = [];
+    let flowers: Flower[] = [];
+    let grassblades: Grassblade[] = [];
 
     function handleLoad(): void {
 
@@ -33,14 +35,20 @@ namespace Blumenwiese_advanced {
         moveables.push(cloud1, cloud2);
         cloud1.draw();
         cloud2.draw();
-        
+
+        createFlowers();
+        createGrassblades();
+        drawFlowers();
+        drawBeehive();
+        drawGrassblades();
+
         //createBees
-        for (let index: number = 0; index < 6; index++) {
-            window.setTimeout(createBees, 1000 * index);
+        for (let index: number = 0; index < 10; index++) {
+            window.setTimeout(createBee, 1000 * index);
         }
 
         //animate image
-        window.setInterval(update, 20);
+        //window.setInterval(update, 20);
     }
 
     export function createRandomValueInRange(_min: number, _max: number): number {
@@ -49,7 +57,7 @@ namespace Blumenwiese_advanced {
 
     function drawBackground(): void {
         console.log("Background with mountains and meadow");
-        
+
         //draw backgorund colour
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
         gradient.addColorStop(0, "lightblue");
@@ -59,30 +67,100 @@ namespace Blumenwiese_advanced {
 
         crc2.fillStyle = gradient;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-        
+
         //draw landscape
         drawSun(new Vector(crc2.canvas.width * 0.15, crc2.canvas.height * 0.1));
         drawMountains(new Vector(0, horizon), 40, 100, "grey", "white", "silver");
         drawMountains(new Vector(0, horizon), 20, 60, "saddleBrown", "tan", "sienna");
         drawMeadow();
-        
+
         //save image to use for animation:
         backgroundimage = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
 
     }
 
-    function createBees(): void {
-        for (let i: number = 0; i < 2; i++) {
-            let bee: Moveable = new Bee();
-            moveables.push(bee);
+    function createFlowers(): void {
+        let y: number = 30;
+        for (let i: number = 0; i < 20; i++) {
+            let scale: number = 0.5;
+            //let rand: number = Math.random();
+            let x: number = Math.random() * crc2.canvas.width;
+            y += Math.random() * 50;
+
+            if (y > 400) {
+                scale = 2.1;
+            } else if (y > 300) {
+                scale = 1.8;
+            } else if (y > 200) {
+                scale = 1.3;
+            } else if (y > 100) {
+                scale = 0.8;
+            }
+
+            let flower: Flower = new Flower(new Vector(x, y), scale);
+            flowers.push(flower);
+
+            if (y > 480)
+                break;
         }
+    }
+
+    function drawFlowers(): void {
+        for (let flower of flowers) {
+            crc2.save();
+            crc2.translate(0, horizon);
+            flower.draw();
+            crc2.restore();
+        }
+    }
+
+    function createGrassblades(): void {
+        let y: number = 0;
+        let x: number = 0;
+
+        for (let i: number = 0; i < 200; i++) {
+            x += Math.random() * 35;
+            let height: number;
+            if (x > 900 && x < 1200) {
+                height = 80 + Math.random() * 40;
+            } else {
+                height = 120 + Math.random() * 80;
+            }
+            let sway: number = (Math.random() - 0.5) * 80;
+            let bend: number = (Math.random() - 0.5) * 60;
+            
+            let grassblade: Grassblade = new Grassblade(new Vector(x, y), height, sway, bend);
+            grassblades.push(grassblade);
+
+            if (x > crc2.canvas.width * 1.3)
+                break;
+        }
+    }
+
+    function drawGrassblades(): void {
+        crc2.save();
+        crc2.translate(0, crc2.canvas.height);
+        crc2.scale(0.8, 1.5);
+
+        for (let grassblade of grassblades) {
+            grassblade.draw();
+        }
+
+        crc2.restore();
+    }
+
+    function createBee(): void {
+        let bee: Moveable = new Bee();
+        moveables.push(bee);
     }
 
     function update(): void {
         //drawBackground();
         crc2.putImageData(backgroundimage, 0, 0);
-
-        //move moveable objects
+        drawFlowers();
+        drawBeehive();
+        drawGrassblades();
+        //animate moveables
         for (let moveable of moveables) {
             moveable.move(1 / 50);
             moveable.draw();
@@ -186,32 +264,10 @@ namespace Blumenwiese_advanced {
 
             crc2.save();
             crc2.translate(step, y);
+            crc2.scale(0.09, 0.17);
             let grassblade: Grassblade = new Grassblade();
             grassblade.draw();
             crc2.restore();
-        }
-
-        //Bienenkasten
-        if (layer == 5) {
-            drawBeehive(_yMax);
-        }
-
-        //Blumenschicht
-        for (let stepWidth: number = createRandomValueInRange(0, 60); stepWidth < crc2.canvas.width * 2; stepWidth += createRandomValueInRange(20, 100)) {
-
-            //Blumen auf unterschiedlicher Höhe vor dem Gras verteilen
-            y = createRandomValueInRange(_yMax * 0.9, _yMax * 1.3);
-
-            //vermeiden, dass Blumen vor dem Bienenkasten stehen
-            if (layer == 5 && stepWidth > 85 && stepWidth < 155) {
-                continue;
-            } else {
-                crc2.save();
-                crc2.translate(stepWidth, y);
-                let flower: Flower = new Flower();
-                flower.draw();
-                crc2.restore();
-            }
         }
 
         //Bäume
@@ -227,12 +283,11 @@ namespace Blumenwiese_advanced {
 
     }
 
-    function drawBeehive(_yMax: number): void {
+    function drawBeehive(): void {
 
         crc2.save();
-        crc2.translate(120, _yMax - 30);
-        //dem scale von der Layer (bei layer 5 etwa 12) entgegenwirken:
-        crc2.scale(0.2, 0.2);
+        crc2.translate(crc2.canvas.width * 0.59, crc2.canvas.height * 0.74);
+        crc2.scale(1.3, 1.3);
         crc2.lineWidth = 8;
         crc2.strokeStyle = "sienna";
         crc2.fillStyle = "peru";

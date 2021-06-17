@@ -6,7 +6,7 @@ namespace Blumenwiese_advanced {
         protected direction: number = createRandomValueInRange(-1, 1);
 
         constructor() {
-            super(new Vector(crc2.canvas.width * 0.59, crc2.canvas.height * 0.57), new Vector((createRandomValueInRange(-150, -100)), (createRandomValueInRange(-30, 30))));
+            super(new Vector(crc2.canvas.width * 0.59, crc2.canvas.height * 0.74), new Vector((createRandomValueInRange(-150, -100)), (createRandomValueInRange(-30, 30))));
             
             console.log("Bee");
             

@@ -1,22 +1,25 @@
 namespace Blumenwiese_advanced {
 
     export class Flower {
-        public currentPosition: number;
-        public nectarLevel: number;
+        public position: Vector;
+        public scale: number;
+        public nectarLevel: number = 0;
         protected petalColor: number = Math.floor(Math.random() * 10);
         protected flowerPetals: number = 5;
 
-        constructor() {
-            //console.log("Flower");
-            this.draw();
+        constructor(_position: Vector, _scale: number) {
+            console.log("Flower");
+            this.position = _position;
+            this.scale = _scale;
+            //this.draw();
         }
 
         public draw(): void {
             crc2.save();
 
             //Blumenstiel
-            //crc2.translate(50, crc2.canvas.height);
-            crc2.scale(0.3, 0.3);
+            crc2.translate(this.position.x, this.position.y);
+            crc2.scale(this.scale, this.scale);
             crc2.beginPath();
             crc2.moveTo(0, 0);
             crc2.lineTo(0, -100);

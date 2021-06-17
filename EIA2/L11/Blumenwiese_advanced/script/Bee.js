@@ -3,7 +3,7 @@ var Blumenwiese_advanced;
 (function (Blumenwiese_advanced) {
     class Bee extends Blumenwiese_advanced.Moveable {
         constructor() {
-            super(new Blumenwiese_advanced.Vector(Blumenwiese_advanced.crc2.canvas.width * 0.59, Blumenwiese_advanced.crc2.canvas.height * 0.57), new Blumenwiese_advanced.Vector((Blumenwiese_advanced.createRandomValueInRange(-150, -100)), (Blumenwiese_advanced.createRandomValueInRange(-30, 30))));
+            super(new Blumenwiese_advanced.Vector(Blumenwiese_advanced.crc2.canvas.width * 0.59, Blumenwiese_advanced.crc2.canvas.height * 0.74), new Blumenwiese_advanced.Vector((Blumenwiese_advanced.createRandomValueInRange(-150, -100)), (Blumenwiese_advanced.createRandomValueInRange(-30, 30))));
             this.scale = Blumenwiese_advanced.createRandomValueInRange(1, 2);
             this.direction = Blumenwiese_advanced.createRandomValueInRange(-1, 1);
             console.log("Bee");

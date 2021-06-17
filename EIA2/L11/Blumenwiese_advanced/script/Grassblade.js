@@ -2,10 +2,19 @@
 var Blumenwiese_advanced;
 (function (Blumenwiese_advanced) {
     class Grassblade {
-        constructor() {
+        constructor(_position, _height, _sway, _bend) {
             this.height = 130 + Math.random() * 50;
             this.sway = (Math.random() - 0.5) * 80;
             this.bend = (Math.random() - 0.5) * 60;
+            this.color = Math.floor(Blumenwiese_advanced.createRandomValueInRange(1, 5));
+            if (_position)
+                this.position = _position;
+            if (_height)
+                this.height = _height;
+            if (_sway)
+                this.sway = _sway;
+            if (_bend)
+                this.bend = _bend;
             this.draw();
         }
         draw() {
@@ -13,16 +22,16 @@ var Blumenwiese_advanced;
                 this.bend = this.bend * -1;
             }
             Blumenwiese_advanced.crc2.save();
-            //crc2.translate(150, crc2.canvas.height);
-            Blumenwiese_advanced.crc2.scale(0.09, 0.17);
+            if (this.position) {
+                Blumenwiese_advanced.crc2.translate(this.position.x, this.position.y);
+            }
             Blumenwiese_advanced.crc2.beginPath();
             Blumenwiese_advanced.crc2.moveTo(-5, 0);
             Blumenwiese_advanced.crc2.quadraticCurveTo(this.bend, -this.height / 2, this.sway, -this.height);
             Blumenwiese_advanced.crc2.quadraticCurveTo(this.bend + 10, -this.height / 2, 5, 0);
             Blumenwiese_advanced.crc2.closePath();
-            let randomGrassColor = Math.floor(Blumenwiese_advanced.createRandomValueInRange(1, 5));
             let grassColor = "#6F8C30";
-            switch (randomGrassColor) {
+            switch (this.color) {
                 case 1:
                     grassColor = "#40592E";
                     break;
