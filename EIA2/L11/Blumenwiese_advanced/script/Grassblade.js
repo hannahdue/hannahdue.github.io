@@ -2,7 +2,7 @@
 var Blumenwiese_advanced;
 (function (Blumenwiese_advanced) {
     class Grassblade {
-        constructor(_position, _height, _sway, _bend) {
+        constructor(_position, _height) {
             this.height = 130 + Math.random() * 50;
             this.sway = (Math.random() - 0.5) * 80;
             this.bend = (Math.random() - 0.5) * 60;
@@ -11,10 +11,6 @@ var Blumenwiese_advanced;
                 this.position = _position;
             if (_height)
                 this.height = _height;
-            if (_sway)
-                this.sway = _sway;
-            if (_bend)
-                this.bend = _bend;
             this.draw();
         }
         draw() {

@@ -41,7 +41,7 @@ var Blumenwiese_advanced;
             window.setTimeout(createBee, 1000 * index);
         }
         //animate image
-        //window.setInterval(update, 20);
+        window.setInterval(update, 20);
     }
     function createRandomValueInRange(_min, _max) {
         return _min + Math.random() * (_max - _min);
@@ -66,12 +66,11 @@ var Blumenwiese_advanced;
         backgroundimage = Blumenwiese_advanced.crc2.getImageData(0, 0, Blumenwiese_advanced.crc2.canvas.width, Blumenwiese_advanced.crc2.canvas.height);
     }
     function createFlowers() {
-        let y = 30;
-        for (let i = 0; i < 20; i++) {
+        let x = 0;
+        for (let i = 0; i < 30; i++) {
             let scale = 0.5;
-            //let rand: number = Math.random();
-            let x = Math.random() * Blumenwiese_advanced.crc2.canvas.width;
-            y += Math.random() * 50;
+            x += 60 + Math.random() * 50;
+            let y = Math.random() * 480;
             if (y > 400) {
                 scale = 2.1;
             }
@@ -86,15 +85,15 @@ var Blumenwiese_advanced;
             }
             let flower = new Blumenwiese_advanced.Flower(new Blumenwiese_advanced.Vector(x, y), scale);
             flowers.push(flower);
-            if (y > 480)
+            if (x > Blumenwiese_advanced.crc2.canvas.width * 1.3)
                 break;
         }
     }
     function drawFlowers() {
         for (let flower of flowers) {
             Blumenwiese_advanced.crc2.save();
-            Blumenwiese_advanced.crc2.translate(0, horizon);
-            flower.draw();
+            Blumenwiese_advanced.crc2.translate(0, horizon + 30);
+            flower.updateFlower();
             Blumenwiese_advanced.crc2.restore();
         }
     }
@@ -110,9 +109,9 @@ var Blumenwiese_advanced;
             else {
                 height = 120 + Math.random() * 80;
             }
-            let sway = (Math.random() - 0.5) * 80;
-            let bend = (Math.random() - 0.5) * 60;
-            let grassblade = new Blumenwiese_advanced.Grassblade(new Blumenwiese_advanced.Vector(x, y), height, sway, bend);
+            /*let sway: number = (Math.random() - 0.5) * 80;
+            let bend: number = (Math.random() - 0.5) * 60;*/
+            let grassblade = new Blumenwiese_advanced.Grassblade(new Blumenwiese_advanced.Vector(x, y), height);
             grassblades.push(grassblade);
             if (x > Blumenwiese_advanced.crc2.canvas.width * 1.3)
                 break;

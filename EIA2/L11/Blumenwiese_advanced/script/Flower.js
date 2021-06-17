@@ -3,7 +3,7 @@ var Blumenwiese_advanced;
 (function (Blumenwiese_advanced) {
     class Flower {
         constructor(_position, _scale) {
-            this.nectarLevel = 0;
+            this.nectarLevel = Math.random() * 0.5;
             this.petalColor = Math.floor(Math.random() * 10);
             this.flowerPetals = 5;
             console.log("Flower");
@@ -38,13 +38,20 @@ var Blumenwiese_advanced;
             Blumenwiese_advanced.crc2.save();
             //Blütenblätter
             let gradientMiddle = Blumenwiese_advanced.crc2.createRadialGradient(0, 0, 0, 0, 0, 15);
-            gradientMiddle.addColorStop(0.5, "khaki");
-            gradientMiddle.addColorStop(1, "gold");
+            gradientMiddle.addColorStop(0.5, "hsla(54, 77%, 75%, " + this.nectarLevel + ")");
+            gradientMiddle.addColorStop(1, "hsla(51, 100%, 50%, " + this.nectarLevel + ")");
             Blumenwiese_advanced.crc2.translate(0, -100);
             for (let flowerPetals = 0; flowerPetals < this.flowerPetals; flowerPetals++) {
                 Blumenwiese_advanced.crc2.rotate(1.25);
                 this.drawFlowerPetal();
                 if (flowerPetals == this.flowerPetals - 1) {
+                    //dark middle 
+                    Blumenwiese_advanced.crc2.beginPath();
+                    Blumenwiese_advanced.crc2.arc(0, 0, 14.8, 0, 2 * Math.PI);
+                    Blumenwiese_advanced.crc2.closePath();
+                    Blumenwiese_advanced.crc2.fillStyle = "dimgrey";
+                    Blumenwiese_advanced.crc2.fill();
+                    //colored middle
                     Blumenwiese_advanced.crc2.beginPath();
                     Blumenwiese_advanced.crc2.arc(0, 0, 15, 0, 2 * Math.PI);
                     Blumenwiese_advanced.crc2.closePath();
@@ -55,6 +62,19 @@ var Blumenwiese_advanced;
             //Blütenblätter Ende
             Blumenwiese_advanced.crc2.restore();
             Blumenwiese_advanced.crc2.restore();
+        }
+        refill() {
+            //with 50fps, increase level with 0.1 per second -> 10s until full
+            this.nectarLevel += 0.002;
+        }
+        updateFlower() {
+            /*if (this.nectarLevel >= 1) {
+                this.nectarLevel = 0;
+            }*/
+            if (this.nectarLevel < 1) {
+                this.refill();
+            }
+            this.draw();
         }
         drawFlowerPetal() {
             let petalColor = "HSL(" + this.petalColor * 36 + ", 70%, 40%)";

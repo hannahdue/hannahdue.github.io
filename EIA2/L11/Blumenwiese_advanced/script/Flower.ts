@@ -1,9 +1,9 @@
 namespace Blumenwiese_advanced {
 
     export class Flower {
-        public position: Vector;
-        public scale: number;
-        public nectarLevel: number = 0;
+        public nectarLevel: number = Math.random() * 0.5;
+        protected position: Vector;
+        protected scale: number;
         protected petalColor: number = Math.floor(Math.random() * 10);
         protected flowerPetals: number = 5;
 
@@ -43,8 +43,8 @@ namespace Blumenwiese_advanced {
             crc2.save();
             //Blütenblätter
             let gradientMiddle: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, 15);
-            gradientMiddle.addColorStop(0.5, "khaki");
-            gradientMiddle.addColorStop(1, "gold");
+            gradientMiddle.addColorStop(0.5, "hsla(54, 77%, 75%, " + this.nectarLevel + ")");
+            gradientMiddle.addColorStop(1, "hsla(51, 100%, 50%, " + this.nectarLevel + ")");
     
             crc2.translate(0, -100);
     
@@ -52,6 +52,13 @@ namespace Blumenwiese_advanced {
                 crc2.rotate(1.25);
                 this.drawFlowerPetal();
                 if (flowerPetals == this.flowerPetals - 1) {
+                    //dark middle 
+                    crc2.beginPath();
+                    crc2.arc(0, 0, 14.8, 0, 2 * Math.PI);
+                    crc2.closePath();
+                    crc2.fillStyle = "dimgrey";
+                    crc2.fill();
+                    //colored middle
                     crc2.beginPath();
                     crc2.arc(0, 0, 15, 0, 2 * Math.PI);
                     crc2.closePath();
@@ -63,6 +70,21 @@ namespace Blumenwiese_advanced {
             crc2.restore();
     
             crc2.restore();
+        }
+
+        public refill(): void {
+            //with 50fps, increase level with 0.1 per second -> 10s until full
+            this.nectarLevel += 0.002;
+        }
+
+        public updateFlower(): void {
+            /*if (this.nectarLevel >= 1) {
+                this.nectarLevel = 0;
+            }*/
+            if (this.nectarLevel < 1) {
+                this.refill();
+                }
+            this.draw();
         }
 
         protected drawFlowerPetal(): void {

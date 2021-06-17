@@ -1,25 +1,21 @@
 namespace Blumenwiese_advanced {
 
     export class Grassblade {
-        position: Vector;
-        height: number = 130 + Math.random() * 50;
-        sway: number = (Math.random() - 0.5) * 80;
-        bend: number = (Math.random() - 0.5) * 60;
-        color: number = Math.floor(createRandomValueInRange(1, 5));
+        public position: Vector;
+        public height: number = 130 + Math.random() * 50;
+        protected sway: number = (Math.random() - 0.5) * 80;
+        protected bend: number = (Math.random() - 0.5) * 60;
+        protected color: number = Math.floor(createRandomValueInRange(1, 5));
 
-        constructor( _position?: Vector, _height?: number, _sway?: number, _bend?: number) {
+        constructor( _position?: Vector, _height?: number) {
             if (_position)
                 this.position = _position;
             if (_height)
                 this.height = _height;
-            if (_sway)
-                this.sway = _sway;
-            if (_bend)
-                this.bend = _bend;
             this.draw();
         }
 
-        draw(): void {
+        public draw(): void {
             
             if (this.sway > 0 && this.bend > 0) {
                 this.bend = this.bend * -1;

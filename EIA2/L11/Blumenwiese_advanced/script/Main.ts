@@ -48,7 +48,7 @@ namespace Blumenwiese_advanced {
         }
 
         //animate image
-        //window.setInterval(update, 20);
+        window.setInterval(update, 20);
     }
 
     export function createRandomValueInRange(_min: number, _max: number): number {
@@ -80,12 +80,11 @@ namespace Blumenwiese_advanced {
     }
 
     function createFlowers(): void {
-        let y: number = 30;
-        for (let i: number = 0; i < 20; i++) {
+        let x: number = 0;
+        for (let i: number = 0; i < 30; i++) {
             let scale: number = 0.5;
-            //let rand: number = Math.random();
-            let x: number = Math.random() * crc2.canvas.width;
-            y += Math.random() * 50;
+            x += 60 + Math.random() * 50;
+            let y: number = Math.random() * 480;
 
             if (y > 400) {
                 scale = 2.1;
@@ -100,7 +99,7 @@ namespace Blumenwiese_advanced {
             let flower: Flower = new Flower(new Vector(x, y), scale);
             flowers.push(flower);
 
-            if (y > 480)
+            if (x > crc2.canvas.width * 1.3)
                 break;
         }
     }
@@ -108,8 +107,8 @@ namespace Blumenwiese_advanced {
     function drawFlowers(): void {
         for (let flower of flowers) {
             crc2.save();
-            crc2.translate(0, horizon);
-            flower.draw();
+            crc2.translate(0, horizon + 30);
+            flower.updateFlower();
             crc2.restore();
         }
     }
@@ -126,10 +125,10 @@ namespace Blumenwiese_advanced {
             } else {
                 height = 120 + Math.random() * 80;
             }
-            let sway: number = (Math.random() - 0.5) * 80;
-            let bend: number = (Math.random() - 0.5) * 60;
+            /*let sway: number = (Math.random() - 0.5) * 80;
+            let bend: number = (Math.random() - 0.5) * 60;*/
             
-            let grassblade: Grassblade = new Grassblade(new Vector(x, y), height, sway, bend);
+            let grassblade: Grassblade = new Grassblade(new Vector(x, y), height);
             grassblades.push(grassblade);
 
             if (x > crc2.canvas.width * 1.3)
