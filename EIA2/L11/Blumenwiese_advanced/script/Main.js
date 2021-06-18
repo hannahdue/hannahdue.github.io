@@ -100,15 +100,6 @@ var Blumenwiese_advanced;
                 break;
         }
     }
-    /*if (y > 400) {
-                scale = 2.1;
-            } else if (y > 300) {
-                scale = 1.8;
-            } else if (y > 200) {
-                scale = 1.3;
-            } else if (y > 100) {
-                scale = 0.8;
-            }*/
     function drawFlowers() {
         for (let flower of flowers) {
             Blumenwiese_advanced.crc2.save();
@@ -129,8 +120,6 @@ var Blumenwiese_advanced;
             else {
                 height = 120 + Math.random() * 80;
             }
-            /*let sway: number = (Math.random() - 0.5) * 80;
-            let bend: number = (Math.random() - 0.5) * 60;*/
             let grassblade = new Blumenwiese_advanced.Grassblade(new Blumenwiese_advanced.Vector(x, y), height);
             grassblades.push(grassblade);
             if (x > Blumenwiese_advanced.crc2.canvas.width * 1.3)

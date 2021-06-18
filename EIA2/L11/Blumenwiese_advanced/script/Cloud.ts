@@ -2,7 +2,7 @@ namespace Blumenwiese_advanced {
 
     export class Cloud extends Moveable {
         
-        protected size: number;
+        private size: number;
 
         constructor(_position: Vector, _size: number) {
             super(_position, new Vector(-20, 0));
@@ -45,7 +45,6 @@ namespace Blumenwiese_advanced {
                 this.position.x += crc2.canvas.width + 450;
             if (this.position.x > crc2.canvas.width)
                 this.position.x -= crc2.canvas.width;
-
         }
 
     }

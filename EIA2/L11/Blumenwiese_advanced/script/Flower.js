@@ -63,10 +63,6 @@ var Blumenwiese_advanced;
             Blumenwiese_advanced.crc2.restore();
             Blumenwiese_advanced.crc2.restore();
         }
-        refill() {
-            //with 50fps, increase level with 0.1 per second -> 10s until full
-            this.nectarLevel += 0.002;
-        }
         updateFlower() {
             /*if (this.nectarLevel >= 1) {
                 this.nectarLevel = 0;
@@ -75,6 +71,10 @@ var Blumenwiese_advanced;
                 this.refill();
             }
             this.draw();
+        }
+        refill() {
+            //with 50fps, increase level with 0.1 per second -> 10s until full
+            this.nectarLevel += 0.002;
         }
         drawFlowerPetal() {
             let petalColor = "HSL(" + this.petalColor * 36 + ", 70%, 40%)";
@@ -111,8 +111,6 @@ var Blumenwiese_advanced;
             Blumenwiese_advanced.crc2.bezierCurveTo(-24, -50, 24, -50, 13, -20);
             Blumenwiese_advanced.crc2.closePath();
             Blumenwiese_advanced.crc2.fillStyle = gradient;
-            //crc2.strokeStyle = "violet";
-            //crc2.stroke();
             Blumenwiese_advanced.crc2.fill();
         }
     }

@@ -1,8 +1,8 @@
 namespace Blumenwiese_advanced {
 
     export class Tree {
-        protected position: Vector;
-        protected color: string;
+        private position: Vector;
+        private color: string;
 
         constructor(_position: Vector, _color: string) {
             this.position = _position;

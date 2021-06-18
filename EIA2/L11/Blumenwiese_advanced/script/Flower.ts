@@ -2,10 +2,10 @@ namespace Blumenwiese_advanced {
 
     export class Flower {
         public nectarLevel: number = Math.random() * 0.5;
-        protected position: Vector;
-        protected scale: number;
-        protected petalColor: number = Math.floor(Math.random() * 10);
-        protected flowerPetals: number = 5;
+        private position: Vector;
+        private scale: number;
+        private petalColor: number = Math.floor(Math.random() * 10);
+        private flowerPetals: number = 5;
 
         constructor(_position: Vector, _scale: number) {
             console.log("Flower");
@@ -72,11 +72,6 @@ namespace Blumenwiese_advanced {
             crc2.restore();
         }
 
-        public refill(): void {
-            //with 50fps, increase level with 0.1 per second -> 10s until full
-            this.nectarLevel += 0.002;
-        }
-
         public updateFlower(): void {
             /*if (this.nectarLevel >= 1) {
                 this.nectarLevel = 0;
@@ -87,7 +82,12 @@ namespace Blumenwiese_advanced {
             this.draw();
         }
 
-        protected drawFlowerPetal(): void {
+        private refill(): void {
+            //with 50fps, increase level with 0.1 per second -> 10s until full
+            this.nectarLevel += 0.002;
+        }
+
+        private drawFlowerPetal(): void {
             let petalColor: string = "HSL(" + this.petalColor * 36 + ", 70%, 40%)";
             switch (this.petalColor) {
                 case 1:
@@ -122,8 +122,6 @@ namespace Blumenwiese_advanced {
             crc2.bezierCurveTo(-24, -50, 24, -50, 13, -20);
             crc2.closePath();
             crc2.fillStyle = gradient;
-            //crc2.strokeStyle = "violet";
-            //crc2.stroke();
             crc2.fill();
         }
 

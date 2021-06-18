@@ -2,8 +2,8 @@ namespace Blumenwiese_advanced {
 
     export class Bee extends Moveable {
         
-        protected scale: number = createRandomValueInRange(1, 2);
-        protected direction: number = createRandomValueInRange(-1, 1);
+        private scale: number = createRandomValueInRange(1, 2);
+        private direction: number = createRandomValueInRange(-1, 1);
 
         constructor() {
             super(new Vector(crc2.canvas.width * 0.59, crc2.canvas.height * 0.74), new Vector((createRandomValueInRange(-150, -100)), (createRandomValueInRange(-30, 30))));

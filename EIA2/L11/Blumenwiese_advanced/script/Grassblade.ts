@@ -3,9 +3,9 @@ namespace Blumenwiese_advanced {
     export class Grassblade {
         public position: Vector;
         public height: number = 130 + Math.random() * 50;
-        protected sway: number = (Math.random() - 0.5) * 80;
-        protected bend: number = (Math.random() - 0.5) * 60;
-        protected color: number = Math.floor(createRandomValueInRange(1, 5));
+        private sway: number = (Math.random() - 0.5) * 80;
+        private bend: number = (Math.random() - 0.5) * 60;
+        private color: number = Math.floor(createRandomValueInRange(1, 5));
 
         constructor( _position?: Vector, _height?: number) {
             if (_position)
