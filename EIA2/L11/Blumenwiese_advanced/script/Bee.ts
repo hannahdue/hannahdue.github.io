@@ -94,7 +94,7 @@ namespace Blumenwiese_advanced {
                 this.position.y += crc2.canvas.height;
             if (this.position.x > crc2.canvas.width)
                 this.position.x -= crc2.canvas.width;
-            if (this.position.y > crc2.canvas.width)
+            if (this.position.y > crc2.canvas.height)
                 this.position.y -= crc2.canvas.height;    
         }
     }

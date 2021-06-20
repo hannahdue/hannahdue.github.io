@@ -78,7 +78,7 @@ var Blumenwiese_advanced;
                 this.position.y += Blumenwiese_advanced.crc2.canvas.height;
             if (this.position.x > Blumenwiese_advanced.crc2.canvas.width)
                 this.position.x -= Blumenwiese_advanced.crc2.canvas.width;
-            if (this.position.y > Blumenwiese_advanced.crc2.canvas.width)
+            if (this.position.y > Blumenwiese_advanced.crc2.canvas.height)
                 this.position.y -= Blumenwiese_advanced.crc2.canvas.height;
         }
     }
