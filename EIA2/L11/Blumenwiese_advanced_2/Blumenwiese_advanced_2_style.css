@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#canvas {
+    /*height: auto;
+    width: 100%;
+    overflow: hidden;*/
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    margin: auto;
+}
+
+@media (orientation: landscape) {
+    #canvas {
+        height: auto;
+        width: 100%;
+        overflow: hidden;
+    }
+  }
+  
+  @media (orientation: portrait) {
+    #canvas {
+        height: 100%;
+        width: auto;
+        overflow: hidden;
+    }
+  }
+  
