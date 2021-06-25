@@ -132,7 +132,7 @@ namespace Blumenwiese_advanced_2 {
                 this.setDestination = false;
             }
 
-            let direction: Vector = new Vector(this.target.position.x - this.position.x, (this.target.position.y - 100) * this.target.scale - this.position.y);
+            let direction: Vector = new Vector(this.target.position.x - this.position.x, (this.target.position.y - 100 * this.target.scale) - this.position.y);
             direction.scale(_timeslice);
             this.position.add(direction);
 
