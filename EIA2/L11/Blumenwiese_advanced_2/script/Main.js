@@ -11,8 +11,8 @@ var Blumenwiese_advanced_2;
     window.addEventListener("load", handleLoad);
     Blumenwiese_advanced_2.allFlowers = [];
     Blumenwiese_advanced_2.flowers = [];
+    const golden = 0.38;
     let x;
-    let golden = 0.38;
     let horizon;
     let layer;
     let backgroundimage;
@@ -33,7 +33,7 @@ var Blumenwiese_advanced_2;
             return;
         Blumenwiese_advanced_2.crc2 = canvas.getContext("2d");
         horizon = Blumenwiese_advanced_2.crc2.canvas.height * golden;
-        window.addEventListener("click", handlePointerup);
+        Blumenwiese_advanced_2.crc2.canvas.addEventListener("click", handlePointerup);
         //draw background and two clouds
         drawBackground();
         cloud1 = new Blumenwiese_advanced_2.Cloud(new Blumenwiese_advanced_2.Vector(1250, -10), 0.6);
@@ -130,10 +130,7 @@ var Blumenwiese_advanced_2;
     }
     function drawFlowers() {
         for (let flower of Blumenwiese_advanced_2.allFlowers) {
-            Blumenwiese_advanced_2.crc2.save();
-            //crc2.translate(0, horizon + 30);
             flower.updateFlower();
-            Blumenwiese_advanced_2.crc2.restore();
         }
     }
     function createGrassblades() {

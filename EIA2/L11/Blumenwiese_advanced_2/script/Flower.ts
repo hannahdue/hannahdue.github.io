@@ -8,7 +8,6 @@ namespace Blumenwiese_advanced_2 {
         private flowerPetals: number = 5;
 
         constructor(_position: Vector, _scale: number) {
-            console.log("Flower");
             this.position = _position;
             this.scale = _scale;
         }
@@ -72,9 +71,6 @@ namespace Blumenwiese_advanced_2 {
         }
 
         public updateFlower(): void {
-            /*if (this.nectarLevel >= 1) {
-                this.nectarLevel = 0;
-            }*/
             if (this.nectarLevel < 1) {
                 this.refill();
                 }

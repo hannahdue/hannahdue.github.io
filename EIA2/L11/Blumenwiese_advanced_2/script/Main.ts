@@ -13,8 +13,8 @@ namespace Blumenwiese_advanced_2 {
     export let crc2: CanvasRenderingContext2D;
     export let allFlowers: Flower[] = [];
     export let flowers: Flower[] = [];
+    const golden: number = 0.38;
     let x: number;
-    let golden: number = 0.38;
     let horizon: number;
     let layer: number;
     let backgroundimage: ImageData;
@@ -37,7 +37,7 @@ namespace Blumenwiese_advanced_2 {
             return;
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         horizon = crc2.canvas.height * golden;
-        window.addEventListener("click", handlePointerup);
+        crc2.canvas.addEventListener("click", handlePointerup);
 
         //draw background and two clouds
         drawBackground();
@@ -78,6 +78,7 @@ namespace Blumenwiese_advanced_2 {
         drawFlowers();
         drawBeehive();
         drawGrassblades();
+        
         //animate moveables
         for (let moveable of moveables) {
             moveable.action(1 / 50);
@@ -154,10 +155,7 @@ namespace Blumenwiese_advanced_2 {
 
     function drawFlowers(): void {
         for (let flower of allFlowers) {
-            crc2.save();
-            //crc2.translate(0, horizon + 30);
             flower.updateFlower();
-            crc2.restore();
         }
     }
 

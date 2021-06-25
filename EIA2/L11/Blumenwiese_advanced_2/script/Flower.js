@@ -6,7 +6,6 @@ var Blumenwiese_advanced_2;
             this.nectarLevel = 1;
             this.petalColor = Math.floor(Math.random() * 10);
             this.flowerPetals = 5;
-            console.log("Flower");
             this.position = _position;
             this.scale = _scale;
         }
@@ -63,9 +62,6 @@ var Blumenwiese_advanced_2;
             Blumenwiese_advanced_2.crc2.restore();
         }
         updateFlower() {
-            /*if (this.nectarLevel >= 1) {
-                this.nectarLevel = 0;
-            }*/
             if (this.nectarLevel < 1) {
                 this.refill();
             }
