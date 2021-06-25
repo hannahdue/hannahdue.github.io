@@ -112,7 +112,7 @@ namespace Blumenwiese_advanced_2 {
         for (let i: number = 0; i < 12; i++) {
             let scale: number = 0.5 + Math.random() * 0.15;
             x += 100 + Math.random() * 80;
-            let y: number = createRandomValueInRange(30, 80);
+            let y: number = (horizon + 30) + createRandomValueInRange(30, 80);
             let flower: Flower = new Flower(new Vector(x, y), scale);
             allFlowers.push(flower);
             if (x > crc2.canvas.width * 1.3)
@@ -123,7 +123,7 @@ namespace Blumenwiese_advanced_2 {
         for (let i: number = 0; i < 9; i++) {
             let scale: number = 1.2 + Math.random() * 0.35;
             x += 100 + Math.random() * 150;
-            let y: number = createRandomValueInRange(120, 250);
+            let y: number = (horizon + 30) + createRandomValueInRange(120, 250);
 
             let flower: Flower = new Flower(new Vector(x, y), scale);
             allFlowers.push(flower);
@@ -139,7 +139,7 @@ namespace Blumenwiese_advanced_2 {
             if (i == 0) {
                 x = 20; //so there's no gap on the left side of the canavs
             }
-            let y: number = createRandomValueInRange(380, 470);
+            let y: number = (horizon + 30) + createRandomValueInRange(380, 470);
 
             let flower: Flower = new Flower(new Vector(x, y), scale);
             allFlowers.push(flower);
@@ -154,7 +154,7 @@ namespace Blumenwiese_advanced_2 {
     function drawFlowers(): void {
         for (let flower of allFlowers) {
             crc2.save();
-            crc2.translate(0, horizon + 30);
+            //crc2.translate(0, horizon + 30);
             flower.updateFlower();
             crc2.restore();
         }

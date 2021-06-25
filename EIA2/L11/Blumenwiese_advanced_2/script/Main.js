@@ -95,7 +95,7 @@ var Blumenwiese_advanced_2;
         for (let i = 0; i < 12; i++) {
             let scale = 0.5 + Math.random() * 0.15;
             x += 100 + Math.random() * 80;
-            let y = createRandomValueInRange(30, 80);
+            let y = (horizon + 30) + createRandomValueInRange(30, 80);
             let flower = new Blumenwiese_advanced_2.Flower(new Blumenwiese_advanced_2.Vector(x, y), scale);
             Blumenwiese_advanced_2.allFlowers.push(flower);
             if (x > Blumenwiese_advanced_2.crc2.canvas.width * 1.3)
@@ -105,7 +105,7 @@ var Blumenwiese_advanced_2;
         for (let i = 0; i < 9; i++) {
             let scale = 1.2 + Math.random() * 0.35;
             x += 100 + Math.random() * 150;
-            let y = createRandomValueInRange(120, 250);
+            let y = (horizon + 30) + createRandomValueInRange(120, 250);
             let flower = new Blumenwiese_advanced_2.Flower(new Blumenwiese_advanced_2.Vector(x, y), scale);
             Blumenwiese_advanced_2.allFlowers.push(flower);
             Blumenwiese_advanced_2.flowers.push(flower);
@@ -118,7 +118,7 @@ var Blumenwiese_advanced_2;
             if (i == 0) {
                 x = 20; //so there's no gap on the left side of the canavs
             }
-            let y = createRandomValueInRange(380, 470);
+            let y = (horizon + 30) + createRandomValueInRange(380, 470);
             let flower = new Blumenwiese_advanced_2.Flower(new Blumenwiese_advanced_2.Vector(x, y), scale);
             Blumenwiese_advanced_2.allFlowers.push(flower);
             Blumenwiese_advanced_2.flowers.push(flower);
@@ -130,7 +130,7 @@ var Blumenwiese_advanced_2;
     function drawFlowers() {
         for (let flower of Blumenwiese_advanced_2.allFlowers) {
             Blumenwiese_advanced_2.crc2.save();
-            Blumenwiese_advanced_2.crc2.translate(0, horizon + 30);
+            //crc2.translate(0, horizon + 30);
             flower.updateFlower();
             Blumenwiese_advanced_2.crc2.restore();
         }
