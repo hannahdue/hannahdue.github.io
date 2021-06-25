@@ -47,8 +47,8 @@ var Blumenwiese_advanced_2;
         drawBeehive();
         drawGrassblades();
         //createBees
-        for (let index = 0; index < 1; index++) {
-            window.setTimeout(createBee, 1000 * index);
+        for (let index = 0; index < 8; index++) {
+            window.setTimeout(createBee, 2000 * index);
         }
         //animate image
         window.setInterval(update, 20);

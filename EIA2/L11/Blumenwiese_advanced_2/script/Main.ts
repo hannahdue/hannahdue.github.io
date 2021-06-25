@@ -54,8 +54,8 @@ namespace Blumenwiese_advanced_2 {
         drawGrassblades();
 
         //createBees
-        for (let index: number = 0; index < 1; index++) {
-            window.setTimeout(createBee, 1000 * index);
+        for (let index: number = 0; index < 8; index++) {
+            window.setTimeout(createBee, 2000 * index);
         }
 
         //animate image
