@@ -4,11 +4,11 @@ Aufgabe: L11.2
 Name: Hannah Dürr
 Datum: Juni 2021
 Quellen: Für die Animation Teile von Jirkas Android-Code, die Wolken-Form von https://stackoverflow.com/questions/19541192/how-to-draw-cloud-shape-in-html5-canvas
+         Darstellung des Honigs von Mona. :)
 */
 var Blumenwiese_advanced_2;
 (function (Blumenwiese_advanced_2) {
     window.addEventListener("load", handleLoad);
-    window.addEventListener("pointerup", handlePointerup);
     Blumenwiese_advanced_2.allFlowers = [];
     Blumenwiese_advanced_2.flowers = [];
     let x;
@@ -33,6 +33,7 @@ var Blumenwiese_advanced_2;
             return;
         Blumenwiese_advanced_2.crc2 = canvas.getContext("2d");
         horizon = Blumenwiese_advanced_2.crc2.canvas.height * golden;
+        window.addEventListener("click", handlePointerup);
         //draw background and two clouds
         drawBackground();
         cloud1 = new Blumenwiese_advanced_2.Cloud(new Blumenwiese_advanced_2.Vector(1250, -10), 0.6);

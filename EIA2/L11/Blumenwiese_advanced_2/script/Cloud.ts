@@ -9,8 +9,6 @@ namespace Blumenwiese_advanced_2 {
     
             this.size = _size;
             this.velocity.x = this.velocity.x * _size;
-
-            this.draw();
         }
 
         public draw(): void {
@@ -43,6 +41,8 @@ namespace Blumenwiese_advanced_2 {
                 this.position.x += crc2.canvas.width + 450;
             if (this.position.x > crc2.canvas.width)
                 this.position.x -= crc2.canvas.width;
+
+            this.draw();
         }
 
     }

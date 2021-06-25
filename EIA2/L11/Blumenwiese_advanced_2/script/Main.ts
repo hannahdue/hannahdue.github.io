@@ -3,12 +3,12 @@ Aufgabe: L11.2
 Name: Hannah Dürr
 Datum: Juni 2021
 Quellen: Für die Animation Teile von Jirkas Android-Code, die Wolken-Form von https://stackoverflow.com/questions/19541192/how-to-draw-cloud-shape-in-html5-canvas
+         Darstellung des Honigs von Mona. :)
 */
 
 namespace Blumenwiese_advanced_2 {
 
     window.addEventListener("load", handleLoad);
-    window.addEventListener("pointerup", handlePointerup);
 
     export let crc2: CanvasRenderingContext2D;
     export let allFlowers: Flower[] = [];
@@ -37,6 +37,7 @@ namespace Blumenwiese_advanced_2 {
             return;
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         horizon = crc2.canvas.height * golden;
+        window.addEventListener("click", handlePointerup);
 
         //draw background and two clouds
         drawBackground();
@@ -61,7 +62,7 @@ namespace Blumenwiese_advanced_2 {
         window.setInterval(update, 20);
     }
 
-    function handlePointerup(_event: PointerEvent): void {
+    function handlePointerup(_event: MouseEvent): void {
         console.log("custom Bee");
         let bee: Bee = new Bee(new Vector(_event.offsetX, _event.offsetY));
         moveables.push(bee);

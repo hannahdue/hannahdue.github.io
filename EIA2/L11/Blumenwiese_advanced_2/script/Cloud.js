@@ -6,7 +6,6 @@ var Blumenwiese_advanced_2;
             super(_position, new Blumenwiese_advanced_2.Vector(-20, 0));
             this.size = _size;
             this.velocity.x = this.velocity.x * _size;
-            this.draw();
         }
         draw() {
             Blumenwiese_advanced_2.crc2.save();
@@ -33,6 +32,7 @@ var Blumenwiese_advanced_2;
                 this.position.x += Blumenwiese_advanced_2.crc2.canvas.width + 450;
             if (this.position.x > Blumenwiese_advanced_2.crc2.canvas.width)
                 this.position.x -= Blumenwiese_advanced_2.crc2.canvas.width;
+            this.draw();
         }
     }
     Blumenwiese_advanced_2.Cloud = Cloud;
