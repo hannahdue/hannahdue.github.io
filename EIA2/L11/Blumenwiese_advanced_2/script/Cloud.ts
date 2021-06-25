@@ -6,8 +6,6 @@ namespace Blumenwiese_advanced_2 {
 
         constructor(_position: Vector, _size: number) {
             super(_position, new Vector(-20, 0));
-            
-            console.log("Cloud");
     
             this.size = _size;
             this.velocity.x = this.velocity.x * _size;
@@ -36,7 +34,7 @@ namespace Blumenwiese_advanced_2 {
             crc2.restore();
         }
 
-        public move(_timeslice: number): void {
+        public action(_timeslice: number): void {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);

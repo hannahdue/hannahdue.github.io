@@ -1,23 +1,26 @@
 namespace Blumenwiese_advanced_2 {
 
     export class Bee extends Moveable {
-        
+
+        public beeAction: ACTION = ACTION.FLY;
+        public target: Flower;
+        private setDestination: boolean = true;
         private scale: number = createRandomValueInRange(1, 2);
         private direction: number = createRandomValueInRange(-1, 1);
+        private timer: number = 0;
 
         constructor(_position?: Vector) {
             super(new Vector(crc2.canvas.width * 0.59, crc2.canvas.height * 0.74), new Vector((createRandomValueInRange(-150, -100)), (createRandomValueInRange(-30, 30))));
+            
             if (_position) {
                 this.position = _position;
             }
 
-            console.log("Bee");
-            
             //Biene wenn sie umgedreht ist in andere Richtung fliegen lassen
             if (this.direction < 0) {
                 this.velocity.x = -this.velocity.x;
             }
-            
+
             this.draw();
         }
 
@@ -49,7 +52,7 @@ namespace Blumenwiese_advanced_2 {
             crc2.fillStyle = "gold";
             crc2.fill();
             crc2.stroke();
-            
+
             // stripes 
             crc2.beginPath();
             crc2.rect(-13, 1, 26, 6);
@@ -83,7 +86,27 @@ namespace Blumenwiese_advanced_2 {
             crc2.restore();
         }
 
-        public move(_timeslice: number): void {
+        public action(_timeslice: number): void {
+            switch (this.beeAction) {
+                case ACTION.FLY:
+                    this.flyToFlower(_timeslice);
+                    break;
+                case ACTION.EAT:
+                    this.eatNectar();
+                    break;
+                case ACTION.RETURN:
+                    this.return(_timeslice);
+                    break;
+                case ACTION.UNLOAD:
+                    this.unload();
+                    break;
+                default:
+                    this.fly(_timeslice);
+                    break;
+            }
+        }
+
+        private fly(_timeslice: number): void {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
@@ -98,7 +121,34 @@ namespace Blumenwiese_advanced_2 {
             if (this.position.x > crc2.canvas.width)
                 this.position.x -= crc2.canvas.width;
             if (this.position.y > crc2.canvas.height)
-                this.position.y -= crc2.canvas.height;    
+                this.position.y -= crc2.canvas.height;
+        }
+
+        private flyToFlower(_timeslice: number): void {
+            //Bee flies to flower
+            if (this.setDestination == true) {
+                let i: number = Math.round(Math.random() * (flowers.length - 1));
+                this.target = flowers[i];
+                this.setDestination = false;
+            }
+
+            let direction: Vector = new Vector(this.target.position.x - this.position.x, (this.target.position.y - 100) * this.target.scale - this.position.y);
+            direction.scale(_timeslice);
+            this.position.add(direction);
+
+            this.draw();
+        }
+
+        private eatNectar(): void {
+            //Bee eats nectar
+        }
+
+        private return(_timeslice: number): void {
+            //Bee returns to beehive
+        }
+
+        private unload(): void {
+            //Bee unloads nactar
         }
     }
 

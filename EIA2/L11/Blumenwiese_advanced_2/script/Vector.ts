@@ -30,6 +30,10 @@ namespace Blumenwiese_advanced_2 {
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
         }
+
+        public get length(): number {
+            return Math.hypot(this.x, this.y);
+        }
     }
 
 }

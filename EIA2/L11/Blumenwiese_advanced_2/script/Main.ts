@@ -11,6 +11,8 @@ namespace Blumenwiese_advanced_2 {
     window.addEventListener("pointerup", handlePointerup);
 
     export let crc2: CanvasRenderingContext2D;
+    export let allFlowers: Flower[] = [];
+    export let flowers: Flower[] = [];
     let x: number;
     let golden: number = 0.38;
     let horizon: number;
@@ -19,8 +21,14 @@ namespace Blumenwiese_advanced_2 {
     let cloud1: Moveable;
     let cloud2: Moveable;
     let moveables: Moveable[] = [];
-    let flowers: Flower[] = [];
     let grassblades: Grassblade[] = [];
+
+    export enum ACTION {
+        FLY,
+        EAT,
+        RETURN,
+        UNLOAD
+        }
 
     function handleLoad(): void {
 
@@ -45,7 +53,7 @@ namespace Blumenwiese_advanced_2 {
         drawGrassblades();
 
         //createBees
-        for (let index: number = 0; index < 10; index++) {
+        for (let index: number = 0; index < 1; index++) {
             window.setTimeout(createBee, 1000 * index);
         }
 
@@ -55,12 +63,24 @@ namespace Blumenwiese_advanced_2 {
 
     function handlePointerup(_event: PointerEvent): void {
         console.log("custom Bee");
-        let bee: Bee = new Bee(new Vector(_event.clientX, _event.clientY));
+        let bee: Bee = new Bee(new Vector(_event.offsetX, _event.offsetY));
         moveables.push(bee);
     }
 
     export function createRandomValueInRange(_min: number, _max: number): number {
         return _min + Math.random() * (_max - _min);
+    }
+
+    function update(): void {
+        //drawBackground();
+        crc2.putImageData(backgroundimage, 0, 0);
+        drawFlowers();
+        drawBeehive();
+        drawGrassblades();
+        //animate moveables
+        for (let moveable of moveables) {
+            moveable.action(1 / 50);
+        }
     }
 
     function drawBackground(): void {
@@ -94,7 +114,7 @@ namespace Blumenwiese_advanced_2 {
             x += 100 + Math.random() * 80;
             let y: number = createRandomValueInRange(30, 80);
             let flower: Flower = new Flower(new Vector(x, y), scale);
-            flowers.push(flower);
+            allFlowers.push(flower);
             if (x > crc2.canvas.width * 1.3)
                 break;
         }
@@ -106,6 +126,7 @@ namespace Blumenwiese_advanced_2 {
             let y: number = createRandomValueInRange(120, 250);
 
             let flower: Flower = new Flower(new Vector(x, y), scale);
+            allFlowers.push(flower);
             flowers.push(flower);
 
             if (x > crc2.canvas.width * 1.3)
@@ -121,6 +142,7 @@ namespace Blumenwiese_advanced_2 {
             let y: number = createRandomValueInRange(380, 470);
 
             let flower: Flower = new Flower(new Vector(x, y), scale);
+            allFlowers.push(flower);
             flowers.push(flower);
 
             x += 150 + Math.random() * 200;
@@ -130,7 +152,7 @@ namespace Blumenwiese_advanced_2 {
     }
 
     function drawFlowers(): void {
-        for (let flower of flowers) {
+        for (let flower of allFlowers) {
             crc2.save();
             crc2.translate(0, horizon + 30);
             flower.updateFlower();
@@ -173,19 +195,6 @@ namespace Blumenwiese_advanced_2 {
     function createBee(): void {
         let bee: Moveable = new Bee();
         moveables.push(bee);
-    }
-
-    function update(): void {
-        //drawBackground();
-        crc2.putImageData(backgroundimage, 0, 0);
-        drawFlowers();
-        drawBeehive();
-        drawGrassblades();
-        //animate moveables
-        for (let moveable of moveables) {
-            moveable.move(1 / 50);
-            moveable.draw();
-        }
     }
 
     function drawSun(_position: Vector): void {

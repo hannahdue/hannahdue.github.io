@@ -4,12 +4,14 @@ var Blumenwiese_advanced_2;
     class Bee extends Blumenwiese_advanced_2.Moveable {
         constructor(_position) {
             super(new Blumenwiese_advanced_2.Vector(Blumenwiese_advanced_2.crc2.canvas.width * 0.59, Blumenwiese_advanced_2.crc2.canvas.height * 0.74), new Blumenwiese_advanced_2.Vector((Blumenwiese_advanced_2.createRandomValueInRange(-150, -100)), (Blumenwiese_advanced_2.createRandomValueInRange(-30, 30))));
+            this.beeAction = Blumenwiese_advanced_2.ACTION.FLY;
+            this.setDestination = true;
             this.scale = Blumenwiese_advanced_2.createRandomValueInRange(1, 2);
             this.direction = Blumenwiese_advanced_2.createRandomValueInRange(-1, 1);
+            this.timer = 0;
             if (_position) {
                 this.position = _position;
             }
-            console.log("Bee");
             //Biene wenn sie umgedreht ist in andere Richtung fliegen lassen
             if (this.direction < 0) {
                 this.velocity.x = -this.velocity.x;
@@ -69,7 +71,26 @@ var Blumenwiese_advanced_2;
             Blumenwiese_advanced_2.crc2.stroke();
             Blumenwiese_advanced_2.crc2.restore();
         }
-        move(_timeslice) {
+        action(_timeslice) {
+            switch (this.beeAction) {
+                case Blumenwiese_advanced_2.ACTION.FLY:
+                    this.flyToFlower(_timeslice);
+                    break;
+                case Blumenwiese_advanced_2.ACTION.EAT:
+                    this.eatNectar();
+                    break;
+                case Blumenwiese_advanced_2.ACTION.RETURN:
+                    this.return(_timeslice);
+                    break;
+                case Blumenwiese_advanced_2.ACTION.UNLOAD:
+                    this.unload();
+                    break;
+                default:
+                    this.fly(_timeslice);
+                    break;
+            }
+        }
+        fly(_timeslice) {
             let offset = new Blumenwiese_advanced_2.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
@@ -83,6 +104,27 @@ var Blumenwiese_advanced_2;
                 this.position.x -= Blumenwiese_advanced_2.crc2.canvas.width;
             if (this.position.y > Blumenwiese_advanced_2.crc2.canvas.height)
                 this.position.y -= Blumenwiese_advanced_2.crc2.canvas.height;
+        }
+        flyToFlower(_timeslice) {
+            //Bee flies to flower
+            if (this.setDestination == true) {
+                let i = Math.round(Math.random() * (Blumenwiese_advanced_2.flowers.length - 1));
+                this.target = Blumenwiese_advanced_2.flowers[i];
+                this.setDestination = false;
+            }
+            let direction = new Blumenwiese_advanced_2.Vector(this.target.position.x - this.position.x, (this.target.position.y - 100) * this.target.scale - this.position.y);
+            direction.scale(_timeslice);
+            this.position.add(direction);
+            this.draw();
+        }
+        eatNectar() {
+            //Bee eats nectar
+        }
+        return(_timeslice) {
+            //Bee returns to beehive
+        }
+        unload() {
+            //Bee unloads nactar
         }
     }
     Blumenwiese_advanced_2.Bee = Bee;

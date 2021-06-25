@@ -1,9 +1,9 @@
 namespace Blumenwiese_advanced_2 {
 
     export class Flower {
-        public nectarLevel: number = Math.random() * 0.5;
-        private position: Vector;
-        private scale: number;
+        public nectarLevel: number = 1;
+        public position: Vector;
+        public scale: number;
         private petalColor: number = Math.floor(Math.random() * 10);
         private flowerPetals: number = 5;
 
@@ -11,7 +11,6 @@ namespace Blumenwiese_advanced_2 {
             console.log("Flower");
             this.position = _position;
             this.scale = _scale;
-            //this.draw();
         }
 
         public draw(): void {

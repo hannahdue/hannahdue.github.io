@@ -23,6 +23,9 @@ var Blumenwiese_advanced_2;
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
         }
+        get length() {
+            return Math.hypot(this.x, this.y);
+        }
     }
     Blumenwiese_advanced_2.Vector = Vector;
 })(Blumenwiese_advanced_2 || (Blumenwiese_advanced_2 = {}));

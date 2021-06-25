@@ -4,7 +4,6 @@ var Blumenwiese_advanced_2;
     class Cloud extends Blumenwiese_advanced_2.Moveable {
         constructor(_position, _size) {
             super(_position, new Blumenwiese_advanced_2.Vector(-20, 0));
-            console.log("Cloud");
             this.size = _size;
             this.velocity.x = this.velocity.x * _size;
             this.draw();
@@ -26,7 +25,7 @@ var Blumenwiese_advanced_2;
             Blumenwiese_advanced_2.crc2.fill();
             Blumenwiese_advanced_2.crc2.restore();
         }
-        move(_timeslice) {
+        action(_timeslice) {
             let offset = new Blumenwiese_advanced_2.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);

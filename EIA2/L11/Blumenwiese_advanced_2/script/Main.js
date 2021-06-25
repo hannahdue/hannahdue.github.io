@@ -9,6 +9,8 @@ var Blumenwiese_advanced_2;
 (function (Blumenwiese_advanced_2) {
     window.addEventListener("load", handleLoad);
     window.addEventListener("pointerup", handlePointerup);
+    Blumenwiese_advanced_2.allFlowers = [];
+    Blumenwiese_advanced_2.flowers = [];
     let x;
     let golden = 0.38;
     let horizon;
@@ -17,8 +19,14 @@ var Blumenwiese_advanced_2;
     let cloud1;
     let cloud2;
     let moveables = [];
-    let flowers = [];
     let grassblades = [];
+    let ACTION;
+    (function (ACTION) {
+        ACTION[ACTION["FLY"] = 0] = "FLY";
+        ACTION[ACTION["EAT"] = 1] = "EAT";
+        ACTION[ACTION["RETURN"] = 2] = "RETURN";
+        ACTION[ACTION["UNLOAD"] = 3] = "UNLOAD";
+    })(ACTION = Blumenwiese_advanced_2.ACTION || (Blumenwiese_advanced_2.ACTION = {}));
     function handleLoad() {
         let canvas = document.querySelector("canvas");
         if (!canvas)
@@ -38,7 +46,7 @@ var Blumenwiese_advanced_2;
         drawBeehive();
         drawGrassblades();
         //createBees
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 1; index++) {
             window.setTimeout(createBee, 1000 * index);
         }
         //animate image
@@ -46,13 +54,24 @@ var Blumenwiese_advanced_2;
     }
     function handlePointerup(_event) {
         console.log("custom Bee");
-        let bee = new Blumenwiese_advanced_2.Bee(new Blumenwiese_advanced_2.Vector(_event.clientX, _event.clientY));
+        let bee = new Blumenwiese_advanced_2.Bee(new Blumenwiese_advanced_2.Vector(_event.offsetX, _event.offsetY));
         moveables.push(bee);
     }
     function createRandomValueInRange(_min, _max) {
         return _min + Math.random() * (_max - _min);
     }
     Blumenwiese_advanced_2.createRandomValueInRange = createRandomValueInRange;
+    function update() {
+        //drawBackground();
+        Blumenwiese_advanced_2.crc2.putImageData(backgroundimage, 0, 0);
+        drawFlowers();
+        drawBeehive();
+        drawGrassblades();
+        //animate moveables
+        for (let moveable of moveables) {
+            moveable.action(1 / 50);
+        }
+    }
     function drawBackground() {
         console.log("Background with mountains and meadow");
         //draw backgorund colour
@@ -78,7 +97,7 @@ var Blumenwiese_advanced_2;
             x += 100 + Math.random() * 80;
             let y = createRandomValueInRange(30, 80);
             let flower = new Blumenwiese_advanced_2.Flower(new Blumenwiese_advanced_2.Vector(x, y), scale);
-            flowers.push(flower);
+            Blumenwiese_advanced_2.allFlowers.push(flower);
             if (x > Blumenwiese_advanced_2.crc2.canvas.width * 1.3)
                 break;
         }
@@ -88,7 +107,8 @@ var Blumenwiese_advanced_2;
             x += 100 + Math.random() * 150;
             let y = createRandomValueInRange(120, 250);
             let flower = new Blumenwiese_advanced_2.Flower(new Blumenwiese_advanced_2.Vector(x, y), scale);
-            flowers.push(flower);
+            Blumenwiese_advanced_2.allFlowers.push(flower);
+            Blumenwiese_advanced_2.flowers.push(flower);
             if (x > Blumenwiese_advanced_2.crc2.canvas.width * 1.3)
                 break;
         }
@@ -100,14 +120,15 @@ var Blumenwiese_advanced_2;
             }
             let y = createRandomValueInRange(380, 470);
             let flower = new Blumenwiese_advanced_2.Flower(new Blumenwiese_advanced_2.Vector(x, y), scale);
-            flowers.push(flower);
+            Blumenwiese_advanced_2.allFlowers.push(flower);
+            Blumenwiese_advanced_2.flowers.push(flower);
             x += 150 + Math.random() * 200;
             if (x > Blumenwiese_advanced_2.crc2.canvas.width * 1.3)
                 break;
         }
     }
     function drawFlowers() {
-        for (let flower of flowers) {
+        for (let flower of Blumenwiese_advanced_2.allFlowers) {
             Blumenwiese_advanced_2.crc2.save();
             Blumenwiese_advanced_2.crc2.translate(0, horizon + 30);
             flower.updateFlower();
@@ -144,18 +165,6 @@ var Blumenwiese_advanced_2;
     function createBee() {
         let bee = new Blumenwiese_advanced_2.Bee();
         moveables.push(bee);
-    }
-    function update() {
-        //drawBackground();
-        Blumenwiese_advanced_2.crc2.putImageData(backgroundimage, 0, 0);
-        drawFlowers();
-        drawBeehive();
-        drawGrassblades();
-        //animate moveables
-        for (let moveable of moveables) {
-            moveable.move(1 / 50);
-            moveable.draw();
-        }
     }
     function drawSun(_position) {
         let r1 = 40;

@@ -3,13 +3,12 @@ var Blumenwiese_advanced_2;
 (function (Blumenwiese_advanced_2) {
     class Flower {
         constructor(_position, _scale) {
-            this.nectarLevel = Math.random() * 0.5;
+            this.nectarLevel = 1;
             this.petalColor = Math.floor(Math.random() * 10);
             this.flowerPetals = 5;
             console.log("Flower");
             this.position = _position;
             this.scale = _scale;
-            //this.draw();
         }
         draw() {
             Blumenwiese_advanced_2.crc2.save();
