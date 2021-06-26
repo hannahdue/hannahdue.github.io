@@ -93,6 +93,7 @@ var Blumenwiese_advanced_2;
     }
     function createFlowers() {
         let x = 0;
+        //background layer, not accessible for the bees
         for (let i = 0; i < 12; i++) {
             let scale = 0.5 + Math.random() * 0.15;
             x += 100 + Math.random() * 80;
@@ -103,10 +104,11 @@ var Blumenwiese_advanced_2;
                 break;
         }
         x = 0;
+        //middle layer, accessible for bees
         for (let i = 0; i < 9; i++) {
             let scale = 1.2 + Math.random() * 0.35;
             x += 100 + Math.random() * 150;
-            let y = (horizon + 30) + createRandomValueInRange(120, 250);
+            let y = (horizon + 30) + createRandomValueInRange(150, 250);
             let flower = new Blumenwiese_advanced_2.Flower(new Blumenwiese_advanced_2.Vector(x, y), scale);
             Blumenwiese_advanced_2.allFlowers.push(flower);
             Blumenwiese_advanced_2.flowers.push(flower);
@@ -114,6 +116,7 @@ var Blumenwiese_advanced_2;
                 break;
         }
         x = 0;
+        //front layer, accessible for bees
         for (let i = 0; i < 7; i++) {
             let scale = 2.1 + Math.random() * 0.5;
             if (i == 0) {
@@ -123,6 +126,12 @@ var Blumenwiese_advanced_2;
             let flower = new Blumenwiese_advanced_2.Flower(new Blumenwiese_advanced_2.Vector(x, y), scale);
             Blumenwiese_advanced_2.allFlowers.push(flower);
             Blumenwiese_advanced_2.flowers.push(flower);
+            //just behind beehive, don't draw the flowers
+            if (x > Blumenwiese_advanced_2.crc2.canvas.width * 0.59 - 180 && x < Blumenwiese_advanced_2.crc2.canvas.width * 0.59 + 180) {
+                Blumenwiese_advanced_2.allFlowers.pop();
+                Blumenwiese_advanced_2.flowers.pop();
+                console.log("Flower skipped with x: " + x);
+            }
             x += 150 + Math.random() * 200;
             if (x > Blumenwiese_advanced_2.crc2.canvas.width * 1.3)
                 break;
@@ -139,6 +148,7 @@ var Blumenwiese_advanced_2;
         for (let i = 0; i < 200; i++) {
             x += Math.random() * 35;
             let height;
+            //in front of beehive, draw them smaller
             if (x > 900 && x < 1200) {
                 height = 80 + Math.random() * 40;
             }

@@ -28,7 +28,7 @@ namespace Blumenwiese_advanced_2 {
         EAT,
         RETURN,
         UNLOAD
-        }
+    }
 
     function handleLoad(): void {
 
@@ -78,7 +78,7 @@ namespace Blumenwiese_advanced_2 {
         drawFlowers();
         drawBeehive();
         drawGrassblades();
-        
+
         //animate moveables
         for (let moveable of moveables) {
             moveable.action(1 / 50);
@@ -111,6 +111,7 @@ namespace Blumenwiese_advanced_2 {
 
     function createFlowers(): void {
         let x: number = 0;
+        //background layer, not accessible for the bees
         for (let i: number = 0; i < 12; i++) {
             let scale: number = 0.5 + Math.random() * 0.15;
             x += 100 + Math.random() * 80;
@@ -122,10 +123,11 @@ namespace Blumenwiese_advanced_2 {
         }
 
         x = 0;
+        //middle layer, accessible for bees
         for (let i: number = 0; i < 9; i++) {
             let scale: number = 1.2 + Math.random() * 0.35;
             x += 100 + Math.random() * 150;
-            let y: number = (horizon + 30) + createRandomValueInRange(120, 250);
+            let y: number = (horizon + 30) + createRandomValueInRange(150, 250);
 
             let flower: Flower = new Flower(new Vector(x, y), scale);
             allFlowers.push(flower);
@@ -136,6 +138,7 @@ namespace Blumenwiese_advanced_2 {
         }
 
         x = 0;
+        //front layer, accessible for bees
         for (let i: number = 0; i < 7; i++) {
             let scale: number = 2.1 + Math.random() * 0.5;
             if (i == 0) {
@@ -146,6 +149,12 @@ namespace Blumenwiese_advanced_2 {
             let flower: Flower = new Flower(new Vector(x, y), scale);
             allFlowers.push(flower);
             flowers.push(flower);
+            //just behind beehive, don't draw the flowers
+            if (x > crc2.canvas.width * 0.59 - 180 && x < crc2.canvas.width * 0.59 + 180) {
+                allFlowers.pop();
+                flowers.pop();
+                console.log("Flower skipped with x: " + x);
+            }
 
             x += 150 + Math.random() * 200;
             if (x > crc2.canvas.width * 1.3)
@@ -166,6 +175,7 @@ namespace Blumenwiese_advanced_2 {
         for (let i: number = 0; i < 200; i++) {
             x += Math.random() * 35;
             let height: number;
+            //in front of beehive, draw them smaller
             if (x > 900 && x < 1200) {
                 height = 80 + Math.random() * 40;
             } else {

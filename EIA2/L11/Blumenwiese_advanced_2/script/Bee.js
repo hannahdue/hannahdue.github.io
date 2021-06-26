@@ -154,7 +154,6 @@ var Blumenwiese_advanced_2;
             }
             if (this.target.nectarLevel <= 0) {
                 this.beeAction = Blumenwiese_advanced_2.ACTION.RETURN;
-                console.log(this.nectarLevel);
             }
         }
         return(_timeslice) {
@@ -181,7 +180,8 @@ var Blumenwiese_advanced_2;
         unload() {
             //Bee unloads nactar
             this.timer += 0.02;
-            if (this.timer >= 5) {
+            //bee needs longer to unload, the more nectar she collected
+            if (this.timer >= 5 + this.nectarLevel) {
                 this.nectarLevel = 0;
                 this.timer = 0;
                 this.beeAction = Blumenwiese_advanced_2.ACTION.FLY;
