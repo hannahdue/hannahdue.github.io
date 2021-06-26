@@ -1,7 +1,7 @@
 /*
 Aufgabe: L11.2
 Name: Hannah Dürr
-Datum: Juni 2021
+Datum: 26. Juni 2021
 Quellen: Für die Animation Teile von Jirkas Android-Code, die Wolken-Form von https://stackoverflow.com/questions/19541192/how-to-draw-cloud-shape-in-html5-canvas
          Darstellung des Honigs von Mona. :)
 */
